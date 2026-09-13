@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "kowalah": {
+      "type": "http",
+      "url": "https://mcp.kowalah.com/api/mcp",
+      "note": "Kowalah client MCP server. Uses OAuth — on first connection you will be prompted to sign in with your Kowalah client account (not a Kowalah admin login). Requires an active Kowalah engagement: every tool is scoped to the organisations you are an accepted member of. See SETUP.md."
+    }
+  }
+}
