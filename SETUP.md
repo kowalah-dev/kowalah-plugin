@@ -26,9 +26,13 @@ Read two things off that response and tell the user:
 
 - **Which organisations they belong to.** If more than one, several tools need an explicit
   `organization_id` and you must ask which one each time rather than guessing.
-- **Their role.** `admin` and `core_team` see everything in the organisation; `member` sees
-  only their own opportunities plus items they are a stakeholder on. This changes what
-  every other skill can say, so establish it early.
+- **Their role.** This gates `kowalah_get_update` only: `admin` and `core_team` see
+  everything in the organisation; `member` sees only their own opportunities plus items
+  they are a stakeholder on. It does **not** gate the operating model, the vision map, the
+  accelerator library or process detail — anyone in the organisation can read all of those.
+  Writes are permission-checked separately, and where a user cannot edit something the
+  tools route them to a proposal rather than refusing. Establish the role early, because it
+  changes what the portfolio view can honestly claim to show.
 
 ## If it fails
 

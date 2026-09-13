@@ -31,7 +31,10 @@ flight aimed there, and what should happen next.
 changes about it. Where does the cycle time go, does this need redesigning or just
 automating, and how do we know the AI is doing it right.
 
-Anyone in a client organisation can also raise ideas and asks to their Kowalah team.
+**Everyone else** — the people with default access who have no formal role in the model.
+An AI lead can roll the plugin out company-wide and tell people to talk through their own
+work and log what's worth doing. Members can read the whole operating model and vision, and
+can propose against any process they can see.
 
 ## Skills
 
@@ -41,12 +44,19 @@ Anyone in a client organisation can also raise ideas and asks to their Kowalah t
 | `/kowalah:process-diagnostic` | Reads one process honestly — where cycle time really goes, how many handoffs, and what has never been measured. Treats a missing measurement as a finding, not a zero. |
 | `/kowalah:process-redesign` | As-is to to-be. Mark up what gets eliminated, merged or kept, then generate the redesign beside the original so the two can be compared. |
 | `/kowalah:quality-bar` | Acceptance criteria, gates and monitors, target scores — what "good" means for a step, set by the business owner rather than the builder. |
+| `/kowalah:spot-opportunities` | For anyone: talk through your own work, find the real friction, check what already exists, and route it. Grounded in your organisation's vision, not generic AI advice. |
 | `/kowalah:raise-opportunity` | Check the accelerator library first, test against the vision, score it, submit it. |
 
 Skills activate on their own when the context fits; the slash commands are there when you
 want to be explicit.
 
 ## Two ideas worth knowing before you start
+
+**You can see more than you can change.** Reads are scoped to your organisation, not your
+role — anyone can look at the whole operating model and the vision map. Writes are
+permission-checked, and where you can't edit something the tools route you to a proposal
+instead of refusing. So the always-open path for everyone is: see anything, propose
+anything.
 
 **A null is "can't say", never "none".** Process diagnostics return nulls where the data is
 incomplete — handoff counts when a step has no owner, cycle ratios when a step has never
@@ -67,7 +77,7 @@ conversation.
   marketplace.json     Marketplace manifest — lets this repo be added directly
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
 SETUP.md               Connection and troubleshooting
-skills/                Five skills, one directory each
+skills/                Six skills, one directory each
 ```
 
 The MCP server itself is not in this repo — it's a remote HTTP connector at
