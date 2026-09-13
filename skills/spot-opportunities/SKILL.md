@@ -25,10 +25,12 @@ Before asking anything about their work:
 Anyone can read both of these regardless of role. If either returns `kind: "empty"`, carry
 on without it — just don't invent a vision that hasn't been written.
 
-But if the model comes back with **one unit and no processes**, in an organisation named
-after a person where they are `admin`, stop: the account is in an auto-provisioned personal
-workspace, not attached to a Kowalah engagement. Nothing they log will reach anyone. Tell
-them, and point them at their Kowalah contact or their AI lead — see `SETUP.md`.
+But if the model comes back with **one unit and no processes**, and they are the sole
+`admin` of a single organisation with no vision authored, stop: the account is in an
+auto-provisioned workspace, not attached to a Kowalah engagement. Nothing they log will
+reach anyone. Don't be reassured by the organisation's name — it is derived from their
+email domain, so it may well be their employer's name. Tell them, and point them at their
+Kowalah contact or their AI lead — see `SETUP.md`.
 
 Having the vision in hand changes the conversation from "what could AI do" to "what would
 move the things we said mattered". Use the principles' own wording when you get to the

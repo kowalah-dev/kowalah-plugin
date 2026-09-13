@@ -99,7 +99,8 @@ If either model tool returns `kind: "empty"`, no operating model or vision has b
 yet. That is Define-phase work their Kowalah team does with them; say that rather than
 offering to map it from scratch here.
 
-One thing to rule out first: a model showing **one unit and zero processes** in an
-organisation named after a person, where the user is `admin`, is not an unmapped client —
-it is an auto-provisioned personal workspace not attached to any engagement. The two look
-alike and the remedies are unrelated. See `SETUP.md`.
+One thing to rule out first: a model showing **one unit and zero processes**, where the
+user is the sole `admin` of a single organisation and no vision exists, is not an unmapped
+client — it is an auto-provisioned workspace not attached to any engagement. Judge this by
+shape, not by name: new workspaces are named from the signer-up's email domain, so one can
+carry the client's own company name and still be empty. See `SETUP.md`.

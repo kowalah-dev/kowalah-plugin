@@ -40,23 +40,32 @@ or process detail — anyone in the organisation can read all of those. Writes a
 permission-checked separately, and where a user cannot edit something the tools route them
 to a proposal rather than refusing.
 
-**Whether this is a real client organisation or a personal workspace.** The tell is a
-single organisation whose `name` reads like a person's — *"Sam's organization"* — where
-`role` is `admin`. Confirm it with two more calls:
+**Whether this is a real client organisation or an auto-provisioned workspace.** This is
+the one that catches people out, so check it by *shape*, never by name.
 
-- `kowalah_get_operating_model` returns a tree with **one unit and zero processes** (not
-  `kind: "empty"` — a root unit is created automatically, so the model looks present but
-  is bare)
+**The organisation's name proves nothing.** A new workspace is named from the signer-up's
+email domain, so someone joining on a corporate address gets a workspace named after their
+own employer — indistinguishable at a glance from the real client organisation, which may
+exist separately with a near-identical name. Only a personal email address produces the
+obvious *"Sam's organization"* giveaway.
+
+The reliable tell is all four of these together:
+
+- exactly **one** organisation, and `role` is `admin`
+- `kowalah_get_operating_model` returns **one unit and zero processes** — note this is
+  *not* `kind: "empty"`, because a root unit is created automatically, so the model looks
+  present but is bare
 - `kowalah_get_vision` returns `kind: "empty"`
+- `kowalah_get_update` shows no projects, deliverables or expert requests despite the
+  `admin` role that would reveal them
 
-That combination means the account was auto-provisioned into its own workspace and is not
-attached to a Kowalah engagement. **Say so plainly.** Every tool will keep returning
-nothing, and the user has no way to fix it themselves — no join-request flow exists. The
-resolution is their Kowalah contact, or their organisation's AI lead, linking the account
-to the right organisation.
+That combination means the account was auto-provisioned into a workspace of its own and is
+not attached to a Kowalah engagement. **Say so plainly.** Every tool will keep returning
+nothing, and the user cannot fix it themselves. The resolution is their Kowalah contact or
+their organisation's AI lead attaching the account to the right organisation.
 
 Do not present an empty operating model as "you haven't mapped anything yet" without
-checking this first. The two look identical and the remedies are completely different.
+ruling this out. The two are identical on the surface and the remedies are unrelated.
 
 ## If something fails
 
