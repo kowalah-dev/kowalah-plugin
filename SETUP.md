@@ -1,50 +1,78 @@
 ---
 name: kowalah-setup
-description: Connect the Kowalah MCP server and verify access. Use when the Kowalah plugin has just been installed, when a Kowalah tool returns an authentication error, or when the user asks how to connect Kowalah.
+description: Connect the Kowalah MCP server and check what the signed-in account can actually see. Use when the Kowalah plugin has just been installed, when Kowalah tools return nothing or error, or when the user asks how to connect Kowalah.
 ---
 
 # Setting up the Kowalah connection
 
 The Kowalah plugin talks to `https://mcp.kowalah.com/api/mcp` over authenticated HTTP.
-**It requires a Kowalah client account** — every tool is scoped to the organisations the
-signed-in user belongs to. There is no anonymous or read-only mode.
+Every tool is scoped to the organisations the signed-in user belongs to — there is no
+anonymous or read-only mode.
 
 ## Connecting
 
 1. The plugin registers the `kowalah` MCP server automatically on install. On first use,
-   Claude will prompt to authenticate.
-2. Sign in with the Kowalah client account — the same login used for the Kowalah client
-   portal. This is a **different** account from any Kowalah admin or employee login.
+   Claude prompts to authenticate.
+2. **Sign in, or sign up.** An email Kowalah doesn't already know is fine — an account is
+   created automatically. You do not need to be invited first.
 3. Approve the connection.
 
-## Verifying it worked
+## Then check what the account can actually see — this step matters
 
-Run `kowalah_get_update` with no query. A working connection returns `kind: "home"` with
-the user's identity, their organisations, and a role-appropriate rollup.
+Signing in successfully is **not** the same as having access to anything. A brand-new
+sign-up lands in a personal workspace of its own with nothing in it. Authentication
+succeeds, every tool returns valid empty results, and nothing says why. Establish which
+situation the user is in before doing anything else.
 
-Read two things off that response and tell the user:
+Run **`kowalah_get_update`** with no query. A working connection returns `kind: "home"`
+with the user's identity, their `organizations` (each with `id`, `name` and `role`), and a
+role-appropriate rollup.
 
-- **Which organisations they belong to.** If more than one, several tools need an explicit
-  `organization_id` and you must ask which one each time rather than guessing.
-- **Their role.** This gates `kowalah_get_update` only: `admin` and `core_team` see
-  everything in the organisation; `member` sees only their own opportunities plus items
-  they are a stakeholder on. It does **not** gate the operating model, the vision map, the
-  accelerator library or process detail — anyone in the organisation can read all of those.
-  Writes are permission-checked separately, and where a user cannot edit something the
-  tools route them to a proposal rather than refusing. Establish the role early, because it
-  changes what the portfolio view can honestly claim to show.
+### Read three things off it and tell the user
 
-## If it fails
+**Which organisations they belong to.** If more than one, several tools need an explicit
+`organization_id` — ask which one each time rather than guessing.
 
-- **401 / authentication error** — the session has expired or the wrong account was used.
-  Re-authenticate with the Kowalah *client* login.
-- **No organisations returned** — the account exists but is not an accepted member of any
-  organisation. Their Kowalah contact resolves this; nothing in this plugin can.
-- **`kind: "empty"` from the model or vision tools** — the connection is fine, but no
-  operating model or vision map has been authored yet. That is Define-phase work the
-  Kowalah team does with the client. Do not offer to build it from scratch here.
+**Their role.** This gates `kowalah_get_update` only: `admin` and `core_team` see
+everything in the organisation, `member` sees their own opportunities plus items they are a
+stakeholder on. It does **not** gate the operating model, vision map, accelerator library
+or process detail — anyone in the organisation can read all of those. Writes are
+permission-checked separately, and where a user cannot edit something the tools route them
+to a proposal rather than refusing.
 
-## No Kowalah account?
+**Whether this is a real client organisation or a personal workspace.** The tell is a
+single organisation whose `name` reads like a person's — *"Sam's organization"* — where
+`role` is `admin`. Confirm it with two more calls:
 
-The tools will not work, and nothing in this plugin substitutes for them. Kowalah is a
-managed AI advisory programme — see https://kowalah.com.
+- `kowalah_get_operating_model` returns a tree with **one unit and zero processes** (not
+  `kind: "empty"` — a root unit is created automatically, so the model looks present but
+  is bare)
+- `kowalah_get_vision` returns `kind: "empty"`
+
+That combination means the account was auto-provisioned into its own workspace and is not
+attached to a Kowalah engagement. **Say so plainly.** Every tool will keep returning
+nothing, and the user has no way to fix it themselves — no join-request flow exists. The
+resolution is their Kowalah contact, or their organisation's AI lead, linking the account
+to the right organisation.
+
+Do not present an empty operating model as "you haven't mapped anything yet" without
+checking this first. The two look identical and the remedies are completely different.
+
+## If something fails
+
+- **401 / authentication error** — the session expired. Re-authenticate.
+- **`User not found for Clerk user: …`** — the account exists in Clerk but the matching
+  record was never created. This is a provisioning failure, not something the user did.
+  Their Kowalah contact resolves it.
+- **`User … has no active organization memberships`** — signed in, but attached to nothing
+  at all. Rare, and also a provisioning failure. Same route.
+- **Tools succeed but return nothing** — almost always the personal-workspace case above.
+  Check it before assuming the data is missing.
+- **`kind: "empty"` from the model or vision tools in a *real* client organisation** — the
+  connection is fine and nothing has been authored yet. That is Define-phase work the
+  Kowalah team does with the client; don't offer to build it from scratch here.
+
+## No Kowalah engagement?
+
+Signing in will work and create an account, but the tools will have nothing to show.
+Kowalah is a managed AI advisory programme — see https://kowalah.com.

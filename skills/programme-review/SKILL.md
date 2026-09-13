@@ -98,3 +98,8 @@ organisations, then ask which one — do not guess.
 If either model tool returns `kind: "empty"`, no operating model or vision has been mapped
 yet. That is Define-phase work their Kowalah team does with them; say that rather than
 offering to map it from scratch here.
+
+One thing to rule out first: a model showing **one unit and zero processes** in an
+organisation named after a person, where the user is `admin`, is not an unmapped client —
+it is an auto-provisioned personal workspace not attached to any engagement. The two look
+alike and the remedies are unrelated. See `SETUP.md`.

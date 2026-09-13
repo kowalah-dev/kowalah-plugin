@@ -7,9 +7,11 @@ Kowalah is a managed AI advisory programme. Client organisations map their busin
 owner, a quality bar, and a decision about whether a human or an AI runs it. This plugin
 puts that model into Claude, along with the judgement needed to read it honestly.
 
-> **This plugin requires a Kowalah client account.** Every tool is authenticated and scoped
-> to the organisations you belong to. If you don't have a Kowalah engagement, the tools
-> won't return anything — see [kowalah.com](https://kowalah.com).
+> **You need a Kowalah engagement for this to show you anything.** Signing in creates an
+> account if you don't have one — no invitation needed. But a brand-new sign-up lands in a
+> personal workspace with nothing in it, and every tool will return valid, empty results.
+> The plugin is useful once your account is attached to a real client organisation. See
+> [kowalah.com](https://kowalah.com).
 
 ## Install
 
@@ -18,8 +20,10 @@ puts that model into Claude, along with the judgement needed to read it honestly
 /plugin install kowalah@kowalah
 ```
 
-On first use, Claude prompts you to sign in with your Kowalah client account. Then ask
-"what's my Kowalah status" to confirm the connection.
+On first use, Claude prompts you to sign in or sign up. Then ask "what's my Kowalah
+status" — that runs the setup check, which tells you which organisations you're in, what
+your role can see, and whether you're actually attached to an engagement or sitting in an
+empty personal workspace.
 
 ## Who it's for
 
