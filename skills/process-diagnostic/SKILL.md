@@ -8,6 +8,16 @@ description: Read one business process honestly — where its cycle time actuall
 For the person who owns a process and has to decide what to do about it. This is the read
 that comes before any redesign. Run it first — `process-redesign` assumes it.
 
+## Read the model before you ask
+
+The operating model already holds the owners, the steps, the timings, the constraints, the
+quality bars and the work in flight. **Ask the user only for what it doesn't have.**
+Questioning someone about a process the model already describes wastes their time and
+tells them you didn't look.
+
+Where the model is missing something, that absence is usually the finding — say what isn't
+recorded rather than quietly filling the gap from conversation.
+
 ## Sequence
 
 1. **`kowalah_get_process`** with the process UUID. If you do not have the UUID, get it

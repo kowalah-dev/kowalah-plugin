@@ -12,6 +12,16 @@ work and log anything worth doing". This is that conversation.
 The job is to get from *"here's what I do all day"* to either **something they can use
 today** or **one well-formed opportunity**. Not a list of twelve ideas.
 
+## Read the model before you ask
+
+The operating model already holds the owners, the steps, the timings, the constraints, the
+quality bars and the work in flight. **Ask the user only for what it doesn't have.**
+Questioning someone about a process the model already describes wastes their time and
+tells them you didn't look.
+
+Where the model is missing something, that absence is usually the finding — say what isn't
+recorded rather than quietly filling the gap from conversation.
+
 ## Ground it first — this is what stops it being generic AI advice
 
 Before asking anything about their work:
@@ -86,6 +96,10 @@ Each principle carries its defining attributes as an assertion plus a counter-cl
 *"It moves a business KPI." / "Not a good idea in search of one."* **Both halves are the
 test.** The counter-clause is the one that does the work: it lets you tell someone their
 idea is a good idea in search of a problem without it being your opinion.
+
+Glance at `lastUpdatedAt` before leaning on it hard. If the vision is a year or more old,
+apply it as written but hold it more loosely — and if a good idea fails a stale principle,
+that is worth saying out loud rather than using it to close the conversation.
 
 Name the principle it serves and the KPI it moves. If it serves none, **say so** — plenty
 of worthwhile work sits outside the current vision, and the mismatch is more useful

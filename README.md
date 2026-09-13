@@ -57,6 +57,12 @@ want to be explicit.
 
 ## Two ideas worth knowing before you start
 
+**The model is the context layer — the skills read it before they ask you anything.** Your
+operating model already holds the owners, steps, timings, constraints and quality bars, so
+the skills are written to look there first and only ask for what's genuinely missing. Where
+something isn't recorded, they say so rather than filling the gap from conversation, and
+they check how old the vision and the quality readings are before leaning on them.
+
 **You can see more than you can change.** Reads are scoped to your organisation, not your
 role — anyone can look at the whole operating model and the vision map. Writes are
 permission-checked, and where you can't edit something the tools route you to a proposal

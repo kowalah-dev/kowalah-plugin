@@ -9,6 +9,16 @@ For a process owner who has diagnosed a process and concluded it needs restructu
 `process-diagnostic` first — this skill assumes you have the diagnosis and have checked
 `access`.
 
+## Read the model before you ask
+
+The operating model already holds the owners, the steps, the timings, the constraints, the
+quality bars and the work in flight. **Ask the user only for what it doesn't have.**
+Questioning someone about a process the model already describes wastes their time and
+tells them you didn't look.
+
+Where the model is missing something, that absence is usually the finding — say what isn't
+recorded rather than quietly filling the gap from conversation.
+
 ## Why this is not a disposition change
 
 A step's disposition — `human`, `ai_assisted`, `automated`, `ai_autonomous` — says **who

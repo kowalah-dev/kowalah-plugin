@@ -14,6 +14,16 @@ can raise one, at any role.
 This skill is the four things to do before submitting. Skipping them is how thin,
 unscoreable opportunities end up in the queue.
 
+## Read the model before you ask
+
+The operating model already holds the owners, the steps, the timings, the constraints, the
+quality bars and the work in flight. **Ask the user only for what it doesn't have.**
+Questioning someone about a process the model already describes wastes their time and
+tells them you didn't look.
+
+Where the model is missing something, that absence is usually the finding — say what isn't
+recorded rather than quietly filling the gap from conversation.
+
 ## 1. Check the library first
 
 **`kowalah_find_accelerator`** before anything else. The library holds pre-built prompts,
@@ -61,6 +71,10 @@ idea in search of a problem without it being your opinion.
 **If it does not obviously serve any principle, say so to the user before submitting. That
 is a real signal, not a blocker.** Plenty of worthwhile work sits outside the current
 vision, and surfacing the mismatch is more useful than quietly forcing a fit.
+
+If `lastUpdatedAt` shows the vision map is well over a year old, note that alongside the
+mismatch. "This doesn't fit the vision, but the vision hasn't been revisited since last
+March" is a fairer thing to put in front of a triage team than either half alone.
 
 Skip this step entirely when no vision map exists.
 

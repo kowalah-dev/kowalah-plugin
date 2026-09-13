@@ -9,6 +9,16 @@ For the person accountable for AI across an organisation or a division: the AI p
 lead, the core team, the exec sponsor. The job is to say where the programme actually is
 and what should happen next — not to recite a dashboard.
 
+## Read the model before you ask
+
+The operating model already holds the owners, the steps, the timings, the constraints, the
+quality bars and the work in flight. **Ask the user only for what it doesn't have.**
+Questioning someone about a process the model already describes wastes their time and
+tells them you didn't look.
+
+Where the model is missing something, that absence is usually the finding — say what isn't
+recorded rather than quietly filling the gap from conversation.
+
 ## The one failure mode this skill exists to prevent
 
 **A portfolio of initiatives aimed at places that had no gap.** It is the most common
@@ -68,6 +78,14 @@ language; the specific wording is the thing the organisation agreed to.
 When `kowalah_get_operating_model_unit` returns a vision with `ownership: "inherited"`, say
 whose it is — "you are working to the group vision, this division hasn't authored its own"
 is itself a finding worth surfacing.
+
+**Check `lastUpdatedAt` on the vision block, and say how old it is.** A vision is the
+foundation every other judgement in this review rests on, so its age changes what the
+review means. Coverage that doubled against principles nobody has revisited in a year is
+not obviously progress — it may be a year of work aimed at last year's priorities. Put the
+date in the review: *"these principles were last authored in March, and the portfolio has
+turned over twice since."* If it looks stale, the next decision may be re-authoring the
+vision rather than adding to the backlog.
 
 ## What a good review says
 

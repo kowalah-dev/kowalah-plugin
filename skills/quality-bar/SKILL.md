@@ -10,6 +10,16 @@ cannot say whether it is working. This is where a business owner sets the bar in
 terms — *"what counts as a good forecast category call"*, *"what a compliant response looks
 like"* — rather than delegating it to whoever builds the thing.
 
+## Read the model before you ask
+
+The operating model already holds the owners, the steps, the timings, the constraints, the
+quality bars and the work in flight. **Ask the user only for what it doesn't have.**
+Questioning someone about a process the model already describes wastes their time and
+tells them you didn't look.
+
+Where the model is missing something, that absence is usually the finding — say what isn't
+recorded rather than quietly filling the gap from conversation.
+
 ## The rule this enforces
 
 **A step with no acceptance criteria cannot be handed to AI, because there is no bar to
@@ -74,6 +84,10 @@ on overall quality. They are separate eval rows on the same step.
 - **`target_score`** — the bar. **`current_score`** — the latest reading. Setting
   `current_score` stamps the measurement time automatically; clearing it clears the stamp.
   You cannot set the timestamp, the source, or the position — the server owns all three.
+  **Read that stamp back and check its age.** A `current_score` measured eleven months ago
+  is not a current score, and reporting it as one is how a step drifts for a year while the
+  dashboard says it's passing. Quote the reading with its date, or say plainly that nobody
+  has measured this since.
 - **`status`** — `defined` (default) | `active` | `retired`. An eval sitting at `defined`
   is a written intention, not a running check. Be precise about the difference when
   reporting: "we have defined four evals and none are active" is the honest version.
