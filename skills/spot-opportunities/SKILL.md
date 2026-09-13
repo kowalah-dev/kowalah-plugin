@@ -27,7 +27,8 @@ on without it — just don't invent a vision that hasn't been written.
 
 But if the model comes back with **one unit and no processes**, and they are the sole
 `admin` of a single organisation with no vision authored, stop: the account is in an
-auto-provisioned workspace, not attached to a Kowalah engagement. Nothing they log will
+new empty organisation created at sign-up rather than their company's real one, so it is
+attached to no Kowalah engagement. Nothing they log will
 reach anyone. Don't be reassured by the organisation's name — it is derived from their
 email domain, so it may well be their employer's name. Tell them, and point them at their
 Kowalah contact or their AI lead — see `SETUP.md`.

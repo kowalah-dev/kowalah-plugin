@@ -13,16 +13,26 @@ anonymous or read-only mode.
 
 1. The plugin registers the `kowalah` MCP server automatically on install. On first use,
    Claude prompts to authenticate.
-2. **Sign in, or sign up.** An email Kowalah doesn't already know is fine — an account is
-   created automatically. You do not need to be invited first.
+2. **Sign in, or sign up — with a work email address.** An email Kowalah doesn't already
+   know is fine; an account is created automatically and you do not need to be invited
+   first. The email domain is what decides where you land, so a personal address
+   (gmail, outlook) cannot reach a company's organisation.
 3. Approve the connection.
 
 ## Then check what the account can actually see — this step matters
 
-Signing in successfully is **not** the same as having access to anything. A brand-new
-sign-up lands in a personal workspace of its own with nothing in it. Authentication
-succeeds, every tool returns valid empty results, and nothing says why. Establish which
-situation the user is in before doing anything else.
+Signing in successfully is **not** the same as having access to anything.
+
+Every Kowalah account belongs to an organisation — there are no personal accounts. On
+sign-up you are placed in one of two:
+
+- **Your company's organisation**, if its email domain is registered with Kowalah. This is
+  the working case.
+- **A brand-new, empty organisation created for you**, if it isn't. You are its sole admin,
+  it contains nothing, and it is unconnected to any Kowalah engagement.
+
+Both authenticate identically. In the second, every tool returns valid empty results and
+nothing says why. Establish which one the user is in before doing anything else.
 
 Run **`kowalah_get_update`** with no query. A working connection returns `kind: "home"`
 with the user's identity, their `organizations` (each with `id`, `name` and `role`), and a
@@ -40,14 +50,15 @@ or process detail — anyone in the organisation can read all of those. Writes a
 permission-checked separately, and where a user cannot edit something the tools route them
 to a proposal rather than refusing.
 
-**Whether this is a real client organisation or an auto-provisioned workspace.** This is
-the one that catches people out, so check it by *shape*, never by name.
+**Which of the two organisations they landed in.** This is the one that catches people
+out, so check it by *shape*, never by name.
 
-**The organisation's name proves nothing.** A new workspace is named from the signer-up's
-email domain, so someone joining on a corporate address gets a workspace named after their
-own employer — indistinguishable at a glance from the real client organisation, which may
-exist separately with a near-identical name. Only a personal email address produces the
-obvious *"Sam's organization"* giveaway.
+**The organisation's name proves nothing.** A newly-created organisation is *named* from
+the signer-up's email domain, so a work-email sign-up produces one named after their own
+employer — indistinguishable at a glance from the company's real organisation, which may
+exist separately under a near-identical name. Only a personal email address produces the
+obvious *"Sam's organization"* giveaway, and personal addresses are the case you least
+want anyway.
 
 The reliable tell is all four of these together:
 
@@ -59,8 +70,8 @@ The reliable tell is all four of these together:
 - `kowalah_get_update` shows no projects, deliverables or expert requests despite the
   `admin` role that would reveal them
 
-That combination means the account was auto-provisioned into a workspace of its own and is
-not attached to a Kowalah engagement. **Say so plainly.** Every tool will keep returning
+That combination means a new organisation was created for this account rather than it
+joining the company's existing one, so it is not attached to any Kowalah engagement. **Say so plainly.** Every tool will keep returning
 nothing, and the user cannot fix it themselves. The resolution is their Kowalah contact or
 their organisation's AI lead attaching the account to the right organisation.
 
@@ -75,8 +86,8 @@ ruling this out. The two are identical on the surface and the remedies are unrel
   Their Kowalah contact resolves it.
 - **`User … has no active organization memberships`** — signed in, but attached to nothing
   at all. Rare, and also a provisioning failure. Same route.
-- **Tools succeed but return nothing** — almost always the personal-workspace case above.
-  Check it before assuming the data is missing.
+- **Tools succeed but return nothing** — almost always the new-empty-organisation case
+  above. Check it before assuming the data is missing.
 - **`kind: "empty"` from the model or vision tools in a *real* client organisation** — the
   connection is fine and nothing has been authored yet. That is Define-phase work the
   Kowalah team does with the client; don't offer to build it from scratch here.

@@ -101,6 +101,7 @@ offering to map it from scratch here.
 
 One thing to rule out first: a model showing **one unit and zero processes**, where the
 user is the sole `admin` of a single organisation and no vision exists, is not an unmapped
-client — it is an auto-provisioned workspace not attached to any engagement. Judge this by
-shape, not by name: new workspaces are named from the signer-up's email domain, so one can
-carry the client's own company name and still be empty. See `SETUP.md`.
+client — a new, empty organisation was created for this account instead of it joining the
+company's existing one, so it is attached to no engagement. Judge this by shape, not by
+name: a newly-created organisation is named from the signer-up's email domain, so it can
+carry the company's own name and still be empty. See `SETUP.md`.
