@@ -45,3 +45,28 @@ claude plugin details kowalah@kowalah
 
 The component inventory is the check that matters. If a skill you added isn't in
 it, it isn't loading, whatever the validator says.
+
+## Shipping a release to clients
+
+Client org admins install from a zip, not from this repo — Anthropic requires organization
+marketplaces to be **private or internal** repositories, and this one is public so it can
+be submitted to the plugin directory. Those two requirements are mutually exclusive, so
+the zip is the bridge.
+
+1. Bump both manifests (above) and merge to `main`.
+2. Tag it: `git tag v0.3.0 && git push origin v0.3.0`
+3. The `release` workflow validates, builds `dist/kowalah-plugin-<version>.zip`, checks the
+   tag matches the manifest version, and attaches it to a GitHub Release.
+4. Tell client admins to re-upload. Upload replaces by plugin **name**, so they do not need
+   to delete the old one.
+
+Build it locally with `./scripts/package.sh` if you need a zip without cutting a release.
+
+**There is no auto-update on this path.** A client stays on whatever zip their admin last
+uploaded, however many times we push. Say so plainly when someone asks whether a fix has
+reached them — "we shipped it" and "they have it" are different facts here.
+
+The one path that does auto-update is a *private* repo synced by the admin, where sync
+"runs when a pull request that includes a plugin version bump is merged to the repository's
+default branch". That is the same version discipline as above, which is why it is not
+optional.

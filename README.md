@@ -16,14 +16,22 @@ puts that model into Claude, along with the judgement needed to read it honestly
 
 ## Install
 
-**In Cowork** — this is the one most people want.
+**For a whole organisation (Cowork)** — your Claude org admin does this once, and members
+then install it from your organisation's library.
 
-1. **Customize → Plugins → Add marketplace**
-2. Enter `kowalah-dev/kowalah-plugin`
-3. Select **Kowalah** and click **Install**
+1. Download the latest `kowalah-plugin-<version>.zip` from
+   [Releases](https://github.com/kowalah-dev/kowalah-plugin/releases)
+2. In Claude: **Organization settings → Plugins → Add plugins → Upload a file**
+3. Choose whether members get it as *Available for install*, *Installed by default*, or
+   *Required*
 
-No admin involvement, and updates are pulled from this repo — click **Update** on the
-marketplace to fetch the latest.
+Re-uploading a later zip replaces the previous version by plugin name — there's no need to
+remove the old one first.
+
+> **Why a zip and not a repo URL?** Anthropic requires organization marketplaces to be
+> private or internal repositories; public repos aren't accepted. This repo is public on
+> purpose, so the zip is the supported route. It also means **updates aren't automatic** —
+> your admin uploads a new zip when we ship one.
 
 **In Claude Code:**
 

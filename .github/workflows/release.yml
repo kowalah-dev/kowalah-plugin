@@ -1,0 +1,39 @@
+name: Release plugin zip
+
+# Builds the distributable zip and attaches it to a GitHub Release.
+# Client org admins upload that zip to their own plugin library, because
+# Anthropic refuses public repositories as organization marketplaces.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate plugin
+        run: npm i -g @anthropic-ai/claude-code && claude plugin validate . --strict
+
+      - name: Build zip
+        run: ./scripts/package.sh
+
+      # The tag must match the version in the manifests, or clients get a zip
+      # whose filename disagrees with the version inside it.
+      - name: Check tag matches manifest version
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          VER=$(python3 -c "import json;print(json.load(open('.claude-plugin/plugin.json'))['version'])")
+          [ "$TAG" = "$VER" ] || { echo "tag v$TAG != manifest $VER"; exit 1; }
+
+      - uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/v')
+        with:
+          files: dist/*.zip
+          generate_release_notes: true
