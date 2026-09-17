@@ -16,13 +16,26 @@ puts that model into Claude, along with the judgement needed to read it honestly
 
 ## Install
 
+**In Cowork** — this is the one most people want.
+
+1. **Customize → Plugins → Add marketplace**
+2. Enter `kowalah-dev/kowalah-plugin`
+3. Select **Kowalah** and click **Install**
+
+No admin involvement, and updates are pulled from this repo — click **Update** on the
+marketplace to fetch the latest.
+
+**In Claude Code:**
+
 ```
 /plugin marketplace add kowalah-dev/kowalah-plugin
 /plugin install kowalah@kowalah
 ```
 
-On first use, Claude prompts you to sign in or sign up — use your work email address. Then
-ask "what's my Kowalah status": that runs the setup check, which tells you which
+Note the marketplace is named `kowalah`, not `kowalah-plugin`.
+
+**Then, either way:** Claude prompts you to sign in or sign up — use your work email
+address. Ask *"what's my Kowalah status"* to run the setup check, which tells you which
 organisation you landed in, what your role can see, and whether it's your company's real
 organisation or a new empty one.
 
@@ -88,6 +101,8 @@ conversation.
   plugin.json          Plugin manifest
   marketplace.json     Marketplace manifest — lets this repo be added directly
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
+RELEASING.md           Version discipline — installed clients update on the
+                       version field, not on the commit
 skills/                Seven skills, one directory each — including `setup`,
                        which covers connecting and troubleshooting
 ```
