@@ -41,7 +41,7 @@ new empty organisation created at sign-up rather than their company's real one, 
 attached to no Kowalah engagement. Nothing they log will
 reach anyone. Don't be reassured by the organisation's name — it is derived from their
 email domain, so it may well be their employer's name. Tell them, and point them at their
-Kowalah contact or their AI lead — see `SETUP.md`.
+Kowalah contact or their AI lead — see the `kowalah-setup` skill.
 
 Having the vision in hand changes the conversation from "what could AI do" to "what would
 move the things we said mattered". Use the principles' own wording when you get to the

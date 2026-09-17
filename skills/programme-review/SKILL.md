@@ -122,4 +122,4 @@ user is the sole `admin` of a single organisation and no vision exists, is not a
 client — a new, empty organisation was created for this account instead of it joining the
 company's existing one, so it is attached to no engagement. Judge this by shape, not by
 name: a newly-created organisation is named from the signer-up's email domain, so it can
-carry the company's own name and still be empty. See `SETUP.md`.
+carry the company's own name and still be empty. See the `kowalah-setup` skill.
