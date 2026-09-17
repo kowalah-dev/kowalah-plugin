@@ -148,7 +148,7 @@ refusing.
 The connector authenticates via OAuth and scopes every query to the organisations the
 signed-in user is an accepted member of. Clients never see other clients' data, and several
 internal fields are stripped before anything reaches Claude. See
-[kowalah.com/privacy](https://kowalah.com/privacy).
+[kowalah.com/privacy-policy](https://www.kowalah.com/privacy-policy).
 
 ## Support
 
