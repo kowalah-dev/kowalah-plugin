@@ -46,27 +46,58 @@ claude plugin details kowalah@kowalah
 The component inventory is the check that matters. If a skill you added isn't in
 it, it isn't loading, whatever the validator says.
 
-## Shipping a release to clients
+## How a release reaches people
 
-Client org admins install from a zip, not from this repo — Anthropic requires organization
-marketplaces to be **private or internal** repositories, and this one is public so it can
-be submitted to the plugin directory. Those two requirements are mutually exclusive, so
-the zip is the bridge.
+There are three routes, and they update differently. That difference is the thing
+to get right when someone asks whether a fix has reached them.
+
+### 1. Someone adds this repo as a marketplace (auto-updates)
+
+The default, and the one to recommend. In Claude, **Customize → Plugins → Add →
+Add marketplace**, then `https://github.com/kowalah-dev/kowalah-plugin`. It
+accepts a public repo, and **Sync automatically** defaults to on, so they pick up
+what we push without doing anything.
+
+Same in Claude Code: `/plugin marketplace add kowalah-dev/kowalah-plugin`.
+
+### 2. An org admin uploads the zip (manual updates)
+
+Organization marketplaces are the one place a public repo is refused: Anthropic
+requires them to be **private or internal**. This repo is public on purpose so it
+can be submitted to the plugin directory, so an admin who wants managed rollout
+with access controls uploads a zip instead.
 
 1. Bump both manifests (above) and merge to `main`.
 2. Tag it: `git tag v0.3.0 && git push origin v0.3.0`
-3. The `release` workflow validates, builds `dist/kowalah-plugin-<version>.zip`, checks the
-   tag matches the manifest version, and attaches it to a GitHub Release.
-4. Tell client admins to re-upload. Upload replaces by plugin **name**, so they do not need
-   to delete the old one.
+3. The `release` workflow validates, builds `dist/kowalah-plugin-<version>.zip`,
+   checks the tag matches the manifest version, and attaches it to a GitHub
+   Release.
+4. Upload the zip to the Blob store so `kowalah-plugin.zip` points at it, since
+   that is the link the docs give out.
+5. Tell client admins to re-upload. Upload replaces by plugin **name**, so they
+   do not need to delete the old one first.
 
-Build it locally with `./scripts/package.sh` if you need a zip without cutting a release.
+Build a zip locally with `./scripts/package.sh` if you need one without cutting a
+release.
 
-**There is no auto-update on this path.** A client stays on whatever zip their admin last
-uploaded, however many times we push. Say so plainly when someone asks whether a fix has
-reached them — "we shipped it" and "they have it" are different facts here.
+**Nothing auto-updates on this route.** A client stays on whatever zip their admin
+last uploaded, however many times we push. "We shipped it" and "they have it" are
+different facts here, so say which one you mean. If an admin would rather not
+track releases, point them at route 1 instead.
 
-The one path that does auto-update is a *private* repo synced by the admin, where sync
-"runs when a pull request that includes a plugin version bump is merged to the repository's
-default branch". That is the same version discipline as above, which is why it is not
-optional.
+### 3. The Anthropic plugin directory (not submitted yet)
+
+Would put us in the catalog every Cowork user already browses, with no URL to
+paste. Requires the repo to stay public. See KOW-265.
+
+## Why the version bump matters on every route
+
+- **Route 1** syncs on repository changes, and an admin-synced private repo syncs
+  specifically "when a pull request that includes a plugin version bump is merged
+  to the repository's default branch".
+- **Route 2** overwrites by plugin name, and the version is how anyone can tell
+  which build they are looking at in the plugin detail view.
+- The Blob download is cached for an hour, so the version is also how you confirm
+  a re-upload actually landed.
+
+None of those work if the number never moves.

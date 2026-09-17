@@ -16,22 +16,15 @@ puts that model into Claude, along with the judgement needed to read it honestly
 
 ## Install
 
-**For a whole organisation (Cowork)** — your Claude org admin does this once, and members
-then install it from your organisation's library.
+**In Claude (Cowork or the browser)** — the route most people want, and it keeps itself
+up to date.
 
-1. Download the latest `kowalah-plugin-<version>.zip` from
-   [Releases](https://github.com/kowalah-dev/kowalah-plugin/releases)
-2. In Claude: **Organization settings → Plugins → Add plugins → Upload a file**
-3. Choose whether members get it as *Available for install*, *Installed by default*, or
-   *Required*
+1. **Customize → Plugins → Add → Add marketplace**
+2. Paste `https://github.com/kowalah-dev/kowalah-plugin`
+3. Leave **Sync automatically** on, then **Sync**
+4. Open the **Discover** tab, find **Kowalah**, and click **Add**
 
-Re-uploading a later zip replaces the previous version by plugin name — there's no need to
-remove the old one first.
-
-> **Why a zip and not a repo URL?** Anthropic requires organization marketplaces to be
-> private or internal repositories; public repos aren't accepted. This repo is public on
-> purpose, so the zip is the supported route. It also means **updates aren't automatic** —
-> your admin uploads a new zip when we ship one.
+You do not need to switch to Cowork first, and no administrator has to do anything.
 
 **In Claude Code:**
 
@@ -40,12 +33,27 @@ remove the old one first.
 /plugin install kowalah@kowalah
 ```
 
-Note the marketplace is named `kowalah`, not `kowalah-plugin`.
+The marketplace is named `kowalah`, not `kowalah-plugin`.
 
-**Then, either way:** Claude prompts you to sign in or sign up — use your work email
-address. Ask *"what's my Kowalah status"* to run the setup check, which tells you which
-organisation you landed in, what your role can see, and whether it's your company's real
-organisation or a new empty one.
+**For a whole organisation** — a Claude Team or Enterprise owner uploads it once and
+members find it in their own Discover tab.
+
+1. Download [kowalah-plugin.zip](https://18evqetn8qvaaj3d.public.blob.vercel-storage.com/plugins/kowalah-plugin.zip)
+2. **Organization settings → Plugins → Add plugins → Upload a file**
+3. Pick or create a marketplace, then set access: *Available to install*, *Installed by
+   default*, *Required*, or *Not available*
+
+> A zip is needed here because organisation marketplaces must be private or internal
+> repositories, and this one is public so it can go to the plugin directory. The
+> trade-off is that **this route does not auto-update** — an owner re-uploads when we
+> ship. Re-uploading replaces by plugin name, so there's no need to delete the old one.
+> Admins who would rather not track releases can point people at the self-serve route
+> above instead.
+
+**Then, whichever route:** Claude prompts you to sign in or sign up — use your work email
+address, since the domain is what places you in your company's organisation. Run
+`/kowalah-setup` to check which organisation you landed in, what your role can see, and
+whether it's your company's real organisation or a new empty one.
 
 ## Who it's for
 
@@ -109,8 +117,10 @@ conversation.
   plugin.json          Plugin manifest
   marketplace.json     Marketplace manifest — lets this repo be added directly
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
-RELEASING.md           Version discipline — installed clients update on the
-                       version field, not on the commit
+RELEASING.md           How a release reaches people, and why the version field
+                       has to move every time
+scripts/package.sh     Builds the zip for the organisation upload route
+.github/workflows/     Tag a version and the release zip is built and attached
 skills/                Seven skills, one directory each — including `setup`,
                        which covers connecting and troubleshooting
 ```
