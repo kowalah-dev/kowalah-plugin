@@ -35,13 +35,15 @@ Before asking anything about their work:
 Anyone can read both of these regardless of role. If either returns `kind: "empty"`, carry
 on without it — just don't invent a vision that hasn't been written.
 
-But if the model comes back with **one unit and no processes**, and they are the sole
-`admin` of a single organisation with no vision authored, stop: the account is in an
-new empty organisation created at sign-up rather than their company's real one, so it is
-attached to no Kowalah engagement. Nothing they log will
-reach anyone. Don't be reassured by the organisation's name — it is derived from their
-email domain, so it may well be their employer's name. Tell them, and point them at their
-Kowalah contact or their AI lead — see the `kowalah-setup` skill.
+If the model comes back with **one unit and no processes**, and they are the sole `admin`
+of a single organisation with no vision authored, the account is in a new organisation
+created at sign-up rather than their company's existing one. Say so before going further,
+because it means two different things. For someone starting fresh it is the normal state:
+what they log is theirs, in their own organisation, and the conversation carries on. For
+someone whose company already works with Kowalah it is the wrong place, and what they log
+will not reach the colleagues they expect. Ask which it is. Don't be reassured by the
+organisation's name — it is derived from their email domain, so it may well be their
+employer's name. See the `kowalah-setup` skill.
 
 Having the vision in hand changes the conversation from "what could AI do" to "what would
 move the things we said mattered". Use the principles' own wording when you get to the

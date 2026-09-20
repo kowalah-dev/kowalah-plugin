@@ -119,7 +119,10 @@ offering to map it from scratch here.
 
 One thing to rule out first: a model showing **one unit and zero processes**, where the
 user is the sole `admin` of a single organisation and no vision exists, is not an unmapped
-client — a new, empty organisation was created for this account instead of it joining the
-company's existing one, so it is attached to no engagement. Judge this by shape, not by
-name: a newly-created organisation is named from the signer-up's email domain, so it can
-carry the company's own name and still be empty. See the `kowalah-setup` skill.
+client. A new organisation was created for this account instead of it joining the
+company's existing one. That is the normal state for someone self-serving with no
+engagement, in which case there is no programme to review yet and the useful offer is to
+help them map one. It is the wrong place for someone whose company already works with
+Kowalah. Judge the shape, not the name: a newly-created organisation is named from the
+signer-up's email domain, so it can carry the company's own name and still be empty. See
+the `kowalah-setup` skill.
