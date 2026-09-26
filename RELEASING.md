@@ -33,6 +33,13 @@ anything changed.
 `claude plugin validate --strict` is not sufficient — it passed on every version
 of the `SETUP.md` bug. It checks manifests, not what actually loads.
 
+**CI runs it without `--strict`, on purpose.** Anthropic's directory review runs
+the non-strict check too, and publishes versions that carry warnings — ours did.
+`--strict` also fails on `privacyPolicyUrl`, which the directory asks for and the
+validator calls an unknown field. Holding the release to a harder bar than the
+directory that judges it only blocks our own zip build. Don't add `--strict` back
+without reading this paragraph.
+
 Install it clean and count the components:
 
 ```
@@ -85,10 +92,18 @@ last uploaded, however many times we push. "We shipped it" and "they have it" ar
 different facts here, so say which one you mean. If an admin would rather not
 track releases, point them at route 1 instead.
 
-### 3. The Anthropic plugin directory (not submitted yet)
+### 3. The Anthropic plugin directory (live since 24 September)
 
-Would put us in the catalog every Cowork user already browses, with no URL to
-paste. Requires the repo to stay public. See KOW-265.
+Puts us in the catalog with no URL to paste. Requires the repo to stay public.
+Pushes to `main` are picked up by a scheduled check about every 6 hours; a
+reviewer at Anthropic then makes a scanned version live, so a push is a request
+to publish, not a publish. Manage it at
+[the submission page](https://claude.ai/directory/manage/plugins/a4be1a55-fa04-473d-90f0-a5e020071f3a).
+
+The listing's short description and display name are read from the **live
+version's manifest** — the details recorded on the Listing tab are a frozen copy
+of the original submission form and cannot be edited. So listing copy changes
+ship as a version bump, like anything else.
 
 ## Why the version bump matters on every route
 
