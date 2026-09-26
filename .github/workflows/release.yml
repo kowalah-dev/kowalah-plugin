@@ -17,8 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Deliberately NOT --strict. Anthropic's own directory review runs the
+      # non-strict check, and --strict fails on `privacyPolicyUrl`, a field the
+      # directory asks for and Claude Code ignores at load. See RELEASING.md.
       - name: Validate plugin
-        run: npm i -g @anthropic-ai/claude-code && claude plugin validate . --strict
+        run: npm i -g @anthropic-ai/claude-code && claude plugin validate .
 
       - name: Build zip
         run: ./scripts/package.sh

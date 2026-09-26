@@ -1,15 +1,17 @@
 {
   "name": "kowalah",
   "displayName": "Kowalah",
-  "version": "0.3.0",
-  "description": "Run an AI operating model programme from Claude. Read your organisation's AI vision map and process coverage, diagnose where cycle time actually goes, redesign processes as-is to to-be, set quality bars on AI-run steps, and raise opportunities with your Kowalah team.",
+  "version": "0.3.1",
+  "description": "Map, diagnose and redesign your business processes for AI",
+  "icon": "./icon.png",
   "author": {
     "name": "Kowalah",
     "url": "https://kowalah.com"
   },
-  "homepage": "https://kowalah.com",
+  "homepage": "https://docs.kowalah.com/integrations/plugins/kowalah-plugin",
   "repository": "https://github.com/kowalah-dev/kowalah-plugin",
   "license": "MIT",
+  "privacyPolicyUrl": "https://www.kowalah.com/privacy-policy",
   "keywords": [
     "ai-transformation",
     "operating-model",
