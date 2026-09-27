@@ -77,6 +77,7 @@ can propose against any process they can see.
 | `/kowalah:programme-review` | Coverage, where constraints concentrate, and whether in-flight work is aimed at the actual gaps. Tests everything against the organisation's AI vision map. |
 | `/kowalah:process-diagnostic` | Reads one process honestly — where cycle time really goes, how many handoffs, and what has never been measured. Treats a missing measurement as a finding, not a zero. |
 | `/kowalah:process-redesign` | As-is to to-be. Mark up what gets eliminated, merged or kept, then generate the redesign beside the original so the two can be compared. |
+| `/kowalah:ai-estate` | What AI the organisation actually has, how each tool is held, what's unsanctioned or risky, what renews soon, and where each is used. Keeps the systems register true. |
 | `/kowalah:quality-bar` | Acceptance criteria, gates and monitors, target scores — what "good" means for a step, set by the business owner rather than the builder. |
 | `/kowalah:kowalah-setup` | Connect the MCP server and work out what your account can actually see — including whether you landed in your company's organisation or a new empty one. |
 | `/kowalah:spot-opportunities` | For anyone: talk through your own work, find the real friction, check what already exists, and route it. Grounded in your organisation's vision, not generic AI advice. |
@@ -121,7 +122,7 @@ RELEASING.md           How a release reaches people, and why the version field
                        has to move every time
 scripts/package.sh     Builds the zip for the organisation upload route
 .github/workflows/     Tag a version and the release zip is built and attached
-skills/                Seven skills, one directory each — including `kowalah-setup`,
+skills/                Eight skills, one directory each — including `kowalah-setup`,
                        which covers connecting and troubleshooting
 ```
 
@@ -131,11 +132,11 @@ skills that use it.
 
 ## Tools this plugin connects to
 
-Read: `kowalah_get_vision`, `kowalah_get_operating_model`,
+Read: `kowalah_get_vision`, `kowalah_get_systems`, `kowalah_get_operating_model`,
 `kowalah_get_operating_model_unit`, `kowalah_get_process`, `kowalah_get_update`,
 `kowalah_get_my_training`, `kowalah_find_accelerator`
 
-Write: `kowalah_save_process`, `kowalah_save_process_step`,
+Write: `kowalah_save_system`, `kowalah_save_process`, `kowalah_save_process_step`,
 `kowalah_save_process_step_eval`, `kowalah_save_org_unit`, `kowalah_propose_redesign`,
 `kowalah_propose_process_change`, `kowalah_create_opportunity`
 
