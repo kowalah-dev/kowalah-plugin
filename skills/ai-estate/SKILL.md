@@ -1,6 +1,6 @@
 ---
 name: ai-estate
-description: Review and maintain the organisation's AI estate — which AI tools and platforms it actually has, how each is held (licences, seats, contracts, DPAs), which are unsanctioned or risky, what renews soon, and where each is used in the business. Use for "what AI tools do we have", "what's our shadow AI", "which tools train on our data", "what renews this quarter", "is ChatGPT approved", "add Granola to the register", or any audit of AI tools and licences.
+description: Review and maintain the organisation's AI estate — which AI tools and platforms it actually has, what people have built and switched on in them (connectors, skills, plugins, projects, agents), how each is held (licences, seats, contracts, DPAs), which are unsanctioned or risky, what renews soon, and where each is used in the business. Use for "what AI tools do we have", "what's our shadow AI", "which tools train on our data", "what renews this quarter", "is ChatGPT approved", "add Granola to the register", or any audit of AI tools and licences.
 ---
 
 # AI estate
@@ -40,6 +40,32 @@ first check), say so before reviewing what is there.
 **A null is "not assessed", never "no".** `dpa_in_place: null` means nobody has checked,
 which is different from `false`. Report unassessed fields as gaps to fill, not as passes.
 
+## What's been built and switched on
+
+The systems register says which products the organisation holds. **`kowalah_get_ai_estate`**
+says what's deployed inside them: connectors, skills, plugins, projects, agents, automations
+and apps, who uses each, and the process steps they run. Read its `gaps` first:
+
+- **`unsanctioned`** — assets on a platform the organisation hasn't approved or has
+  prohibited, personal ones first. This is the shadow-AI list, and it joins the two
+  registers: a personal Gmail connector on an unreviewed Claude plan is one line here.
+- **`personal`** — one person's own tools used for work, with their platform's standing.
+- **`undecided`**, **`no_owner`**, **`scope_unknown`** — what nobody has decided. Admins and
+  core team settle these with `kowalah_record_ai_assets` (by `id`: owner, status, scope).
+- **`not_in_model`** — agents, skills, automations and apps that run no process step. Either
+  the step hasn't been mapped or the tool isn't earning its keep.
+- **`needs_auth`** — connectors installed but never connected, or disconnected.
+- **`stale`** — nobody has shared it from their session for 90 days: likely retired.
+
+Pass `unit_id` to see one part of the business.
+
+**The register is only as complete as the people who have shared their tools.** It is
+filled by the `my-ai-tools` skill, which each person runs in their own Claude: it shows them
+their setup, fixes what's half connected, and records what they choose to share. There is
+no background collection. If the register is thin, or `stale` is long, the fix is to ask the
+team to run `my-ai-tools` (a one-line message from the AI lead is usually enough), not to
+fill the register by guessing.
+
 ## Where each tool is used
 
 `kowalah_get_systems` with an `id` returns `used_in`: every live step and process that runs
@@ -77,8 +103,8 @@ the change.
 
 ## What a good review says
 
-1. **What the organisation has** — the count of AI systems and how they're held, and what's
-   plainly missing from the register.
+1. **What the organisation has** — the count of AI systems and how they're held, what has
+   been built in them, and what's plainly missing from either register.
 2. **What to worry about** — the risks, named, with where each tool is used.
 3. **What nobody has decided** — the unreviewed arrangements and the unassessed fields.
 4. **The next decision** — usually a renewal, a tool to approve or retire, or a register to

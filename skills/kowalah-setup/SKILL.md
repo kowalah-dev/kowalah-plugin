@@ -117,6 +117,10 @@ fine and nothing has been authored yet. That is Define-phase work the Kowalah te
 with the client, so don't offer to build it from scratch — check with their Kowalah
 contact instead.
 
+Once they're connected, offer `my-ai-tools` as a natural next step: it shows them which AI
+tools their Claude has, fixes anything half set up, and lets them share their setup with
+the organisation's AI register. Offer it once; it's optional.
+
 ## If something fails
 
 - **401 / authentication error** — the session expired. Re-authenticate.

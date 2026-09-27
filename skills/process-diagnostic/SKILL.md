@@ -103,6 +103,15 @@ process, pinned to a step where relevant. It is filtered to what this user may p
 see, so it can legitimately differ between colleagues — do not present it as the complete
 list of work on this process.
 
+## When an agent or tool runs a step
+
+A step whose `platform_detail` names an agent or tool ("Brian drafts the reply", "the
+Koko skill triages enquiries") but whose `implementations` are empty has the tool only in
+free text. Offer to record it properly: `kowalah_get_ai_estate` to find the asset (or
+`kowalah_record_ai_assets` to add it, if the user confirms it exists), with
+`serves_step_ids` pointing at the step. Then the estate can say which steps depend on it,
+and the step can say what runs it.
+
 ## Where to go next
 
 - The process needs restructuring, not just better paint → `process-redesign`
