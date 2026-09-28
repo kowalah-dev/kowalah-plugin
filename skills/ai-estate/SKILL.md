@@ -56,15 +56,31 @@ and apps, who uses each, and the process steps they run. Read its `gaps` first:
   the step hasn't been mapped or the tool isn't earning its keep.
 - **`needs_auth`** — connectors installed but never connected, or disconnected.
 - **`stale`** — nobody has shared it from their session for 90 days: likely retired.
+- **`suggested_step_links`** — steps whose text names an agent, skill, automation or app
+  that isn't linked to them yet ("Brian drafts the reply"). Confirm each with the process
+  owner, then link it with `kowalah_record_ai_assets` (`id` plus `serves_step_ids`). This is
+  the quickest way to turn the free-text model into one that knows what runs each step.
+- **`platform_unknown`** — assets with no platform, so the shadow-AI check can't see them.
+  Usually the platform isn't in the systems register yet: add it with `kowalah_save_system`,
+  and the next `my-ai-tools` run links everything on it.
+- **`reaches_unregistered`** — connectors to a system the register doesn't hold (Figma,
+  Sentry). Add the system if the organisation depends on it.
 
-Pass `unit_id` to see one part of the business.
+Each asset shows its `platform` and, for a connector, the systems it `reaches`. Pass
+`unit_id` to see one part of the business.
+
+**Assets no Claude session can see** — agents on the Agent Hub or the Claude API, Zapier or
+n8n automations, Copilot agents, Slack bots — are added by hand: `kowalah_record_ai_assets`
+with `source: "manual"`, the kind (usually `agent` or `automation`), and the `system_id` of
+the platform it runs on. Then link the steps it runs.
 
 **The register is only as complete as the people who have shared their tools.** It is
 filled by the `my-ai-tools` skill, which each person runs in their own Claude: it shows them
 their setup, fixes what's half connected, and records what they choose to share. There is
 no background collection. If the register is thin, or `stale` is long, the fix is to ask the
 team to run `my-ai-tools` (a one-line message from the AI lead is usually enough), not to
-fill the register by guessing.
+fill the register by guessing. If it's complete but nobody has said what things are for,
+ask the owners of the live, organisation-wide tools to run its part two.
 
 ## Where each tool is used
 

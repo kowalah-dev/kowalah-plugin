@@ -57,7 +57,7 @@ Ask which to share. Make it easy: "all of these, except …" is the usual answer
   it is their call.
 - **Anything they haven't seen, you don't send.**
 
-## 4. Record it, then ask only about what's new
+## 4. Record it, and keep this pass quick
 
 Call **`kowalah_record_ai_assets`** with `surface` set to where this session runs
 (`claude_ai`, `claude_desktop`, `cowork`, `claude_code`) and the items they chose:
@@ -68,23 +68,43 @@ Call **`kowalah_record_ai_assets`** with `surface` set to where this session run
 - `connection_status` on connectors.
 - `scope: "user"` on the personal items they chose to share.
 
-The response says, per item, whether it was **new** or **seen again**, and `ask_about`
-lists what nobody has described yet. Ask about those only, a few at a time:
+You don't need to say which platform anything runs on: what this session uses is put on
+Claude automatically, and each connector is linked to the system it's named for.
 
-- What's it for? (their words become `description`)
-- Is it just them, their team, or provided to everyone?
-- Does it do a job in one of the organisation's processes? If so, which step: find it with
-  `kowalah_get_process` and pass `serves_step_ids`. This is how "Brian drafts the replies"
-  becomes a real record on that step.
+The response has one short line per item: **new** or **seen again**, its gaps, and
+`ask: true` on the ones nobody has described yet (`ask_about` is how many). For those, ask
+**one** quick question in this pass: is it just them, their team, or provided to everyone?
+That's `scope`. Everything else waits for part two.
 
-Don't ask about things already in the register. Someone running this for the second time
-should be done in a minute.
+This first pass has to stay fast, or people won't run it. Someone running it for the
+second time should be done in a minute.
 
 **Decisions aren't theirs to make for everyone.** Owner, status and organisation-wide scope
 are decided by admins and core team (or the tool's owner). If a member's answer is refused,
 the tool is still recorded as used; say that their AI lead will pick it up.
 
-## 5. Give something back
+## 5. Part two: what each tool does (when there's time)
+
+A register of names says what exists, not what it does. Part two fills that in, and it's
+**separate** from the first pass so capture stays quick. Offer it at the end ("have you got
+five minutes to say what a few of these are for?"), run it on a re-run, or when the AI lead
+asks from `ai-estate`. Never make it a condition of sharing.
+
+Work only on items with gaps, a few at a time, **organisation-wide and live ones first**:
+
+- **What's it for?** Their words become `description`. Never write one yourself from what a
+  skill or tool contains.
+- **Does it do a job in one of the organisation's processes?** If so, which step: find it
+  with `kowalah_get_process` and pass `serves_step_ids`. This is how "Brian drafts the
+  replies" becomes a real record on that step. `kowalah_get_ai_estate` lists
+  `suggested_step_links`, steps that already name the tool in their text, so start there
+  and ask the person to confirm each one.
+- **Whose login does it run on, and can it act** (send, sign, write) **or only read?** There
+  isn't a field for this yet (KOW-379). If it comes up, note it in `notes`, in their words.
+
+Stop when they've had enough. Whatever's left shows as a gap for next time.
+
+## 6. Give something back
 
 This is why it's worth their time. From what you listed:
 
