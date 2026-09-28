@@ -99,8 +99,18 @@ Work only on items with gaps, a few at a time, **organisation-wide and live ones
   replies" becomes a real record on that step. `kowalah_get_ai_estate` lists
   `suggested_step_links`, steps that already name the tool in their text, so start there
   and ask the person to confirm each one.
-- **Whose login does it run on, and can it act** (send, sign, write) **or only read?** There
-  isn't a field for this yet (KOW-379). If it comes up, note it in `notes`, in their words.
+- **For a connector: whose login does it run on, can it act** (send, sign, write) **or only
+  read, and does anyone approve what it does first?** Record the answers as:
+  - `connection_holder_user_id`: their own id, for their own login
+  - `access_level`: `read_only` or `can_act`
+  - `human_approval`
+
+  Record only what they actually know, and leave the rest unset: "not sure" is a gap, not
+  read-only. They can set these on their own personal tools. For shared ones, admins and
+  core team decide, so put what the person said in `notes` instead.
+- **Has it saved them time, or made something possible?** If they say so, offer to record
+  it with the `outcomes` skill: on the step it serves, linked to this tool. Take their
+  figure and how they know. Don't push for a number they don't have.
 
 Stop when they've had enough. Whatever's left shows as a gap for next time.
 
