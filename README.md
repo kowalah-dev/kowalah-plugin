@@ -42,6 +42,13 @@ members find it in their own Discover tab.
 2. **Organization settings → Plugins → Add plugins → Upload a file**
 3. Pick or create a marketplace, then set access: *Available to install*, *Installed by
    default*, *Required*, or *Not available*
+4. **Add the connector as well: Organization settings → Connectors**, with the URL
+   `https://mcp.kowalah.com/api/mcp`. Making a plugin available doesn't add the connector
+   it bundles. Skip this and the skills load, but every tool call fails. Members then
+   connect it with their own account.
+
+> Installing from the Anthropic directory instead only offers *Available to install*, so
+> members opt in themselves. *Installed by default* and *Required* need the upload route.
 
 > A zip is needed here because organisation marketplaces must be private or internal
 > repositories, and this one is public so it can go to the plugin directory. The
@@ -79,6 +86,7 @@ can propose against any process they can see.
 | `/kowalah:process-redesign` | As-is to to-be. Mark up what gets eliminated, merged or kept, then generate the redesign beside the original so the two can be compared. |
 | `/kowalah:ai-estate` | What AI the organisation actually has, how each tool is held, what's been built in them, what's unsanctioned or risky, what renews soon, and where each is used. |
 | `/kowalah:my-ai-tools` | For anyone: see which AI tools your Claude uses, fix what's half set up, and choose what to share with your organisation's AI register. Nothing is shared until you've seen the list. |
+| `/kowalah:outcomes` | Record the value AI has actually delivered, on the work it happened in and the tool that produced it, and report it honestly: verified apart from claimed, recurring apart from one-off, every unit on its own line. |
 | `/kowalah:quality-bar` | Acceptance criteria, gates and monitors, target scores — what "good" means for a step, set by the business owner rather than the builder. |
 | `/kowalah:kowalah-setup` | Connect the MCP server and work out what your account can actually see — including whether you landed in your company's organisation or a new empty one. |
 | `/kowalah:spot-opportunities` | For anyone: talk through your own work, find the real friction, check what already exists, and route it. Grounded in your organisation's vision, not generic AI advice. |
@@ -119,11 +127,7 @@ conversation.
   plugin.json          Plugin manifest
   marketplace.json     Marketplace manifest — lets this repo be added directly
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
-RELEASING.md           How a release reaches people, and why the version field
-                       has to move every time
-scripts/package.sh     Builds the zip for the organisation upload route
-.github/workflows/     Tag a version and the release zip is built and attached
-skills/                Nine skills, one directory each — including `kowalah-setup`,
+skills/                Ten skills, one directory each — including `kowalah-setup`,
                        which covers connecting and troubleshooting
 ```
 

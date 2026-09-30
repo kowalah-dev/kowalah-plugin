@@ -112,8 +112,17 @@ free text. Offer to record it properly: `kowalah_get_ai_estate` to find the asse
 `serves_step_ids` pointing at the step. Then the estate can say which steps depend on it,
 and the step can say what runs it.
 
+## What the process has delivered
+
+`outcomes` lists the value recorded on the process and its steps, with `totals` per unit.
+Claimed and verified are kept apart, and so are one-off and recurring. Read it alongside
+the timings: a step that has had AI on it for months with no outcome recorded isn't a step
+where nothing improved. Nobody has said what improved. Ask, and if the user knows, record
+it (`outcomes` skill).
+
 ## Where to go next
 
 - The process needs restructuring, not just better paint → `process-redesign`
 - Steps lack acceptance criteria or quality checks → `quality-bar`
 - Something needs to go to the Kowalah team → `raise-opportunity`
+- Someone reports a saving or a win on this process → `outcomes`

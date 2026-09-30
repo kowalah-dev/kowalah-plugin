@@ -17,7 +17,7 @@ MKT=$(python3 -c "import json;print(json.load(open('.claude-plugin/marketplace.j
 
 if [ "$VERSION" != "$MKT" ]; then
   echo "error: version mismatch — plugin.json=$VERSION marketplace.json=$MKT" >&2
-  echo "Both must match, see RELEASING.md." >&2
+  echo "Both must match." >&2
   exit 1
 fi
 
@@ -29,7 +29,6 @@ rm -rf dist && mkdir -p dist
 zip -qr "$OUT" \
   .claude-plugin/plugin.json \
   .mcp.json \
-  icon.png \
   skills/ \
   README.md \
   LICENSE

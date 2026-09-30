@@ -56,15 +56,57 @@ and apps, who uses each, and the process steps they run. Read its `gaps` first:
   the step hasn't been mapped or the tool isn't earning its keep.
 - **`needs_auth`** — connectors installed but never connected, or disconnected.
 - **`stale`** — nobody has shared it from their session for 90 days: likely retired.
+- **`suggested_step_links`** — steps whose text names an agent, skill, automation or app
+  that isn't linked to them yet ("Brian drafts the reply"). Confirm each with the process
+  owner, then link it with `kowalah_record_ai_assets` (`id` plus `serves_step_ids`). This is
+  the quickest way to turn the free-text model into one that knows what runs each step.
+- **`platform_unknown`** — assets with no platform, so the shadow-AI check can't see them.
+  Usually the platform isn't in the systems register yet: add it with `kowalah_save_system`,
+  and the next `my-ai-tools` run links everything on it.
+- **`reaches_unregistered`** — connectors to a system the register doesn't hold (Figma,
+  Sentry). Add the system if the organisation depends on it.
+- **`acts_unsupervised`** — connectors that `can_act` (send, edit, delete) with no human
+  approving. This is the one to read out first after shadow AI: ask whether anyone signs
+  off on what it does, and record the answer as `human_approval`.
+- **`connection_concentration`** — one person's login holds three or more of the
+  organisation's connectors. If they leave or their account is locked, all of them stop at
+  once. Admins and core team see who; members see only counts.
+- **`in_house`** — what the organisation built itself. Nobody outside maintains these, so
+  each needs a named owner and a `maintained_at` home (a repo or a folder).
 
-Pass `unit_id` to see one part of the business.
+Each asset also shows its `origin` (anthropic, kowalah, vendor, in_house, unknown), its
+`version` and where it's `maintained_at`. Sessions fill these in when they can see them.
+How each is held is a decision, set by admins and core team with
+`kowalah_record_ai_assets`:
+- `connection_holder_user_id`: whose login the connector runs on. A member can say their
+  own connector runs on their own login.
+- `access_level`: `read_only` or `can_act`
+- `human_approval`
+
+Leave any of these unset rather than guessing. An unknown access level is a gap, not
+read-only.
+
+Each asset shows its `platform` and, for a connector, the systems it `reaches`. Pass
+`unit_id` to see one part of the business, or `origin` to see, say, only what was built in
+house.
+
+**What each tool has delivered.** Every asset carries an `outcomes` count, and `id` returns
+the outcomes themselves with totals. An agent that runs live steps and has no outcomes
+hasn't been shown to earn its keep: before a renewal or a retirement, ask its owner what it
+has delivered, and record it with the `outcomes` skill.
+
+**Assets no Claude session can see** — agents on the Agent Hub or the Claude API, Zapier or
+n8n automations, Copilot agents, Slack bots — are added by hand: `kowalah_record_ai_assets`
+with `source: "manual"`, the kind (usually `agent` or `automation`), and the `system_id` of
+the platform it runs on. Then link the steps it runs.
 
 **The register is only as complete as the people who have shared their tools.** It is
 filled by the `my-ai-tools` skill, which each person runs in their own Claude: it shows them
 their setup, fixes what's half connected, and records what they choose to share. There is
 no background collection. If the register is thin, or `stale` is long, the fix is to ask the
 team to run `my-ai-tools` (a one-line message from the AI lead is usually enough), not to
-fill the register by guessing.
+fill the register by guessing. If it's complete but nobody has said what things are for,
+ask the owners of the live, organisation-wide tools to run its part two.
 
 ## Where each tool is used
 
@@ -105,7 +147,8 @@ the change.
 
 1. **What the organisation has** — the count of AI systems and how they're held, what has
    been built in them, and what's plainly missing from either register.
-2. **What to worry about** — the risks, named, with where each tool is used.
+2. **What to worry about** — the risks, named, with where each tool is used; what acts
+   with nobody approving; whose single login everything depends on.
 3. **What nobody has decided** — the unreviewed arrangements and the unassessed fields.
 4. **The next decision** — usually a renewal, a tool to approve or retire, or a register to
    complete. Name who has to decide.
