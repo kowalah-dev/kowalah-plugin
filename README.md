@@ -120,10 +120,6 @@ conversation.
   plugin.json          Plugin manifest
   marketplace.json     Marketplace manifest — lets this repo be added directly
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
-RELEASING.md           How a release reaches people, and why the version field
-                       has to move every time
-scripts/package.sh     Builds the zip for the organisation upload route
-.github/workflows/     Tag a version and the release zip is built and attached
 skills/                Ten skills, one directory each — including `kowalah-setup`,
                        which covers connecting and troubleshooting
 ```
