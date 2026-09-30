@@ -79,6 +79,7 @@ can propose against any process they can see.
 | `/kowalah:process-redesign` | As-is to to-be. Mark up what gets eliminated, merged or kept, then generate the redesign beside the original so the two can be compared. |
 | `/kowalah:ai-estate` | What AI the organisation actually has, how each tool is held, what's been built in them, what's unsanctioned or risky, what renews soon, and where each is used. |
 | `/kowalah:my-ai-tools` | For anyone: see which AI tools your Claude uses, fix what's half set up, and choose what to share with your organisation's AI register. Nothing is shared until you've seen the list. |
+| `/kowalah:outcomes` | Record the value AI has actually delivered, on the work it happened in and the tool that produced it, and report it honestly: verified apart from claimed, recurring apart from one-off, every unit on its own line. |
 | `/kowalah:quality-bar` | Acceptance criteria, gates and monitors, target scores — what "good" means for a step, set by the business owner rather than the builder. |
 | `/kowalah:kowalah-setup` | Connect the MCP server and work out what your account can actually see — including whether you landed in your company's organisation or a new empty one. |
 | `/kowalah:spot-opportunities` | For anyone: talk through your own work, find the real friction, check what already exists, and route it. Grounded in your organisation's vision, not generic AI advice. |
@@ -119,7 +120,7 @@ conversation.
   plugin.json          Plugin manifest
   marketplace.json     Marketplace manifest — lets this repo be added directly
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
-skills/                Nine skills, one directory each — including `kowalah-setup`,
+skills/                Ten skills, one directory each — including `kowalah-setup`,
                        which covers connecting and troubleshooting
 ```
 

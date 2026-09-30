@@ -79,6 +79,14 @@ When `kowalah_get_operating_model_unit` returns a vision with `ownership: "inher
 whose it is — "you are working to the group vision, this division hasn't authored its own"
 is itself a finding worth surfacing.
 
+**Read the success measures as numbers where they have them.** From `kowalah_get_vision`,
+each measure carries a numeric baseline, target and current reading, when these have been
+set, and `progress` towards the target. The text baseline and target are the workshop's
+words, so quote those. Report the numbers as progress. Check when the current reading was
+taken (`currentMeasuredAt`): a measure with no current reading hasn't been read, which is
+not the same as not having moved. Where outcomes have been recorded against a measure, the
+`outcomes` skill can show what's behind the movement.
+
 **Check `lastUpdatedAt` on the vision block, and say how old it is.** A vision is the
 foundation every other judgement in this review rests on, so its age changes what the
 review means. Coverage that doubled against principles nobody has revisited in a year is
