@@ -2,8 +2,7 @@
   "name": "kowalah",
   "displayName": "Kowalah",
   "version": "0.6.0",
-  "description": "Map, diagnose and redesign your business processes for AI",
-  "icon": "./icon.png",
+  "description": "Run your AI operating model from Claude. Read your vision map and process coverage, diagnose where cycle time goes, redesign processes, set quality bars on AI-run steps, track your AI tools and outcomes, and raise opportunities. Connects to your Kowalah account.",
   "author": {
     "name": "Kowalah",
     "url": "https://kowalah.com"

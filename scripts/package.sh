@@ -29,7 +29,6 @@ rm -rf dist && mkdir -p dist
 zip -qr "$OUT" \
   .claude-plugin/plugin.json \
   .mcp.json \
-  icon.png \
   skills/ \
   README.md \
   LICENSE

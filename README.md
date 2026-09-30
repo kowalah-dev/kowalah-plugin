@@ -42,6 +42,13 @@ members find it in their own Discover tab.
 2. **Organization settings → Plugins → Add plugins → Upload a file**
 3. Pick or create a marketplace, then set access: *Available to install*, *Installed by
    default*, *Required*, or *Not available*
+4. **Add the connector as well: Organization settings → Connectors**, with the URL
+   `https://mcp.kowalah.com/api/mcp`. Making a plugin available doesn't add the connector
+   it bundles. Skip this and the skills load, but every tool call fails. Members then
+   connect it with their own account.
+
+> Installing from the Anthropic directory instead only offers *Available to install*, so
+> members opt in themselves. *Installed by default* and *Required* need the upload route.
 
 > A zip is needed here because organisation marketplaces must be private or internal
 > repositories, and this one is public so it can go to the plugin directory. The
