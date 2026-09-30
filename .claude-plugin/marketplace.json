@@ -4,13 +4,13 @@
     "name": "Kowalah",
     "url": "https://kowalah.com"
   },
-  "description": "Kowalah's plugin for client AI operating model programmes.",
+  "description": "Kowalah's plugin for AI operating model programmes.",
   "plugins": [
     {
       "name": "kowalah",
       "displayName": "Kowalah",
       "source": "./",
-      "description": "Map, diagnose and redesign your business processes for AI",
+      "description": "Run your AI operating model from Claude. Read your vision map and process coverage, diagnose where cycle time goes, redesign processes, set quality bars on AI-run steps, track your AI tools and outcomes, and raise opportunities. Connects to your Kowalah account.",
       "version": "0.6.0",
       "author": {
         "name": "Kowalah",
