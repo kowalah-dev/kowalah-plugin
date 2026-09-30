@@ -124,8 +124,8 @@ the organisation's AI register. Offer it once; it's optional.
 ## If something fails
 
 - **401 / authentication error** — the session expired. Re-authenticate.
-- **`User not found for Clerk user: …`** — the account exists in Clerk but the matching
-  record was never created. This is a provisioning failure, not something the user did.
+- **`User not found for Clerk user: …`** — sign-in worked, but the matching Kowalah
+  account record was never created. This is a provisioning failure, not something the user did.
   Their Kowalah contact resolves it.
 - **`User … has no active organization memberships`** — signed in, but attached to nothing
   at all. Rare, and also a provisioning failure. Same route.
