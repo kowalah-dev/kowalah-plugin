@@ -47,9 +47,8 @@ zip -qr "$CLAUDE_OUT" \
 
 # --- OpenAI ------------------------------------------------------------------
 # .codex-plugin/plugin.json is the manifest OpenAI reads; .mcp.json is the same
-# file Claude uses, and is what Codex connects with. .app.json maps the plugin
-# to the MCP app registered in ChatGPT (plugin_asdk_app_…): ChatGPT only uses
-# a remote MCP server through a registered app, never through .mcp.json. No .claude-plugin/: with both present OpenAI would have two
+# file Claude uses. OpenAI's dashboard connects the server from it at submission,
+# and the published plugin carries that connection for every user. No .claude-plugin/: with both present OpenAI would have two
 # manifests to choose between. No README.md: it is written for Claude users.
 OPENAI_OUT="dist/kowalah-plugin-openai-${VERSION}.zip"
 EXCLUDES=()
@@ -57,13 +56,41 @@ for s in "${CLAUDE_ONLY_SKILLS[@]+"${CLAUDE_ONLY_SKILLS[@]}"}"; do EXCLUDES+=(-x
 zip -qr "$OPENAI_OUT" \
   .codex-plugin/plugin.json \
   .mcp.json \
-  .app.json \
   skills/ \
   assets/ \
   LICENSE \
   ${EXCLUDES[@]+"${EXCLUDES[@]}"}
 
-for out in "$CLAUDE_OUT" "$OPENAI_OUT"; do
+OUTS=("$CLAUDE_OUT" "$OPENAI_OUT")
+
+# --- OpenAI, private test build ----------------------------------------------
+# An uploaded, unpublished plugin has no connection of its own, so ChatGPT shows
+# it as available but can't reach the server. For testing in your own account,
+# register the server under Plugins > + > Create MCP App, then build with its id:
+#   OPENAI_TEST_APP_ID=plugin_asdk_app_... ./scripts/package.sh
+# This adds .app.json and the manifest's "apps" field to a separate -test zip.
+# Never submit it: OpenAI refuses ZIPs with app references.
+if [ -n "${OPENAI_TEST_APP_ID:-}" ]; then
+  TEST_OUT="dist/kowalah-plugin-openai-${VERSION}-test.zip"
+  STAGE=$(mktemp -d)
+  cp -R .codex-plugin .mcp.json skills assets LICENSE "$STAGE"/
+  python3 - "$STAGE" "$OPENAI_TEST_APP_ID" <<'PY'
+import json, sys, os
+stage, app_id = sys.argv[1], sys.argv[2]
+# The URL shows plugin_asdk_app_…; the manifest wants it without "plugin_".
+app_id = app_id.removeprefix("plugin_")
+json.dump({"apps": {"kowalah": {"id": app_id}}}, open(os.path.join(stage, ".app.json"), "w"), indent=2)
+p = os.path.join(stage, ".codex-plugin/plugin.json")
+m = json.load(open(p))
+m = {**{k: v for k, v in m.items() if k != "mcpServers"}, "apps": "./.app.json", "mcpServers": m["mcpServers"]}
+json.dump(m, open(p, "w"), indent=2)
+PY
+  (cd "$STAGE" && zip -qr - . -x "skills/*/.*") > "$TEST_OUT"
+  rm -rf "$STAGE"
+  OUTS+=("$TEST_OUT")
+fi
+
+for out in "${OUTS[@]}"; do
   echo "built $out ($(du -h "$out" | cut -f1))"
   unzip -Z1 "$out" | sed 's/^/  /'
 done
