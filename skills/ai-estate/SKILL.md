@@ -95,13 +95,13 @@ the outcomes themselves with totals. An agent that runs live steps and has no ou
 hasn't been shown to earn its keep: before a renewal or a retirement, ask its owner what it
 has delivered, and record it with the `outcomes` skill.
 
-**Assets no Claude session can see** — agents on the Agent Hub or the Claude API, Zapier or
+**Assets no assistant session can see** — agents on the Agent Hub or a model API, Zapier or
 n8n automations, Copilot agents, Slack bots — are added by hand: `kowalah_record_ai_assets`
 with `source: "manual"`, the kind (usually `agent` or `automation`), and the `system_id` of
 the platform it runs on. Then link the steps it runs.
 
 **The register is only as complete as the people who have shared their tools.** It is
-filled by the `my-ai-tools` skill, which each person runs in their own Claude: it shows them
+filled by the `my-ai-tools` skill, which each person runs in their own assistant: it shows them
 their setup, fixes what's half connected, and records what they choose to share. There is
 no background collection. If the register is thin, or `stale` is long, the fix is to ask the
 team to run `my-ai-tools` (a one-line message from the AI lead is usually enough), not to

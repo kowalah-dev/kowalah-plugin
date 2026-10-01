@@ -15,9 +15,10 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-# Skills that only make sense in Claude, left out of the OpenAI zip.
-# my-ai-tools inventories THIS Claude session's connectors and surfaces.
-CLAUDE_ONLY_SKILLS=(my-ai-tools)
+# Skills that only make sense in Claude, left out of the OpenAI zip. Empty:
+# my-ai-tools used to be one, and now works in any assistant (KOW-293). Keep
+# the mechanism for the next skill that genuinely can't travel.
+CLAUDE_ONLY_SKILLS=()
 
 version_of() { python3 -c "import json,sys;d=json.load(open(sys.argv[1]));print(d['plugins'][0]['version'] if 'plugins' in d else d['version'])" "$1"; }
 
@@ -50,14 +51,14 @@ zip -qr "$CLAUDE_OUT" \
 # manifests to choose between. No README.md: it is written for Claude users.
 OPENAI_OUT="dist/kowalah-plugin-openai-${VERSION}.zip"
 EXCLUDES=()
-for s in "${CLAUDE_ONLY_SKILLS[@]}"; do EXCLUDES+=(-x "skills/$s/*"); done
+for s in "${CLAUDE_ONLY_SKILLS[@]+"${CLAUDE_ONLY_SKILLS[@]}"}"; do EXCLUDES+=(-x "skills/$s/*"); done
 zip -qr "$OPENAI_OUT" \
   .codex-plugin/plugin.json \
   .mcp.json \
   skills/ \
   assets/ \
   LICENSE \
-  "${EXCLUDES[@]}"
+  ${EXCLUDES[@]+"${EXCLUDES[@]}"}
 
 for out in "$CLAUDE_OUT" "$OPENAI_OUT"; do
   echo "built $out ($(du -h "$out" | cut -f1))"
