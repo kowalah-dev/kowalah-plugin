@@ -55,7 +55,7 @@
               "description": "Diagnose a fully timed process and lead with where the time goes",
               "prompt": "Walk me through the Quote to Order process. Where does the time actually go?",
               "tools_triggered": "kowalah_get_operating_model, kowalah_get_process",
-              "expected_behavior": "Returns the six steps of PRC-D001 in order. Reports that about 230 minutes of work takes about 172 hours end to end, so the process is mostly waiting, and names step 3 (site survey scheduled) as the constraint."
+              "expected_behavior": "Returns the six steps of PRC-D001 in order. Reports that about 230 minutes of work takes about 172 hours end to end, so the process is mostly waiting, counts two handoffs between owners, and names step 3 (site survey scheduled) as the constraint."
             },
             {
               "description": "Report gaps in an incompletely mapped process as unknown, not zero",
