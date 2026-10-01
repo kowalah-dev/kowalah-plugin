@@ -47,7 +47,9 @@ zip -qr "$CLAUDE_OUT" \
 
 # --- OpenAI ------------------------------------------------------------------
 # .codex-plugin/plugin.json is the manifest OpenAI reads; .mcp.json is the same
-# file Claude uses. No .claude-plugin/: with both present OpenAI would have two
+# file Claude uses, and is what Codex connects with. .app.json maps the plugin
+# to the MCP app registered in ChatGPT (plugin_asdk_app_…): ChatGPT only uses
+# a remote MCP server through a registered app, never through .mcp.json. No .claude-plugin/: with both present OpenAI would have two
 # manifests to choose between. No README.md: it is written for Claude users.
 OPENAI_OUT="dist/kowalah-plugin-openai-${VERSION}.zip"
 EXCLUDES=()
@@ -55,6 +57,7 @@ for s in "${CLAUDE_ONLY_SKILLS[@]+"${CLAUDE_ONLY_SKILLS[@]}"}"; do EXCLUDES+=(-x
 zip -qr "$OPENAI_OUT" \
   .codex-plugin/plugin.json \
   .mcp.json \
+  .app.json \
   skills/ \
   assets/ \
   LICENSE \
