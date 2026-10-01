@@ -1,38 +1,65 @@
 #!/usr/bin/env bash
-# Build the distributable plugin zip for upload to a client's org plugin library.
+# Build the distributable plugin zips: one for Claude, one for OpenAI.
 #
-# Why this exists: Anthropic refuses PUBLIC repositories as organization
-# marketplaces ("Your repository must be private or internal"). This repo is
-# public — deliberately, because the Anthropic plugin directory refuses
-# closed-source submissions. The two requirements are mutually exclusive, so a
-# client admin who wants this in their org library uploads a zip instead.
+# Claude: for upload to a client's org plugin library. Anthropic refuses PUBLIC
+# repositories as organization marketplaces ("Your repository must be private
+# or internal"). This repo is public — deliberately, because the Anthropic
+# plugin directory refuses closed-source submissions. The two requirements are
+# mutually exclusive, so a client admin who wants this in their org library
+# uploads a zip instead. Upload replaces by plugin NAME, so re-uploading
+# overwrites the previous version with no delete step.
 #
-# Upload replaces by plugin NAME, so re-uploading overwrites the previous
-# version with no delete step.
+# OpenAI: for the ChatGPT and Codex plugin directory, which takes a ZIP upload
+# and never reads this repository. Every release needs a fresh upload there;
+# the MCP server itself is re-scanned by OpenAI daily and needs nothing.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-VERSION=$(python3 -c "import json;print(json.load(open('.claude-plugin/plugin.json'))['version'])")
-MKT=$(python3 -c "import json;print(json.load(open('.claude-plugin/marketplace.json'))['plugins'][0]['version'])")
+# Skills that only make sense in Claude, left out of the OpenAI zip.
+# my-ai-tools inventories THIS Claude session's connectors and surfaces.
+CLAUDE_ONLY_SKILLS=(my-ai-tools)
 
-if [ "$VERSION" != "$MKT" ]; then
-  echo "error: version mismatch — plugin.json=$VERSION marketplace.json=$MKT" >&2
-  echo "Both must match." >&2
+version_of() { python3 -c "import json,sys;d=json.load(open(sys.argv[1]));print(d['plugins'][0]['version'] if 'plugins' in d else d['version'])" "$1"; }
+
+VERSION=$(version_of .claude-plugin/plugin.json)
+MKT=$(version_of .claude-plugin/marketplace.json)
+CODEX=$(version_of .codex-plugin/plugin.json)
+
+if [ "$VERSION" != "$MKT" ] || [ "$VERSION" != "$CODEX" ]; then
+  echo "error: version mismatch — .claude-plugin/plugin.json=$VERSION marketplace.json=$MKT .codex-plugin/plugin.json=$CODEX" >&2
+  echo "All three must match. Bump them together." >&2
   exit 1
 fi
 
-OUT="dist/kowalah-plugin-${VERSION}.zip"
 rm -rf dist && mkdir -p dist
 
+# --- Claude ------------------------------------------------------------------
 # marketplace.json is deliberately excluded: this is a PLUGIN package, not a
 # marketplace. The repo doubles as both; the zip is only ever the former.
-zip -qr "$OUT" \
+CLAUDE_OUT="dist/kowalah-plugin-${VERSION}.zip"
+zip -qr "$CLAUDE_OUT" \
   .claude-plugin/plugin.json \
   .mcp.json \
   skills/ \
   README.md \
   LICENSE
 
-echo "built $OUT ($(du -h "$OUT" | cut -f1))"
-# -n -2 is GNU-only; BSD/macOS head rejects it, so filter with awk instead.
-unzip -Z1 "$OUT" | sed 's/^/  /'
+# --- OpenAI ------------------------------------------------------------------
+# .codex-plugin/plugin.json is the manifest OpenAI reads; .mcp.json is the same
+# file Claude uses. No .claude-plugin/: with both present OpenAI would have two
+# manifests to choose between. No README.md: it is written for Claude users.
+OPENAI_OUT="dist/kowalah-plugin-openai-${VERSION}.zip"
+EXCLUDES=()
+for s in "${CLAUDE_ONLY_SKILLS[@]}"; do EXCLUDES+=(-x "skills/$s/*"); done
+zip -qr "$OPENAI_OUT" \
+  .codex-plugin/plugin.json \
+  .mcp.json \
+  skills/ \
+  assets/ \
+  LICENSE \
+  "${EXCLUDES[@]}"
+
+for out in "$CLAUDE_OUT" "$OPENAI_OUT"; do
+  echo "built $out ($(du -h "$out" | cut -f1))"
+  unzip -Z1 "$out" | sed 's/^/  /'
+done
