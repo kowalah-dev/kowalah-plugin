@@ -10,9 +10,12 @@ at a time, and nobody, including them, has the full picture. This skill shows th
 fixes what's half set up, and, with their say-so, adds it to the organisation's AI register
 so the AI lead can see what's actually in use.
 
-**It is theirs to share.** Nothing is recorded until they have seen the list and agreed.
-That isn't a courtesy: a register built by quietly reading people's setups is the thing
-this is not.
+**What this skill sends, and when.** Only what the user approves leaves the conversation,
+and only to their own organisation's AI register in Kowalah, with the
+`kowalah_record_ai_assets` tool: first a list of tool names, kinds and ids, and then, if they
+choose to do part two, their own answers about each tool. Nothing is sent before the user
+has seen exactly what will be saved and said yes. If they say no, or say nothing, nothing is
+sent.
 
 ## 1. Say what you'll do, and what you won't
 
@@ -26,7 +29,7 @@ Before looking at anything, tell them in two or three sentences:
   they say otherwise.
 
 Then ask whether to go ahead. If they'd rather just see their setup without sharing
-anything, do steps 2 and 5 and skip the rest.
+anything, do step 2 and step 6 and send nothing.
 
 ## 2. List what this session uses
 
@@ -51,9 +54,9 @@ long guessed one.
 **Leave out** built-in and local tools: memory, the file system, the browser, widgets,
 anything running on their own computer. They aren't the organisation's AI estate.
 
-**Never describe what's in a project, a skill or a chat.** A project shows you an id and its
-contents; record the id only, and ask the user what it's called. If you can tell a project
-is personal, don't list it for sharing at all.
+**Never describe or send what's in a project, a skill or a chat.** For a project, record its
+id and ask the user what it's called. If you can tell a project is personal, don't list it
+for sharing at all.
 
 Show the list grouped by kind, with anything that needs attention marked. Keep it scannable:
 a table per kind, or a short list, not a paragraph per item.
@@ -67,11 +70,13 @@ Ask which to share. Make it easy: "all of these, except …" is the usual answer
   *personal* helps the AI lead see where people are using their own accounts for work, but
   it is their call.
 - **Anything they haven't seen, you don't send.**
+- **Confirm the final list.** Show exactly what will be sent (each item's name, kind and id)
+  and ask "Send these to your organisation's AI register?" Only a clear yes counts.
 
 ## 4. Record it, and keep this pass quick
 
-Call **`kowalah_record_ai_assets`** with `surface` set to where this session runs and the
-items they chose. Use the surface you're actually on:
+Once they've confirmed the list, call **`kowalah_record_ai_assets`** with `surface` set to
+where this session runs and only the items they approved. Use the surface you're actually on:
 
 | Assistant | `surface` |
 |---|---|
@@ -108,9 +113,10 @@ That's `scope`. Everything else waits for part two.
 This first pass has to stay fast, or people won't run it. Someone running it for the
 second time should be done in a minute.
 
-**Decisions aren't theirs to make for everyone.** Owner, status and organisation-wide scope
-are decided by admins and core team (or the tool's owner). If a member's answer is refused,
-the tool is still recorded as used; say that their AI lead will pick it up.
+**Some fields are for admins.** Owner, status and organisation-wide scope are set by admins
+and core team (or the tool's owner). If Kowalah won't accept one of those values from this
+user because of their role, it records the tool without that value. Tell the user which
+value wasn't saved, and that their AI lead can set it.
 
 ## 5. Part two: what each tool does (when there's time)
 
@@ -119,7 +125,9 @@ A register of names says what exists, not what it does. Part two fills that in, 
 five minutes to say what a few of these are for?"), run it on a re-run, or when the AI lead
 asks from `ai-estate`. Never make it a condition of sharing.
 
-Work only on items with gaps, a few at a time, **organisation-wide and live ones first**:
+Work only on items with gaps, a few at a time, **organisation-wide and live ones first**.
+Before recording anything they tell you here, say what you'll save against which tool, and
+save it only if they agree:
 
 - **What's it for?** Their words become `description`. Never write one yourself from what a
   skill or tool contains.
@@ -163,8 +171,8 @@ Close with one line: what was shared, and what (if anything) they should do next
 ## Running it again
 
 People's setups change. Running this again is how the register stays current: known tools
-are simply "seen again", and only new ones get questions. There is no background version of
-this skill. If the AI lead wants a refresh, `ai-estate` shows what has gone quiet and they
+are simply "seen again", and only new ones get questions. It only ever runs when the user
+asks for it. If the AI lead wants a refresh, `ai-estate` shows what has gone quiet and they
 ask the team to run it.
 
 ## Scope and permissions
