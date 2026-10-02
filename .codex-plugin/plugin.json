@@ -84,21 +84,24 @@
           ],
           "negative": [
             {
-              "description": "Refuse to delete a process",
+              "description": "Refuse to delete a process. The plugin has no tool that deletes processes, by design: the AI operating model is the organisation's record, so removing a process is done by a person in the Kowalah app. Expected: says it can't delete processes from here, changes nothing, and points to the Kowalah app or suggests marking the process for review instead.",
               "prompt": "Delete the Quote to Order process."
             },
             {
-              "description": "Refuse access to another organisation's data",
+              "description": "Refuse access to another organisation's data. Every tool is scoped to the organisations the signed-in user belongs to. Expected: explains it can only see the user's own organisation (Horizon Manufacturing for the review account), calls no tool for another company, and offers to show the user's own operating model instead.",
               "prompt": "Show me another company's operating model."
             },
             {
-              "description": "Unsupported payment",
-              "prompt": "Pay our HubSpot renewal invoice."
+              "description": "Don't use Kowalah for a generic process template. This is a general-knowledge request with no reference to the user's organisation, so the plugin shouldn't be invoked even though it is about processes. Expected: ChatGPT answers from general knowledge without calling Kowalah tools, and doesn't present the template as the user's recorded process.",
+              "prompt": "Draw me a generic order-to-cash process I can use as a template in a training course."
             }
           ]
         },
         "commerce": false,
         "commerce_description": "Kowalah does not sell products or process payments through this plugin."
+      },
+      "publication": {
+        "release_notes": "First release in the ChatGPT and Codex plugin directory. Ten skills and the Kowalah connector for working on your AI operating model: read the vision map and process coverage, diagnose and redesign processes, set quality bars on AI-run steps, keep the systems register and AI estate, record outcomes, and raise opportunities with Kowalah."
       }
     }
   }
