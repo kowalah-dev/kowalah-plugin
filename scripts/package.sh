@@ -53,13 +53,23 @@ zip -qr "$CLAUDE_OUT" \
 OPENAI_OUT="dist/kowalah-plugin-openai-${VERSION}.zip"
 EXCLUDES=()
 for s in "${CLAUDE_ONLY_SKILLS[@]+"${CLAUDE_ONLY_SKILLS[@]}"}"; do EXCLUDES+=(-x "skills/$s/*"); done
+# OpenAI gets its own .mcp.json in the Codex shape (url only). Claude's carries
+# "type": "http" and a "note", and OpenAI's portal didn't offer to connect a
+# server declared that way. Same server URL, read from the Claude file.
+OPENAI_STAGE=$(mktemp -d)
+python3 - "$OPENAI_STAGE/.mcp.json" <<'PY'
+import json, sys
+src = json.load(open(".mcp.json"))["mcpServers"]
+json.dump({"mcpServers": {name: {"url": cfg["url"]} for name, cfg in src.items()}},
+          open(sys.argv[1], "w"), indent=2)
+PY
 zip -qr "$OPENAI_OUT" \
   .codex-plugin/plugin.json \
-  .mcp.json \
   skills/ \
   assets/ \
   LICENSE \
   ${EXCLUDES[@]+"${EXCLUDES[@]}"}
+(cd "$OPENAI_STAGE" && zip -q "$OLDPWD/$OPENAI_OUT" .mcp.json)
 
 OUTS=("$CLAUDE_OUT" "$OPENAI_OUT")
 
@@ -73,7 +83,8 @@ OUTS=("$CLAUDE_OUT" "$OPENAI_OUT")
 if [ -n "${OPENAI_TEST_APP_ID:-}" ]; then
   TEST_OUT="dist/kowalah-plugin-openai-${VERSION}-test.zip"
   STAGE=$(mktemp -d)
-  cp -R .codex-plugin .mcp.json skills assets LICENSE "$STAGE"/
+  cp -R .codex-plugin skills assets LICENSE "$STAGE"/
+  cp "$OPENAI_STAGE/.mcp.json" "$STAGE"/
   python3 - "$STAGE" "$OPENAI_TEST_APP_ID" <<'PY'
 import json, sys, os
 stage, app_id = sys.argv[1], sys.argv[2]
@@ -89,6 +100,8 @@ PY
   rm -rf "$STAGE"
   OUTS+=("$TEST_OUT")
 fi
+
+rm -rf "$OPENAI_STAGE"
 
 for out in "${OUTS[@]}"; do
   echo "built $out ($(du -h "$out" | cut -f1))"
