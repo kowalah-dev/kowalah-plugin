@@ -53,15 +53,20 @@ zip -qr "$CLAUDE_OUT" \
 OPENAI_OUT="dist/kowalah-plugin-openai-${VERSION}.zip"
 EXCLUDES=()
 for s in "${CLAUDE_ONLY_SKILLS[@]+"${CLAUDE_ONLY_SKILLS[@]}"}"; do EXCLUDES+=(-x "skills/$s/*"); done
-# OpenAI gets its own .mcp.json in the Codex shape (url only). Claude's carries
-# "type": "http" and a "note", and OpenAI's portal didn't offer to connect a
-# server declared that way. Same server URL, read from the Claude file.
+# OpenAI gets its own .mcp.json: the url plus extensions.com.openai.auth
+# (OAuth), the shape OpenAI's portal shows for a connectable server. Claude's
+# carries "type": "http" and a "note", and the portal offered no Connect for
+# it. Same server URL, read from the Claude file. Changing this after a draft
+# exists counts as changing the MCP server: the portal then requires a new
+# plugin, so settle it before the first upload.
 OPENAI_STAGE=$(mktemp -d)
 python3 - "$OPENAI_STAGE/.mcp.json" <<'PY'
 import json, sys
 src = json.load(open(".mcp.json"))["mcpServers"]
-json.dump({"mcpServers": {name: {"url": cfg["url"]} for name, cfg in src.items()}},
-          open(sys.argv[1], "w"), indent=2)
+json.dump({"mcpServers": {name.lower(): {
+    "url": cfg["url"],
+    "extensions": {"com.openai": {"auth": {"type": "oauth"}}},
+} for name, cfg in src.items()}}, open(sys.argv[1], "w"), indent=2)
 PY
 zip -qr "$OPENAI_OUT" \
   .codex-plugin/plugin.json \
