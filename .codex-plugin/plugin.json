@@ -84,7 +84,7 @@
           ],
           "negative": [
             {
-              "description": "Refuse to delete a process. The plugin has no tool that deletes processes, by design: the AI operating model is the organisation's record, so the connector never removes one. Expected: says it can't delete processes, calls no write tool, and changes nothing.",
+              "description": "Refuse to delete a process. The connector can't delete processes, by design: the AI operating model is the organisation's record, so a process is archived, never removed. Expected: says it can't delete processes, offers to archive instead, and changes nothing unless the user then explicitly confirms the archive.",
               "prompt": "Delete the Quote to Order process."
             },
             {
