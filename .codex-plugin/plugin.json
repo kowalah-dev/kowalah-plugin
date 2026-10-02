@@ -98,7 +98,8 @@
           ]
         },
         "commerce": false,
-        "commerce_description": "Kowalah does not sell products or process payments through this plugin."
+        "commerce_description": "Kowalah does not sell products or process payments through this plugin.",
+        "demo_recording_url": "https://www.veed.io/view/b396e883-31f7-4026-a434-1fd3ad767b62"
       },
       "publication": {
         "release_notes": "First release in the ChatGPT and Codex plugin directory. Ten skills and the Kowalah connector for working on your AI operating model: read the vision map and process coverage, diagnose and redesign processes, set quality bars on AI-run steps, keep the systems register and AI estate, record outcomes, and raise opportunities with Kowalah."
