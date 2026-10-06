@@ -15,8 +15,16 @@ them as its admin and an empty operating model to fill.
 
 ## Connecting
 
-1. The plugin registers the `kowalah` MCP server automatically on install. On first use,
-   Claude prompts to authenticate.
+1. **Installing the plugin doesn't connect it.** The plugin bundles the `kowalah` MCP
+   server, but the user still has to connect it. In Claude: open the plugin from
+   **Customize → Plugins** and go to its **Connectors** tab.
+   - **Not connected** — connect it there.
+   - **Not added** — add it there, then connect. On a Claude Team or Enterprise plan a
+     workspace owner usually has to add it for the organisation first, under
+     **Organization settings → Connectors** with the URL `https://mcp.kowalah.com/api/mcp`.
+     If the user can't add it, that's who to ask.
+
+   In another assistant, connect the Kowalah app or connector the way that assistant asks.
 2. **Sign in, or sign up — with a work email address.** An email Kowalah doesn't already
    know is fine; an account is created automatically and you do not need to be invited
    first. The email domain decides where you land, so a personal address (gmail, outlook)
@@ -118,11 +126,14 @@ with the client, so don't offer to build it from scratch — check with their Ko
 contact instead.
 
 Once they're connected, offer `my-ai-tools` as a natural next step: it shows them which AI
-tools their Claude has, fixes anything half set up, and lets them share their setup with
+tools their assistant has, fixes anything half set up, and lets them share their setup with
 the organisation's AI register. Offer it once; it's optional.
 
 ## If something fails
 
+- **No Kowalah tools at all, or every call fails** — the plugin is installed but its
+  connector isn't connected. The skills load either way, so this is easy to miss. Walk them
+  through step 1 of Connecting; if it shows *Not added*, they need their workspace owner.
 - **401 / authentication error** — the session expired. Re-authenticate.
 - **`User not found for Clerk user: …`** — sign-in worked, but the matching Kowalah
   account record was never created. This is a provisioning failure, not something the user did.
