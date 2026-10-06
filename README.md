@@ -2,7 +2,8 @@
 
 Run an AI operating model programme from inside Claude.
 
-Kowalah is a managed AI advisory programme. Client organisations map their business as an
+Kowalah is a UK Anthropic implementation specialist: we help organisations roll out Claude
+and get measurable value from it. Our clients map their business as an
 **AI Operating Model** — an org tree of real processes, broken into steps, each with an
 owner, a quality bar, and a decision about whether a human or an AI runs it. This plugin
 puts that model into Claude, along with the judgement needed to read it honestly.
