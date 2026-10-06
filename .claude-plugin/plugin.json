@@ -1,7 +1,7 @@
 {
   "name": "kowalah",
   "displayName": "Kowalah",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "description": "Run your AI operating model from Claude. Read your vision map and process coverage, diagnose where cycle time goes, redesign processes, set quality bars on AI-run steps, track your AI tools and outcomes, and raise opportunities. Connects to your Kowalah account.",
   "author": {
     "name": "Kowalah",
@@ -17,6 +17,6 @@
     "process-redesign",
     "business-process",
     "change-management",
-    "consulting"
+    "ai-implementation"
   ]
 }

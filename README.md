@@ -2,7 +2,8 @@
 
 Run an AI operating model programme from inside Claude.
 
-Kowalah is a managed AI advisory programme. Client organisations map their business as an
+Kowalah is a UK Anthropic implementation specialist: we help organisations roll out Claude
+and get measurable value from it. Our clients map their business as an
 **AI Operating Model** — an org tree of real processes, broken into steps, each with an
 owner, a quality bar, and a decision about whether a human or an AI runs it. This plugin
 puts that model into Claude, along with the judgement needed to read it honestly.
@@ -16,15 +17,21 @@ puts that model into Claude, along with the judgement needed to read it honestly
 
 ## Install
 
-**In Claude (Cowork or the browser)** — the route most people want, and it keeps itself
-up to date.
+**In Claude (chat, Cowork or the browser)** — Kowalah is in Anthropic's plugin directory.
 
-1. **Customize → Plugins → Add → Add marketplace**
-2. Paste `https://github.com/kowalah-dev/kowalah-plugin`
-3. Leave **Sync automatically** on, then **Sync**
-4. Open the **Discover** tab, find **Kowalah**, and click **Add**
+1. **Customize → Plugins → Discover**, search for **Kowalah**, and click **Add**
+2. Open the plugin and go to its **Connectors** tab. Adding a plugin doesn't sign you in
+   to anything, so connect **Kowalah** here. If it shows *Not added* and you can't add it
+   yourself, your Claude workspace owner needs to add it for the organisation first (see
+   below)
 
-You do not need to switch to Cowork first, and no administrator has to do anything.
+Directory installs update automatically when we ship. You do not need to switch to
+Cowork first.
+
+If Kowalah isn't in your **Discover** tab (some organisations turn the directory off),
+add this repository as a marketplace instead: **Customize → Plugins → Add → Add
+marketplace**, paste `https://github.com/kowalah-dev/kowalah-plugin`, leave **Sync
+automatically** on, then **Sync** and add Kowalah from **Discover**.
 
 **In Claude Code:**
 
@@ -33,34 +40,33 @@ You do not need to switch to Cowork first, and no administrator has to do anythi
 /plugin install kowalah@kowalah
 ```
 
-The marketplace is named `kowalah`, not `kowalah-plugin`.
+The marketplace is named `kowalah`, not `kowalah-plugin`. In Claude Code the skills are
+namespaced: `/kowalah:kowalah-setup`, `/kowalah:programme-review` and so on.
 
-**For a whole organisation** — a Claude Team or Enterprise owner uploads it once and
-members find it in their own Discover tab.
+**For a whole organisation** — a Claude Team or Enterprise owner sets it up once in
+**Organization settings → Plugins & skills**, and members find it in their own
+**Discover** tab.
 
-1. Download [kowalah-plugin.zip](https://18evqetn8qvaaj3d.public.blob.vercel-storage.com/plugins/kowalah-plugin.zip)
-2. **Organization settings → Plugins → Add plugins → Upload a file**
-3. Pick or create a marketplace, then set access: *Available to install*, *Installed by
-   default*, *Required*, or *Not available*
-4. **Add the connector as well: Organization settings → Connectors**, with the URL
-   `https://mcp.kowalah.com/api/mcp`. Making a plugin available doesn't add the connector
-   it bundles. Skip this and the skills load, but every tool call fails. Members then
-   connect it with their own account.
+1. **Add the connector first: Organization settings → Connectors**, with the URL
+   `https://mcp.kowalah.com/api/mcp`, named **Kowalah**. Making a plugin available
+   doesn't add the connector it bundles. Skip this and the skills load, but every tool
+   call fails. Members then connect it with their own account.
+2. Make the plugin available, one of two ways:
 
-> Installing from the Anthropic directory instead only offers *Available to install*, so
-> members opt in themselves. *Installed by default* and *Required* need the upload route.
+| | From the Anthropic directory | Upload the zip |
+|--|--|--|
+| **How** | **Inventory** tab → Kowalah → **Default access** | **Add → Upload a plugin** with [kowalah-plugin.zip](https://18evqetn8qvaaj3d.public.blob.vercel-storage.com/plugins/kowalah-plugin.zip), then **Default access** |
+| **Access options** | *Available to install* only | *Available to install*, *Installed by default*, *Required* or *Not available* |
+| **Updates** | Automatic | Manual: **Upload new version** on the plugin when we ship |
 
-> A zip is needed here because organisation marketplaces must be private or internal
-> repositories, and this one is public so it can go to the plugin directory. The
-> trade-off is that **this route does not auto-update** — an owner re-uploads when we
-> ship. Re-uploading replaces by plugin name, so there's no need to delete the old one.
-> Admins who would rather not track releases can point people at the self-serve route
-> above instead.
+> The zip exists because organisation-synced repositories must be private or internal,
+> and this one is public so it can go to the plugin directory. Most organisations only
+> need *Available to install*, so the directory route is the lighter one.
 
-**Then, whichever route:** Claude prompts you to sign in or sign up — use your work email
-address, since the domain is what places you in your company's organisation. Run
-`/kowalah-setup` to check which organisation you landed in, what your role can see, and
-whether it's your company's real organisation or a new empty one.
+**Then, whichever route:** connect with your work email address, since the domain is
+what places you in your company's organisation. Run `/kowalah-setup` to check which
+organisation you landed in, what your role can see, and whether it's your company's real
+organisation or a new empty one.
 
 ## Who it's for
 

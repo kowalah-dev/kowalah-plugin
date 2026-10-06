@@ -1,6 +1,6 @@
 ---
 name: my-ai-tools
-description: See which AI tools you use in Claude — connectors, skills, plugins, projects — check they're set up properly, and share them with your organisation's AI register. Use for "what AI tools do I have", "what's connected", "is my setup right", "add my tools to the register", "my AI lead asked everyone to share their tools", or when someone has been asked to take part in an AI tools review.
+description: See which AI tools you use in your assistant (Claude, ChatGPT, Codex and others) — connectors, apps, skills, plugins, projects — check they're set up properly, and share them with your organisation's AI register. Use for "what AI tools do I have", "what's connected", "is my setup right", "add my tools to the register", "my AI lead asked everyone to share their tools", or when someone has been asked to take part in an AI tools review.
 ---
 
 # My AI tools
@@ -10,39 +10,53 @@ at a time, and nobody, including them, has the full picture. This skill shows th
 fixes what's half set up, and, with their say-so, adds it to the organisation's AI register
 so the AI lead can see what's actually in use.
 
-**It is theirs to share.** Nothing is recorded until they have seen the list and agreed.
-That isn't a courtesy: a register built by quietly reading people's setups is the thing
-this is not.
+**What this skill sends, and when.** Only what the user approves leaves the conversation,
+and only to their own organisation's AI register in Kowalah, with the
+`kowalah_record_ai_assets` tool: first a list of tool names, kinds and ids, and then, if they
+choose to do part two, their own answers about each tool. Nothing is sent before the user
+has seen exactly what will be saved and said yes. If they say no, or say nothing, nothing is
+sent.
 
 ## 1. Say what you'll do, and what you won't
 
 Before looking at anything, tell them in two or three sentences:
 
-- You'll list the connectors, skills, plugins and projects **this session** can see.
+- You'll list the connectors, skills, plugins and projects **this session** can see, in
+  whichever assistant they're using.
 - Only **names and ids** get recorded. You won't read or record what's inside a skill, a
   project or a conversation.
 - They'll see the list first and choose what to share. Anything personal stays out unless
   they say otherwise.
 
 Then ask whether to go ahead. If they'd rather just see their setup without sharing
-anything, do steps 2 and 5 and skip the rest.
+anything, do step 2 and step 6 and send nothing.
 
 ## 2. List what this session uses
 
-Work from what you can actually see in this session, not from memory or guesses:
+Work from what you can actually see in this session, not from memory or guesses. Each
+assistant shows different things; list what yours shows and nothing it doesn't:
 
-- **Connectors** — each one's name, and its installed server id when the surface shows one
-  (a UUID). Note its state: connected, needs authorising, disconnected, setup not finished.
-- **Plugins** — name and `plugin_…` id, and the skills inside each.
-- **Skills** — account skills with their `skill_…` id; Anthropic's own skills by name.
+- **Connectors** (called apps in some assistants) — each one's name, and its id when the
+  assistant shows one. Note its state: connected, needs authorising, disconnected, setup
+  not finished.
+- **Plugins** — name and id as the assistant shows it (in Claude, `plugin_…`), and the
+  skills inside each.
+- **Skills** — name, and id where there is one (in Claude, `skill_…`). Skills built into
+  the assistant by its maker are recorded by name.
 - **Projects** — you will usually see an id but not a name.
+- **Custom GPTs aren't recorded.** They are being retired; if the work matters, record what
+  replaces it.
+
+If you can't tell what something is, or the assistant shows you very little of its own
+setup, say so plainly and record only what you're sure of. A short honest list beats a
+long guessed one.
 
 **Leave out** built-in and local tools: memory, the file system, the browser, widgets,
 anything running on their own computer. They aren't the organisation's AI estate.
 
-**Never describe what's in a project, a skill or a chat.** A project shows you an id and its
-contents; record the id only, and ask the user what it's called. If you can tell a project
-is personal, don't list it for sharing at all.
+**Never describe or send what's in a project, a skill or a chat.** For a project, record its
+id and ask the user what it's called. If you can tell a project is personal, don't list it
+for sharing at all.
 
 Show the list grouped by kind, with anything that needs attention marked. Keep it scannable:
 a table per kind, or a short list, not a paragraph per item.
@@ -56,20 +70,40 @@ Ask which to share. Make it easy: "all of these, except …" is the usual answer
   *personal* helps the AI lead see where people are using their own accounts for work, but
   it is their call.
 - **Anything they haven't seen, you don't send.**
+- **Confirm the final list.** Show exactly what will be sent (each item's name, kind and id)
+  and ask "Send these to your organisation's AI register?" Only a clear yes counts.
 
 ## 4. Record it, and keep this pass quick
 
-Call **`kowalah_record_ai_assets`** with `surface` set to where this session runs
-(`claude_ai`, `claude_desktop`, `cowork`, `claude_code`) and the items they chose:
+Once they've confirmed the list, call **`kowalah_record_ai_assets`** with `surface` set to
+where this session runs and only the items they approved. Use the surface you're actually on:
+
+| Assistant | `surface` |
+|---|---|
+| Claude on the web, desktop, Cowork, Claude Code | `claude_ai`, `claude_desktop`, `cowork`, `claude_code` |
+| ChatGPT on the web or desktop, Codex | `chatgpt`, `chatgpt_desktop`, `codex` |
+| Microsoft Copilot, Gemini | `copilot`, `gemini` |
+| Anything else, or you're not sure | `other` |
+
+Never pick a Claude surface for another assistant. `other` is the honest answer when it
+doesn't fit: the tools are recorded with no platform, which is a gap someone can fix, not
+a mistake someone has to find.
+
+For each item:
 
 - `kind`, `name`, and `external_ref` whenever there is an id. The id is how the register
-  recognises the same tool next time, and across Cowork and Claude Code.
+  recognises the same tool next time, and across the places they use it.
 - Plugins **before** the skills inside them, with `parent_external_ref` on each skill.
 - `connection_status` on connectors.
 - `scope: "user"` on the personal items they chose to share.
+- `origin` where you know it: `anthropic` for Claude's own built-in skills, `vendor` for
+  another assistant's own built-in tools and for a connector's maker, `kowalah`, or
+  `in_house` for something the organisation built.
 
 You don't need to say which platform anything runs on: what this session uses is put on
-Claude automatically, and each connector is linked to the system it's named for.
+the platform the surface runs on (Claude, ChatGPT, …) when the organisation's systems
+register holds it, and each connector is linked to the system it's named for. If the
+response says the platform isn't in the register, tell them: their AI lead can add it.
 
 The response has one short line per item: **new** or **seen again**, its gaps, and
 `ask: true` on the ones nobody has described yet (`ask_about` is how many). For those, ask
@@ -79,9 +113,10 @@ That's `scope`. Everything else waits for part two.
 This first pass has to stay fast, or people won't run it. Someone running it for the
 second time should be done in a minute.
 
-**Decisions aren't theirs to make for everyone.** Owner, status and organisation-wide scope
-are decided by admins and core team (or the tool's owner). If a member's answer is refused,
-the tool is still recorded as used; say that their AI lead will pick it up.
+**Some fields are for admins.** Owner, status and organisation-wide scope are set by admins
+and core team (or the tool's owner). If Kowalah won't accept one of those values from this
+user because of their role, it records the tool without that value. Tell the user which
+value wasn't saved, and that their AI lead can set it.
 
 ## 5. Part two: what each tool does (when there's time)
 
@@ -90,7 +125,9 @@ A register of names says what exists, not what it does. Part two fills that in, 
 five minutes to say what a few of these are for?"), run it on a re-run, or when the AI lead
 asks from `ai-estate`. Never make it a condition of sharing.
 
-Work only on items with gaps, a few at a time, **organisation-wide and live ones first**:
+Work only on items with gaps, a few at a time, **organisation-wide and live ones first**.
+Before recording anything they tell you here, say what you'll save against which tool, and
+save it only if they agree:
 
 - **What's it for?** Their words become `description`. Never write one yourself from what a
   skill or tool contains.
@@ -119,8 +156,8 @@ Stop when they've had enough. Whatever's left shows as a gap for next time.
 This is why it's worth their time. From what you listed:
 
 - **Connectors that need authorising or have disconnected** — name them and say how to fix
-  it (Settings → Connectors). Installed-but-never-connected is common and usually an
-  oversight.
+  it in their assistant's connector or app settings. Installed-but-never-connected is common
+  and usually an oversight.
 - **Duplicates** — the same skill in several plugins, or an account skill that a plugin
   now provides.
 - **Something already exists** — if they described a job a tool of theirs half-does, check
@@ -134,8 +171,8 @@ Close with one line: what was shared, and what (if anything) they should do next
 ## Running it again
 
 People's setups change. Running this again is how the register stays current: known tools
-are simply "seen again", and only new ones get questions. There is no background version of
-this skill. If the AI lead wants a refresh, `ai-estate` shows what has gone quiet and they
+are simply "seen again", and only new ones get questions. It only ever runs when the user
+asks for it. If the AI lead wants a refresh, `ai-estate` shows what has gone quiet and they
 ask the team to run it.
 
 ## Scope and permissions
