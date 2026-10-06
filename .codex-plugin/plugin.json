@@ -1,0 +1,53 @@
+{
+  "name": "kowalah",
+  "version": "0.7.0",
+  "description": "Run your AI operating model from ChatGPT or Codex. Read your vision map and process coverage, diagnose where cycle time goes, redesign processes, set quality bars on AI-run steps, track your AI estate and its outcomes, and raise opportunities. Connects to your Kowalah account.",
+  "author": {
+    "name": "Kowalah",
+    "url": "https://www.kowalah.com"
+  },
+  "homepage": "https://docs.kowalah.com/integrations/plugins/kowalah-plugin",
+  "repository": "https://github.com/kowalah-dev/kowalah-plugin",
+  "license": "MIT",
+  "keywords": [
+    "ai-transformation",
+    "operating-model",
+    "process-redesign",
+    "business-process",
+    "change-management",
+    "ai-implementation"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Kowalah",
+    "shortDescription": "Your AI operating model",
+    "longDescription": "Kowalah helps organisations roll out AI and get measurable value from it. Organisations map their business as an AI Operating Model: a tree of real processes, broken into steps, each with an owner, a quality bar, and a decision about whether a human or an AI runs it. This plugin puts that model in your conversation.\n\nRead your AI vision map, your process coverage, and any process in full, including where its cycle time actually goes and which steps have never been measured. Redesign a process from as-is to to-be. Set acceptance criteria and quality gates on the steps you hand to AI. Keep a register of the systems your work runs on and the AI your organisation actually uses, including what is unsanctioned, unowned or about to renew. Record the value AI has delivered, with claimed and verified figures kept apart. Search Kowalah's accelerator library before building something that already exists, and raise an opportunity with the Kowalah team.\n\nWho it's for: AI programme leads, process owners, and anyone in an organisation that maps its work in Kowalah. Everyone can read the whole operating model. What you can change depends on where you sit in it, and where you can't edit, you can propose a change instead.\n\nLimitations: it needs a Kowalah account. Signing in with a work email creates one, and the email domain places you in your company's organisation; a domain Kowalah doesn't recognise starts a new, empty organisation. It can't edit projects, deliverables, Expert Requests or contracts, and it never deletes your programme records or the processes in your map.",
+    "developerName": "Kowalah",
+    "category": "Productivity",
+    "capabilities": [
+      "Read your AI operating model and vision map",
+      "Diagnose and redesign business processes",
+      "Track your systems register and AI estate",
+      "Record the value AI has delivered",
+      "Raise opportunities with Kowalah"
+    ],
+    "websiteURL": "https://www.kowalah.com",
+    "supportURL": "https://www.kowalah.com/contact",
+    "privacyPolicyURL": "https://www.kowalah.com/privacy-policy",
+    "termsOfServiceURL": "https://www.kowalah.com/terms-and-conditions",
+    "defaultPrompt": [
+      "Walk me through our slowest process. Where does the time actually go?",
+      "What AI tools do we have, and which are unsanctioned or unowned?",
+      "I have an idea for using AI in our team. Has it been done, and does it fit our vision?"
+    ],
+    "brandColor": "#FA26A0",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/icon.svg"
+  },
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/kowalah-setup/SKILL.md"
+    }
+  }
+}

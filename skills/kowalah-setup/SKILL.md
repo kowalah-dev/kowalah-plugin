@@ -16,7 +16,7 @@ them as its admin and an empty operating model to fill.
 ## Connecting
 
 1. The plugin registers the `kowalah` MCP server automatically on install. On first use,
-   Claude prompts to authenticate.
+   your assistant prompts you to sign in.
 2. **Sign in, or sign up — with a work email address.** An email Kowalah doesn't already
    know is fine; an account is created automatically and you do not need to be invited
    first. The email domain decides where you land, so a personal address (gmail, outlook)
@@ -118,7 +118,7 @@ with the client, so don't offer to build it from scratch — check with their Ko
 contact instead.
 
 Once they're connected, offer `my-ai-tools` as a natural next step: it shows them which AI
-tools their Claude has, fixes anything half set up, and lets them share their setup with
+tools their assistant has, fixes anything half set up, and lets them share their setup with
 the organisation's AI register. Offer it once; it's optional.
 
 ## If something fails
