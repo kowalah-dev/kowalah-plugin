@@ -17,7 +17,9 @@ puts that model into Claude, along with the judgement needed to read it honestly
 
 ## Install
 
-**In Claude (chat, Cowork or the browser)** — Kowalah is in Anthropic's plugin directory.
+### In Claude (chat, Cowork or the browser)
+
+Kowalah is in Anthropic's plugin directory.
 
 1. **Customize → Plugins → Discover**, search for **Kowalah**, and click **Add**
 2. Open the plugin and go to its **Connectors** tab. Adding a plugin doesn't sign you in
@@ -33,7 +35,7 @@ add this repository as a marketplace instead: **Customize → Plugins → Add �
 marketplace**, paste `https://github.com/kowalah-dev/kowalah-plugin`, leave **Sync
 automatically** on, then **Sync** and add Kowalah from **Discover**.
 
-**In Claude Code:**
+### In Claude Code
 
 ```
 /plugin marketplace add kowalah-dev/kowalah-plugin
@@ -43,9 +45,42 @@ automatically** on, then **Sync** and add Kowalah from **Discover**.
 The marketplace is named `kowalah`, not `kowalah-plugin`. In Claude Code the skills are
 namespaced: `/kowalah:kowalah-setup`, `/kowalah:programme-review` and so on.
 
-**For a whole organisation** — a Claude Team or Enterprise owner sets it up once in
-**Organization settings → Plugins & skills**, and members find it in their own
-**Discover** tab.
+### In Cursor
+
+Kowalah is available in the Cursor Marketplace.
+
+1. **Settings → Plugins**, then search for **Kowalah** and click **Install**
+2. The connector will be added automatically with OAuth. On first connection, sign in with
+   your work email address to access your organisation's data
+
+Marketplace installs update automatically when we ship.
+
+Alternatively, add this repository directly: **Settings → Plugins → Add plugin**, paste
+`https://github.com/kowalah-dev/kowalah-plugin`, and Cursor will discover the plugin
+manifest automatically.
+
+### In other MCP clients (ChatGPT Desktop, Cline, etc.)
+
+Add Kowalah's remote MCP server directly to your client's MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "Kowalah": {
+      "type": "http",
+      "url": "https://mcp.kowalah.com/api/mcp"
+    }
+  }
+}
+```
+
+OAuth authentication will prompt on first connection. Sign in with your work email
+address — the domain determines which organisation you're placed in.
+
+### For a whole Claude organisation
+
+A Claude Team or Enterprise owner sets it up once in **Organization settings → Plugins &
+skills**, and members find it in their own **Discover** tab.
 
 1. **Add the connector first: Organization settings → Connectors**, with the URL
    `https://mcp.kowalah.com/api/mcp`, named **Kowalah**. Making a plugin available
@@ -130,8 +165,10 @@ conversation.
 
 ```
 .claude-plugin/
-  plugin.json          Plugin manifest
-  marketplace.json     Marketplace manifest — lets this repo be added directly
+  plugin.json          Claude plugin manifest
+  marketplace.json     Claude marketplace manifest — lets this repo be added directly
+.cursor-plugin/
+  plugin.json          Cursor plugin manifest
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
 skills/                Ten skills, one directory each — including `kowalah-setup`,
                        which covers connecting and troubleshooting
@@ -139,7 +176,8 @@ skills/                Ten skills, one directory each — including `kowalah-set
 
 The MCP server itself is not in this repo — it's a remote HTTP connector at
 `mcp.kowalah.com`, built and operated by Kowalah. This plugin registers it and adds the
-skills that use it.
+skills that use it. The same MCP config and skills are reused for both Claude and Cursor
+packaging.
 
 ## Tools this plugin connects to
 
