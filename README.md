@@ -47,17 +47,16 @@ namespaced: `/kowalah:kowalah-setup`, `/kowalah:programme-review` and so on.
 
 ### In Cursor
 
-Kowalah is available in the Cursor Marketplace.
+Add this repository directly:
 
-1. **Settings → Plugins**, then search for **Kowalah** and click **Install**
-2. The connector will be added automatically with OAuth. On first connection, sign in with
+1. **Settings → Plugins → Add plugin**, paste `https://github.com/kowalah-dev/kowalah-plugin`
+2. Cursor will discover the plugin manifest automatically
+3. The connector will be added automatically with OAuth. On first connection, sign in with
    your work email address to access your organisation's data
 
-Marketplace installs update automatically when we ship.
-
-Alternatively, add this repository directly: **Settings → Plugins → Add plugin**, paste
-`https://github.com/kowalah-dev/kowalah-plugin`, and Cursor will discover the plugin
-manifest automatically.
+Once the plugin is approved and listed in the Cursor Marketplace, you'll also be able to
+install it directly: **Settings → Plugins**, search for **Kowalah**, and click
+**Install**. Marketplace installs update automatically when we ship.
 
 ### In other MCP clients (ChatGPT Desktop, Cline, etc.)
 
