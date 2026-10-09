@@ -1,6 +1,6 @@
 name: Release plugin zip
 
-# Builds the distributable zip and attaches it to a GitHub Release.
+# Builds the distributable zips and attaches them to a GitHub Release.
 # Client org admins upload that zip to their own plugin library, because
 # Anthropic refuses public repositories as organization marketplaces.
 on:
@@ -37,6 +37,13 @@ jobs:
           TAG="${GITHUB_REF_NAME#v}"
           VER=$(python3 -c "import json;print(json.load(open('.claude-plugin/plugin.json'))['version'])")
           [ "$TAG" = "$VER" ] || { echo "tag v$TAG != manifest $VER"; exit 1; }
+
+      # A fixed-name copy of the Claude zip, so
+      # releases/latest/download/kowalah-plugin.zip always serves the current
+      # version. The docs and README link there; the versioned files stay too.
+      - name: Add stable-name Claude zip
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: cp "dist/kowalah-plugin-${GITHUB_REF_NAME#v}.zip" dist/kowalah-plugin.zip
 
       - uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
         if: startsWith(github.ref, 'refs/tags/v')
