@@ -26,9 +26,14 @@ VERSION=$(version_of .claude-plugin/plugin.json)
 MKT=$(version_of .claude-plugin/marketplace.json)
 CODEX=$(version_of .codex-plugin/plugin.json)
 
-if [ "$VERSION" != "$MKT" ] || [ "$VERSION" != "$CODEX" ]; then
-  echo "error: version mismatch — .claude-plugin/plugin.json=$VERSION marketplace.json=$MKT .codex-plugin/plugin.json=$CODEX" >&2
-  echo "All three must match. Bump them together." >&2
+# Cursor reads this repo directly rather than a zip, but its manifest still has
+# to carry the same version. Checked only once it exists.
+CURSOR=$VERSION
+[ -f .cursor-plugin/plugin.json ] && CURSOR=$(version_of .cursor-plugin/plugin.json)
+
+if [ "$VERSION" != "$MKT" ] || [ "$VERSION" != "$CODEX" ] || [ "$VERSION" != "$CURSOR" ]; then
+  echo "error: version mismatch — .claude-plugin/plugin.json=$VERSION marketplace.json=$MKT .codex-plugin/plugin.json=$CODEX .cursor-plugin/plugin.json=$CURSOR" >&2
+  echo "They must all match. Bump them together." >&2
   exit 1
 fi
 
