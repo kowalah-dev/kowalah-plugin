@@ -78,6 +78,20 @@ To install from the command line instead:
 The marketplace is named `kowalah`, not `kowalah-plugin`. In Claude Code the skills are
 namespaced: `/kowalah:kowalah-setup`, `/kowalah:programme-review` and so on.
 
+### Cursor
+
+Kowalah ships a Cursor plugin from this repository (`.cursor-plugin/`): the same skills
+and the same Kowalah connector.
+
+- **Cursor Marketplace** (once listed): open **Customize**, search for **Kowalah**, select
+  **Install**, and choose a project or user scope.
+- **Cursor Teams, before then:** an admin can add this repository as a team marketplace:
+  **Dashboard → Plugins & MCPs → Team Marketplaces → Add Marketplace → Import from Repo**,
+  then paste `https://github.com/kowalah-dev/kowalah-plugin`.
+
+When Cursor asks you to authenticate the Kowalah connector, sign in with your work email
+address.
+
 ### Then, whichever route
 
 Connect with your work email address, since the domain is what places you in your
@@ -147,8 +161,13 @@ conversation.
 
 ```
 .claude-plugin/
-  plugin.json          Plugin manifest
-  marketplace.json     Marketplace manifest — lets this repo be added directly
+  plugin.json          Claude plugin manifest
+  marketplace.json     Claude marketplace manifest — lets this repo be added directly
+.cursor-plugin/
+  plugin.json          Cursor plugin manifest
+  marketplace.json     Cursor marketplace manifest
+  mcp.json             The same Kowalah server, in the shape Cursor reads
+assets/icon.svg        Plugin icon for Cursor
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
 skills/                Ten skills, one directory each — including `kowalah-setup`,
                        which covers connecting and troubleshooting
@@ -156,7 +175,7 @@ skills/                Ten skills, one directory each — including `kowalah-set
 
 The MCP server itself is not in this repo — it's a remote HTTP connector at
 `mcp.kowalah.com`, built and operated by Kowalah. This plugin registers it and adds the
-skills that use it.
+skills that use it. Claude and Cursor share the same skills and server.
 
 ## Tools this plugin connects to
 
