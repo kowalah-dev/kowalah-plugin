@@ -2,15 +2,14 @@
   "name": "kowalah",
   "displayName": "Kowalah",
   "version": "0.7.0",
-  "description": "Run your AI operating model from Claude. Read your vision map and process coverage, diagnose where cycle time goes, redesign processes, set quality bars on AI-run steps, track your AI tools and outcomes, and raise opportunities. Connects to your Kowalah account.",
+  "description": "Run your AI operating model from Cursor. Read your vision map and process coverage, diagnose where cycle time goes, redesign processes, set quality bars on AI-run steps, track your AI tools and outcomes, and raise opportunities. Connects to your Kowalah account.",
   "author": {
     "name": "Kowalah",
-    "url": "https://kowalah.com"
+    "url": "https://www.kowalah.com"
   },
   "homepage": "https://docs.kowalah.com/integrations/plugins/kowalah-plugin",
   "repository": "https://github.com/kowalah-dev/kowalah-plugin",
   "license": "MIT",
-  "privacyPolicyUrl": "https://www.kowalah.com/privacy-policy",
   "keywords": [
     "ai-transformation",
     "operating-model",
@@ -18,5 +17,8 @@
     "business-process",
     "change-management",
     "ai-implementation"
-  ]
+  ],
+  "logo": "./assets/icon.svg",
+  "skills": "./skills/",
+  "mcpServers": "./.cursor-plugin/mcp.json"
 }
