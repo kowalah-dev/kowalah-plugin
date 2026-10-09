@@ -17,25 +17,58 @@ puts that model into Claude, along with the judgement needed to read it honestly
 
 ## Install
 
-### In Claude (chat, Cowork or the browser)
+Kowalah is in Anthropic's plugin directory. How you get it depends on your Claude plan.
 
-Kowalah is in Anthropic's plugin directory.
+### Claude Team or Enterprise
+
+Your Claude workspace owner decides which plugins and connectors your organisation can
+use, so they set Kowalah up first. Until they do, Kowalah won't appear in your
+**Discover** tab, and you can't add its connector yourself.
+
+**The owner, once, in Organization settings:**
+
+1. **Plugins & skills → Marketplaces:** check **Anthropic Directory** is listed.
+2. **Plugins & skills → Inventory:** search for Kowalah and make sure the copy from
+   **Anthropic Directory** is *Available to install* (its menu → **Default access**).
+3. **Connectors → Add → Custom → Web:** add `https://mcp.kowalah.com/api/mcp`, named
+   **Kowalah**. Making a plugin available doesn't add the connector it bundles. Skip
+   this and the skills load, but every tool call fails.
+
+On Enterprise, the plugin's **Group access…** limits it to particular groups, and custom
+roles can set the connector to *Blocked* for everyone else. If your organisation once
+uploaded the zip, set that copy to *Not available* so members don't see two.
+
+**Then each member:**
 
 1. **Customize → Plugins → Discover**, search for **Kowalah**, and click **Add**
-2. Open the plugin and go to its **Connectors** tab. Adding a plugin doesn't sign you in
-   to anything, so connect **Kowalah** here. If it shows *Not added* and you can't add it
-   yourself, your Claude workspace owner needs to add it for the organisation first (see
-   below)
+2. Open the plugin, go to its **Connectors** tab, and connect **Kowalah**
 
-Directory installs update automatically when we ship. You do not need to switch to
-Cowork first.
+| | From the Anthropic directory | Upload the zip |
+|--|--|--|
+| **How** | **Inventory** → Kowalah → **Default access** | **Add → Upload a plugin** with [kowalah-plugin.zip](https://18evqetn8qvaaj3d.public.blob.vercel-storage.com/plugins/kowalah-plugin.zip), then **Default access** |
+| **Access options** | *Available to install* or *Not available* | All four, including *Installed by default* and *Required* |
+| **Updates** | Automatic | Manual: **Upload new version** when we ship |
 
-If Kowalah isn't in your **Discover** tab (some organisations turn the directory off),
-add this repository as a marketplace instead: **Customize → Plugins → Add → Add
-marketplace**, paste `https://github.com/kowalah-dev/kowalah-plugin`, leave **Sync
-automatically** on, then **Sync** and add Kowalah from **Discover**.
+> The zip exists because organisation-synced repositories must be private or internal,
+> and this one is public so it can go to the plugin directory. Most organisations only
+> need *Available to install*, so the directory route is the lighter one.
 
-### In Claude Code
+### Claude Pro or Max
+
+1. **Customize → Plugins → Discover**, search for **Kowalah**, and click **Add**
+2. Open the plugin, go to its **Connectors** tab, and add and connect **Kowalah**.
+   Adding a plugin doesn't sign you in to anything.
+
+Directory installs update automatically when we ship. You can also add this repository
+as a marketplace: **Customize → Plugins → Add → Add marketplace**, paste
+`https://github.com/kowalah-dev/kowalah-plugin`, leave **Sync automatically** on, then
+**Sync**. On Team and Enterprise this only works if the owner lets members add their own
+plugins, and the connector still has to be added by the owner.
+
+### Claude Code
+
+A plugin added in Claude syncs to Claude Code when you sign in with the same account.
+To install from the command line instead:
 
 ```
 /plugin marketplace add kowalah-dev/kowalah-plugin
@@ -45,7 +78,7 @@ automatically** on, then **Sync** and add Kowalah from **Discover**.
 The marketplace is named `kowalah`, not `kowalah-plugin`. In Claude Code the skills are
 namespaced: `/kowalah:kowalah-setup`, `/kowalah:programme-review` and so on.
 
-### In Cursor
+### Cursor
 
 Kowalah ships a Cursor plugin from this repository (`.cursor-plugin/`): the same skills
 and the same Kowalah connector.
@@ -59,31 +92,12 @@ and the same Kowalah connector.
 When Cursor asks you to authenticate the Kowalah connector, sign in with your work email
 address.
 
-### For a whole Claude organisation
+### Then, whichever route
 
-A Claude Team or Enterprise owner sets it up once in **Organization settings → Plugins &
-skills**, and members find it in their own **Discover** tab.
-
-1. **Add the connector first: Organization settings → Connectors**, with the URL
-   `https://mcp.kowalah.com/api/mcp`, named **Kowalah**. Making a plugin available
-   doesn't add the connector it bundles. Skip this and the skills load, but every tool
-   call fails. Members then connect it with their own account.
-2. Make the plugin available, one of two ways:
-
-| | From the Anthropic directory | Upload the zip |
-|--|--|--|
-| **How** | **Inventory** tab → Kowalah → **Default access** | **Add → Upload a plugin** with [kowalah-plugin.zip](https://18evqetn8qvaaj3d.public.blob.vercel-storage.com/plugins/kowalah-plugin.zip), then **Default access** |
-| **Access options** | *Available to install* only | *Available to install*, *Installed by default*, *Required* or *Not available* |
-| **Updates** | Automatic | Manual: **Upload new version** on the plugin when we ship |
-
-> The zip exists because organisation-synced repositories must be private or internal,
-> and this one is public so it can go to the plugin directory. Most organisations only
-> need *Available to install*, so the directory route is the lighter one.
-
-**Then, whichever route:** connect with your work email address, since the domain is
-what places you in your company's organisation. Run `/kowalah-setup` to check which
-organisation you landed in, what your role can see, and whether it's your company's real
-organisation or a new empty one.
+Connect with your work email address, since the domain is what places you in your
+company's organisation. Run `/kowalah-setup` to check which organisation you landed in,
+what your role can see, and whether it's your company's real organisation or a new empty
+one. Full guide: [docs.kowalah.com](https://docs.kowalah.com/integrations/plugins/kowalah-plugin).
 
 ## Who it's for
 
@@ -161,8 +175,7 @@ skills/                Ten skills, one directory each — including `kowalah-set
 
 The MCP server itself is not in this repo — it's a remote HTTP connector at
 `mcp.kowalah.com`, built and operated by Kowalah. This plugin registers it and adds the
-skills that use it. The same MCP config and skills are reused for both Claude and Cursor
-packaging.
+skills that use it. Claude and Cursor share the same skills and server.
 
 ## Tools this plugin connects to
 
