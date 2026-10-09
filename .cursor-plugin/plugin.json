@@ -5,7 +5,7 @@
   "description": "Run your AI operating model from Cursor. Read your vision map and process coverage, diagnose where cycle time goes, redesign processes, set quality bars on AI-run steps, track your AI tools and outcomes, and raise opportunities. Connects to your Kowalah account.",
   "author": {
     "name": "Kowalah",
-    "email": "hello@kowalah.com"
+    "url": "https://www.kowalah.com"
   },
   "homepage": "https://docs.kowalah.com/integrations/plugins/kowalah-plugin",
   "repository": "https://github.com/kowalah-dev/kowalah-plugin",
@@ -16,8 +16,9 @@
     "process-redesign",
     "business-process",
     "change-management",
-    "ai-implementation",
-    "kowalah"
+    "ai-implementation"
   ],
-  "logo": "assets/logo.png"
+  "logo": "./assets/icon.svg",
+  "skills": "./skills/",
+  "mcpServers": "./.cursor-plugin/mcp.json"
 }

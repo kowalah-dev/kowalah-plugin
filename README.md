@@ -47,34 +47,17 @@ namespaced: `/kowalah:kowalah-setup`, `/kowalah:programme-review` and so on.
 
 ### In Cursor
 
-Add this repository directly:
+Kowalah ships a Cursor plugin from this repository (`.cursor-plugin/`): the same skills
+and the same Kowalah connector.
 
-1. **Settings → Plugins → Add plugin**, paste `https://github.com/kowalah-dev/kowalah-plugin`
-2. Cursor will discover the plugin manifest automatically
-3. The connector will be added automatically with OAuth. On first connection, sign in with
-   your work email address to access your organisation's data
+- **Cursor Marketplace** (once listed): open **Customize**, search for **Kowalah**, select
+  **Install**, and choose a project or user scope.
+- **Cursor Teams, before then:** an admin can add this repository as a team marketplace:
+  **Dashboard → Plugins & MCPs → Team Marketplaces → Add Marketplace → Import from Repo**,
+  then paste `https://github.com/kowalah-dev/kowalah-plugin`.
 
-Once the plugin is approved and listed in the Cursor Marketplace, you'll also be able to
-install it directly: **Settings → Plugins**, search for **Kowalah**, and click
-**Install**. Marketplace installs update automatically when we ship.
-
-### In other MCP clients (ChatGPT Desktop, Cline, etc.)
-
-Add Kowalah's remote MCP server directly to your client's MCP configuration:
-
-```json
-{
-  "mcpServers": {
-    "Kowalah": {
-      "type": "http",
-      "url": "https://mcp.kowalah.com/api/mcp"
-    }
-  }
-}
-```
-
-OAuth authentication will prompt on first connection. Sign in with your work email
-address — the domain determines which organisation you're placed in.
+When Cursor asks you to authenticate the Kowalah connector, sign in with your work email
+address.
 
 ### For a whole Claude organisation
 
@@ -168,6 +151,9 @@ conversation.
   marketplace.json     Claude marketplace manifest — lets this repo be added directly
 .cursor-plugin/
   plugin.json          Cursor plugin manifest
+  marketplace.json     Cursor marketplace manifest
+  mcp.json             The same Kowalah server, in the shape Cursor reads
+assets/icon.svg        Plugin icon for Cursor
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
 skills/                Ten skills, one directory each — including `kowalah-setup`,
                        which covers connecting and troubleshooting

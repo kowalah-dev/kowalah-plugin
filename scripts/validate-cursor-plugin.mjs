@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { readFileSync } from "node:fs";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import process from "node:process";
@@ -210,19 +211,29 @@ async function main() {
 
   await validateComponentFrontmatter(repoRoot);
 
-  const mcpPath = path.join(repoRoot, "mcp.json");
-  const mcpPathDot = path.join(repoRoot, ".mcp.json");
-  const mcpExists = await pathExists(mcpPath);
-  const mcpDotExists = await pathExists(mcpPathDot);
-  
-  if (mcpExists || mcpDotExists) {
-    const actualPath = mcpExists ? mcpPath : mcpPathDot;
-    const mcpConfig = await readJsonFile(actualPath, "MCP config");
-    if (mcpConfig && mcpConfig.mcpServers) {
-      console.log(`Found MCP config with ${Object.keys(mcpConfig.mcpServers).length} server(s).`);
+  // Cursor discovers mcp.json at the plugin root; the manifest's mcpServers
+  // overrides that. Ours points at .cursor-plugin/mcp.json, a url-only copy of
+  // the server in .mcp.json, because Cursor doesn't read Claude's .mcp.json.
+  const mcpRel = typeof pluginManifest.mcpServers === "string" ? pluginManifest.mcpServers : "mcp.json";
+  const mcpPath = path.join(repoRoot, mcpRel);
+  if (await pathExists(mcpPath)) {
+    const mcpConfig = await readJsonFile(mcpPath, "MCP config");
+    const servers = mcpConfig?.mcpServers ?? {};
+    for (const [name, cfg] of Object.entries(servers)) {
+      if (!cfg.url && !cfg.command) addError(`MCP server "${name}" in ${mcpRel} has neither url nor command.`);
     }
+    console.log(`Found MCP config ${mcpRel} with ${Object.keys(servers).length} server(s).`);
+  } else if (typeof pluginManifest.mcpServers === "string") {
+    addError(`mcpServers in plugin.json points at a missing file: ${mcpRel}`);
   } else {
-    addWarning("No mcp.json or .mcp.json file found (only needed when using MCP servers).");
+    addWarning("No mcp.json found (only needed when using MCP servers).");
+  }
+
+  // The Cursor connector must point at the same server as the Claude one.
+  const claudeMcp = path.join(repoRoot, ".mcp.json");
+  if (await pathExists(claudeMcp) && await pathExists(mcpPath)) {
+    const urls = (f) => Object.values(JSON.parse(readFileSync(f, "utf8")).mcpServers ?? {}).map((c) => c.url).sort().join();
+    if (urls(claudeMcp) !== urls(mcpPath)) addError(`${mcpRel} and .mcp.json point at different servers.`);
   }
 
   const skillsDir = path.join(repoRoot, "skills");
