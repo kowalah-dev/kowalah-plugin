@@ -33,8 +33,12 @@ slides.
    roll-ups on every node, org-wide totals, and a `vision` block if one has been authored.
 2. **Read the totals properly** (see below). Pick the two or three units where the
    constraints and redesign gaps actually concentrate.
-3. **`kowalah_get_operating_model_unit`** on each of those — its subtree roll-up, the
-   processes it owns, and `topBacklog`, the ranked redesign backlog across its processes.
+3. **`kowalah_get_operating_model`** with `view: "rows"` — the whole model in one call:
+   every unit with its subtree roll-up, every process with its `readiness`, the
+   organisation's ranked redesign backlog (each item naming its process and unit) and the
+   open questions. Read the units you picked from it, rather than opening them one at a
+   time. If the connector doesn't accept `view: "rows"`, it's an older version: call
+   `kowalah_get_operating_model_unit` on each of those units instead.
 4. **`kowalah_get_update`** with no query — the portfolio of what is actually in flight:
    projects, deliverables, expert requests, opportunities, client-visible risks.
 5. **Cross-reference.** For each significant in-flight item, name the unit and process it

@@ -1,7 +1,7 @@
 {
   "name": "kowalah",
-  "version": "0.7.1",
-  "description": "Run your AI operating model from ChatGPT or Codex. Read your vision map and process coverage, diagnose where cycle time goes, redesign processes, set quality bars on AI-run steps, track your AI estate and its outcomes, and raise opportunities. Connects to your Kowalah account.",
+  "version": "0.8.0",
+  "description": "Run your AI operating model from ChatGPT or Codex. Read your vision map and process coverage, diagnose where cycle time goes, redesign processes, set quality bars on AI-run steps, track your AI estate and its outcomes, raise opportunities, and turn it into dashboards, decks and scheduled updates. Connects to your Kowalah account.",
   "author": {
     "name": "Kowalah",
     "url": "https://www.kowalah.com"
