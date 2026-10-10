@@ -1,6 +1,6 @@
 ---
 name: programme-views
-description: Design and build something the person can share about their AI programme — a dashboard, a slide deck, a document or a short animated walkthrough — from their Kowalah operating model plus any other sources they choose. Works out who they are and who it's for, then designs it with them rather than filling a template. Use for "build our AI programme dashboard", "make me a board deck on our AI progress", "write up the steering group update", "I need something to show my team", "turn this review into slides", or any request to present the operating model to someone else.
+description: Design and build something the person can share about their AI programme — a dashboard, a slide deck, a document, a one-page visual or a short animated walkthrough — from their Kowalah operating model plus any other sources they choose. Works out who they are and who it's for, then designs it with them rather than filling a template. Use for "build our AI programme dashboard", "make me a board deck on our AI progress", "write up the steering group update", "I need something to show my team", "turn this review into slides", or any request to present the operating model to someone else.
 ---
 
 # Programme views
@@ -62,13 +62,18 @@ show its source.
 | Dashboard | A view people come back to, with live figures | `references/formats/dashboard.md` |
 | Slides | A meeting or a board pack; travels as a file | `references/formats/slides.md` |
 | Doc | A written update people read, comment on and edit | `references/formats/doc.md` |
+| Design | A one-page visual: a summary, a poster, a process on a page | `references/formats/design.md` |
 | Motion | A short animated walkthrough of a process or a change | `references/formats/motion.md` |
 
 Not every format is available everywhere. What you can make depends on the assistant
-you're running in, the person's plan and what their administrator has switched on. Each
-guide says what to start from where a ready-made template exists, and what to produce
-where it doesn't. If the format they want isn't available, say so and offer the closest
-one that is.
+you're running in, the person's plan and what their administrator has switched on. In
+Claude, each format is an artifact started from a template (a Dashboard, Slides, Docs,
+Design or Motion artifact). Each guide says what to start from where a template exists,
+and what to produce where it doesn't. If the format they want isn't available, say so and
+offer the closest one that is.
+
+If what they want fits none of these, build a single self-contained web page (in Claude,
+an HTML artifact). The rules below still apply.
 
 **Agree the outline before building.** Propose the sections, what each one shows and the
 source of every figure. Let them change it. A piece built without this step is usually

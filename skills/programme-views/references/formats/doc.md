@@ -3,7 +3,7 @@
 For a written update people read, comment on and edit together: a steering group update,
 a write-up of one process, a note to a team.
 
-**If your assistant offers a shared document template** (in Claude, the Docs template),
+**If your assistant offers a shared document template** (in Claude, a Docs artifact),
 start from it, so readers can comment and the author can update it in place.
 **Otherwise**, write it as a document the person can copy into their own tools.
 

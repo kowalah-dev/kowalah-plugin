@@ -4,7 +4,7 @@ A short animated walkthrough: how a process runs today, how it will run after a 
 or how the programme has moved over a period. Best for explaining a change to the people
 it affects, where a chart would leave them with questions.
 
-**If your assistant offers an animation template** (in Claude, the Motion template), start
+**If your assistant offers an animation template** (in Claude, a Motion artifact), start
 from it; the walkthrough can be exported as a video. It isn't available on every plan, and
 an administrator may have switched it off. **Otherwise**, offer a doc with a step-by-step
 storyboard instead.
