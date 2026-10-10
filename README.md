@@ -45,7 +45,7 @@ uploaded the zip, set that copy to *Not available* so members don't see two.
 
 | | From the Anthropic directory | Upload the zip |
 |--|--|--|
-| **How** | **Inventory** → Kowalah → **Default access** | **Add → Upload a plugin** with [kowalah-plugin.zip](https://18evqetn8qvaaj3d.public.blob.vercel-storage.com/plugins/kowalah-plugin.zip), then **Default access** |
+| **How** | **Inventory** → Kowalah → **Default access** | **Add → Upload a plugin** with [kowalah-plugin.zip](https://github.com/kowalah-dev/kowalah-plugin/releases/latest/download/kowalah-plugin.zip), then **Default access** |
 | **Access options** | *Available to install* or *Not available* | All four, including *Installed by default* and *Required* |
 | **Updates** | Automatic | Manual: **Upload new version** when we ship |
 
@@ -167,7 +167,7 @@ conversation.
   plugin.json          Cursor plugin manifest
   marketplace.json     Cursor marketplace manifest
   mcp.json             The same Kowalah server, in the shape Cursor reads
-assets/icon.svg        Plugin icon for Cursor
+assets/icon.png        Plugin icon for Cursor
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
 skills/                Ten skills, one directory each — including `kowalah-setup`,
                        which covers connecting and troubleshooting
