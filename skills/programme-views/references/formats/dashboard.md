@@ -3,10 +3,11 @@
 For a view people come back to. Best when the figures change week to week and the reader
 wants to look things up rather than be walked through them.
 
-**In Claude**, start from the Dashboard template where it's available. Where the reader's
-Claude can reach the same connectors, a dashboard can read the operating model live, so
-it stays current without being rebuilt. **Elsewhere**, build a single self-contained web
-page with the figures as of today, and date it.
+**If your assistant offers a dashboard template** (in Claude, the Dashboard template,
+where the plan and admin settings allow), start from it. Where the reader's assistant can
+reach the same connectors, a dashboard can read the operating model live, so it stays
+current without being rebuilt. **Otherwise**, build a single self-contained web page with
+the figures as of today, and date it.
 
 ## A layout that works
 

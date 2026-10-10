@@ -3,9 +3,10 @@
 For a meeting or a board pack. Travels as a file, so it has to make sense without anyone
 presenting it.
 
-**In Claude**, start from the Slides template where it's available; a deck made that way
-can be downloaded. **Elsewhere**, write the deck as a slide-by-slide outline the person can
-paste into their own tool, with the figures and their sources on each slide.
+**If your assistant offers a slides template** (in Claude, the Slides template), start
+from it so the deck can be downloaded. **Otherwise**, write the deck as a slide-by-slide
+outline the person can paste into their own tool, with the figures and their sources on
+each slide.
 
 ## A deck that works
 

@@ -5,9 +5,9 @@ group or a sponsor. Often an admin in Kowalah.
 
 ## What they usually need to show
 
-- **A regular programme update** that someone senior can read without opening Claude: where
-  the business is constrained, what's in flight against it, what moved since last time and
-  what needs deciding.
+- **A regular programme update** that someone senior can read without opening an AI
+  assistant: where the business is constrained, what's in flight against it, what moved
+  since last time and what needs deciding.
 - **A live view** they and the core team come back to, so the update isn't rebuilt by hand
   each time.
 - **Credit where it's due.** Which teams and processes changed, and who built what others

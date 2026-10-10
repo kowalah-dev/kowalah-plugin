@@ -6,7 +6,7 @@ description: Design and build something the person can share about their AI prog
 # Programme views
 
 Someone needs to show the AI programme to someone else: a steering group, a board, their
-own team, a new joiner. This skill helps their Claude design and build that with them. It
+own team, a new joiner. This skill helps their AI assistant design and build that with them. It
 is a design partner, not a template. The operating model is the backbone, and the person
 decides what else goes in.
 
@@ -64,9 +64,11 @@ show its source.
 | Doc | A written update people read, comment on and edit | `references/formats/doc.md` |
 | Motion | A short animated walkthrough of a process or a change | `references/formats/motion.md` |
 
-Not every format is available everywhere. Some depend on the person's Claude plan and on
-what their administrator has switched on, and none are available outside Claude. If the
-one they want isn't available, say so and offer the closest one that is.
+Not every format is available everywhere. What you can make depends on the assistant
+you're running in, the person's plan and what their administrator has switched on. Each
+guide says what to start from where a ready-made template exists, and what to produce
+where it doesn't. If the format they want isn't available, say so and offer the closest
+one that is.
 
 **Agree the outline before building.** Propose the sections, what each one shows and the
 source of every figure. Let them change it. A piece built without this step is usually

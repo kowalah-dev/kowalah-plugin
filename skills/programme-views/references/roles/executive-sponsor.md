@@ -2,7 +2,8 @@
 
 The senior person accountable for the AI programme to a board or leadership team. Often
 not an IT leader: frequently someone who owns a business result, such as revenue, cost or
-operations. May rarely open Claude themselves, so what they read has to stand on its own.
+operations. May rarely use an AI assistant themselves, so what they read has to stand on
+its own.
 
 ## What they usually need to show
 

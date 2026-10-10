@@ -3,9 +3,9 @@
 For a written update people read, comment on and edit together: a steering group update,
 a write-up of one process, a note to a team.
 
-**In Claude**, start from the Docs template where it's available, so readers can comment
-and the author can update it in place. **Elsewhere**, write it as a document the person can
-copy into their own tools.
+**If your assistant offers a shared document template** (in Claude, the Docs template),
+start from it, so readers can comment and the author can update it in place.
+**Otherwise**, write it as a document the person can copy into their own tools.
 
 ## A steering update that works
 
