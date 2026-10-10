@@ -78,9 +78,10 @@ friction beats a broad wish every time.
 
 **`kowalah_find_accelerator`** as soon as you have something concrete.
 
-The library holds pre-built prompts, GPTs, training and tools — the organisation's own
+The library holds pre-built prompts, skills, training and tools — the organisation's own
 private accelerators plus Kowalah's global library, tagged `org_private` or `global`.
-Results often carry a try-it-now prompt they can act on immediately.
+A result that lives elsewhere carries an `external_url` to open; the rest open in the
+Kowalah app.
 
 **If there's a match, the best possible outcome of this conversation is them using it
 today.** That is a better result than a well-written opportunity, and it costs nothing.
