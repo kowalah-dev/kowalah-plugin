@@ -27,10 +27,11 @@ recorded rather than quietly filling the gap from conversation.
 ## 1. Check the library first
 
 **`kowalah_find_accelerator`** before anything else. The library holds pre-built prompts,
-GPTs, training and tools — the organisation's own private accelerators plus Kowalah's
+skills, training and tools — the organisation's own private accelerators plus Kowalah's
 global library, each result tagged with a `scope` of `org_private` or `global`.
 
-Results often carry a try-it-now prompt the user can act on immediately. **If there is a
+A result that lives elsewhere carries an `external_url` to open; the rest open in the
+Kowalah app. **If there is a
 match, the right outcome is the user using it today — not an opportunity raised for
 something that already exists.** Say what you found, offer it, and only continue if it
 genuinely does not fit.
