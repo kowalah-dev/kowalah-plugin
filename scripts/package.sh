@@ -20,6 +20,18 @@ cd "$(dirname "$0")/.."
 # the mechanism for the next skill that genuinely can't travel.
 CLAUDE_ONLY_SKILLS=()
 
+# Options are flags, not environment variables: the Claude plugin directory
+# treats a script reading OPENAI_* from the environment as reading a credential.
+REVIEW_JSON=""
+TEST_APP_ID=""
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --review) REVIEW_JSON="$2"; shift 2 ;;
+    --test-app-id) TEST_APP_ID="$2"; shift 2 ;;
+    *) echo "usage: $0 [--review path/to/review.json] [--test-app-id plugin_asdk_app_...]" >&2; exit 1 ;;
+  esac
+done
+
 version_of() { python3 -c "import json,sys;d=json.load(open(sys.argv[1]));print(d['plugins'][0]['version'] if 'plugins' in d else d['version'])" "$1"; }
 
 VERSION=$(version_of .claude-plugin/plugin.json)
@@ -80,13 +92,13 @@ zip -qr "$OPENAI_OUT" \
   LICENSE \
   ${EXCLUDES[@]+"${EXCLUDES[@]}"}
 # Review material for a directory submission (test cases, demo recording,
-# release notes) lives outside this public repo. Point OPENAI_REVIEW at its
+# release notes) lives outside this public repo. Pass its JSON with --review
 # JSON to merge it under extensions.com.openai in the zip's manifest:
-#   OPENAI_REVIEW=../kowalah-plugin-review/openai/review.json ./scripts/package.sh
+#   ./scripts/package.sh --review ../kowalah-plugin-review/openai/review.json
 # Without it the zip has no review block, which suits anything but a submission.
-if [ -n "${OPENAI_REVIEW:-}" ]; then
+if [ -n "$REVIEW_JSON" ]; then
   mkdir -p "$OPENAI_STAGE/.codex-plugin"
-  python3 - "$OPENAI_REVIEW" "$OPENAI_STAGE/.codex-plugin/plugin.json" <<'PY'
+  python3 - "$REVIEW_JSON" "$OPENAI_STAGE/.codex-plugin/plugin.json" <<'PY'
 import json, sys
 review, out = sys.argv[1], sys.argv[2]
 m = json.load(open(".codex-plugin/plugin.json"))
@@ -104,15 +116,15 @@ OUTS=("$CLAUDE_OUT" "$OPENAI_OUT")
 # An uploaded, unpublished plugin has no connection of its own, so ChatGPT shows
 # it as available but can't reach the server. For testing in your own account,
 # register the server under Plugins > + > Create MCP App, then build with its id:
-#   OPENAI_TEST_APP_ID=plugin_asdk_app_... ./scripts/package.sh
+#   ./scripts/package.sh --test-app-id plugin_asdk_app_...
 # This adds .app.json and the manifest's "apps" field to a separate -test zip.
 # Never submit it: OpenAI refuses ZIPs with app references.
-if [ -n "${OPENAI_TEST_APP_ID:-}" ]; then
+if [ -n "$TEST_APP_ID" ]; then
   TEST_OUT="dist/kowalah-plugin-openai-${VERSION}-test.zip"
   STAGE=$(mktemp -d)
   cp -R .codex-plugin skills assets LICENSE "$STAGE"/
   cp "$OPENAI_STAGE/.mcp.json" "$STAGE"/
-  python3 - "$STAGE" "$OPENAI_TEST_APP_ID" <<'PY'
+  python3 - "$STAGE" "$TEST_APP_ID" <<'PY'
 import json, sys, os
 stage, app_id = sys.argv[1], sys.argv[2]
 # The URL shows plugin_asdk_app_…; the manifest wants it without "plugin_".
