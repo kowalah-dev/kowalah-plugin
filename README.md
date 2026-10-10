@@ -129,6 +129,7 @@ can propose against any process they can see.
 | `/kowalah:spot-opportunities` | For anyone: talk through your own work, find the real friction, check what already exists, and route it. Grounded in your organisation's vision, not generic AI advice. |
 | `/kowalah:raise-opportunity` | Check the accelerator library first, test against the vision, score it, submit it. |
 | `/kowalah:programme-views` | Design and build something to share about the programme — a dashboard, a deck, a doc, a one-page visual or a short animated walkthrough — for whoever needs to read it. Built from your operating model plus any other sources you choose, leading with where the business is constrained. |
+| `/kowalah:scheduled-tasks` | Set up a scheduled task in your assistant that brings you something useful from Kowalah each week or month — what's new in your library, the week in your area, progress against the vision, or a draft of your programme update. You choose what runs; nothing is shared on its own. |
 
 Skills activate on their own when the context fits; the slash commands are there when you
 want to be explicit.
@@ -170,7 +171,7 @@ conversation.
   mcp.json             The same Kowalah server, in the shape Cursor reads
 assets/icon.png        Plugin icon for Cursor
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
-skills/                Eleven skills, one directory each — including `kowalah-setup`,
+skills/                Twelve skills, one directory each — including `kowalah-setup`,
                        which covers connecting and troubleshooting
 ```
 
