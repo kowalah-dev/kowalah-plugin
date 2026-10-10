@@ -10,8 +10,8 @@
       "name": "kowalah",
       "displayName": "Kowalah",
       "source": "./",
-      "description": "Run your AI operating model from Claude. Read your vision map and process coverage, diagnose where cycle time goes, redesign processes, set quality bars on AI-run steps, track your AI tools and outcomes, and raise opportunities. Connects to your Kowalah account.",
-      "version": "0.7.1",
+      "description": "Run your AI operating model from Claude. Read your vision map and process coverage, diagnose where cycle time goes, redesign processes, set quality bars on AI-run steps, track your AI tools and outcomes, raise opportunities, and turn it into dashboards, decks and scheduled updates. Connects to your Kowalah account.",
+      "version": "0.8.0",
       "author": {
         "name": "Kowalah",
         "url": "https://kowalah.com"
