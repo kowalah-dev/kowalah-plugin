@@ -26,12 +26,16 @@ recorded rather than quietly filling the gap from conversation.
 
 ## 1. Check the library first
 
-**`kowalah_find_accelerator`** before anything else. The library holds pre-built prompts,
-skills, training and tools — the organisation's own private accelerators plus Kowalah's
-global library, each result tagged with a `scope` of `org_private` or `global`.
+**`kowalah_find_accelerator`** before anything else. The library holds proven skills,
+plugins, prompts, guides and templates: the organisation's own accelerators plus Kowalah's
+library, each result tagged with a `scope` of `organization` or `kowalah`.
 
-A result that lives elsewhere carries an `external_url` to open; the rest open in the
-Kowalah app. **If there is a
+Each result lists an edition per AI platform, with how to get it (download, read or
+watch, open a link, copy a prompt), how to use it, and a `url` to its page in the Kowalah
+app, where files are downloaded. If the ask is about a step in their operating model, pass
+its `process_step_id` to find what fits that step. A result with `access: "preview"` is
+one their plan shows only in outline: say what it does and pass on the note about the
+full library, rather than guessing at its contents. **If there is a
 match, the right outcome is the user using it today — not an opportunity raised for
 something that already exists.** Say what you found, offer it, and only continue if it
 genuinely does not fit.
