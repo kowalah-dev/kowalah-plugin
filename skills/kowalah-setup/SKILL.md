@@ -24,6 +24,12 @@ them as its admin and an empty operating model to fill.
      **Organization settings → Connectors** with the URL `https://mcp.kowalah.com/api/mcp`.
      If the user can't add it, that's who to ask.
 
+   In Microsoft 365 Copilot: in Cowork, turn the Kowalah plugin on under
+   **Customize → Plugins**, then sign in when the Kowalah connector asks. In Copilot Chat,
+   add the Kowalah agent, and it asks you to sign in the first time it uses Kowalah. If
+   Kowalah isn't listed in either, the organisation's Microsoft 365 admin has to make it
+   available first.
+
    In another assistant, connect the Kowalah app or connector the way that assistant asks.
 2. **Sign in, or sign up — with a work email address.** An email Kowalah doesn't already
    know is fine; an account is created automatically and you do not need to be invited
