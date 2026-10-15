@@ -1,0 +1,83 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/vDevPreview/MicrosoftTeams.schema.json",
+  "manifestVersion": "devPreview",
+  "version": "0.8.0",
+  "id": "${{TEAMS_APP_ID}}",
+  "developer": {
+    "name": "Kowalah",
+    "websiteUrl": "https://www.kowalah.com",
+    "privacyUrl": "https://www.kowalah.com/privacy-policy",
+    "termsOfUseUrl": "https://www.kowalah.com/terms-and-conditions"
+  },
+  "name": {
+    "short": "Kowalah",
+    "full": "Kowalah: your AI operating model"
+  },
+  "description": {
+    "short": "Run your AI operating model from Microsoft 365 Copilot.",
+    "full": "Kowalah helps organisations roll out AI and get measurable value from it. Organisations map their business as an AI Operating Model: a tree of real processes, broken into steps, each with an owner, a quality bar, and a decision about whether a human or an AI runs it. This plugin puts that model in Copilot.\n\nRead your AI vision map, your process coverage, and any process in full, including where its cycle time actually goes and which steps have never been measured. Redesign a process from as-is to to-be. Set acceptance criteria and quality gates on the steps you hand to AI. Keep a register of the systems your work runs on and the AI your organisation uses. Record the value AI has delivered, with claimed and verified figures kept apart. Search Kowalah's accelerator library before building something that already exists, and raise an opportunity with the Kowalah team.\n\nIt needs a Kowalah account. Signing in with a work email creates one, and the email domain places you in your company's organisation; a domain Kowalah doesn't recognise starts a new, empty organisation. Everyone can read the whole operating model; what you can change depends on where you sit in it, and where you can't edit, you can propose a change instead."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#C026D3",
+  "agentSkills": [
+    {
+      "folder": "skills/ai-estate"
+    },
+    {
+      "folder": "skills/kowalah-setup"
+    },
+    {
+      "folder": "skills/my-ai-tools"
+    },
+    {
+      "folder": "skills/outcomes"
+    },
+    {
+      "folder": "skills/process-diagnostic"
+    },
+    {
+      "folder": "skills/process-redesign"
+    },
+    {
+      "folder": "skills/programme-review"
+    },
+    {
+      "folder": "skills/programme-views"
+    },
+    {
+      "folder": "skills/quality-bar"
+    },
+    {
+      "folder": "skills/raise-opportunity"
+    },
+    {
+      "folder": "skills/scheduled-tasks"
+    },
+    {
+      "folder": "skills/spot-opportunities"
+    }
+  ],
+  "agentConnectors": [
+    {
+      "id": "Kowalah",
+      "displayName": "Kowalah",
+      "description": "Your organisation's AI operating model in Kowalah: vision, processes, systems, AI estate, outcomes and opportunities. Sign in with your work email.",
+      "toolSource": {
+        "remoteMcpServer": {
+          "mcpServerUrl": "https://mcp.kowalah.com/api/mcp"
+        }
+      }
+    }
+  ],
+  "copilotAgents": {
+    "declarativeAgents": [
+      {
+        "id": "declarativeAgent",
+        "file": "declarativeAgent.json"
+      }
+    ]
+  }
+}
