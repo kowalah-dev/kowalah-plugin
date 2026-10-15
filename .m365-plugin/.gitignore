@@ -18,5 +18,6 @@ appPackage/.generated
 # Copied from ../skills by scripts/sync-m365-skills.sh
 appPackage/skills/
 
-# Provision writes tenant and app IDs here. Start from env.dev.template.
+# Provision writes tenant and app IDs here. Start from env.dev.template or env.prod.template.
 env/.env.dev
+env/.env.prod

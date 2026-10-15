@@ -16,7 +16,9 @@ provision:
       name: mcpkowalah
       appId: ${{TEAMS_APP_ID}}
       applicableToApps: AnyApp
-      targetAudience: HomeTenant
+      # AnyTenant lets people in any Microsoft 365 organisation sign in through this
+      # auth config, not only the tenant that provisioned it. See README, Sign-in.
+      targetAudience: AnyTenant
       wellKnownAuthorizationServer: https://mcp.kowalah.com/.well-known/oauth-authorization-server
       targetUrlsShouldStartWith:
         - https://mcp.kowalah.com/api/mcp
