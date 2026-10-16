@@ -15,7 +15,9 @@ renders as a placeholder that says what to capture.
    data. The listing is public.
 2. Size the Chrome window to 1280 x 800 (16:10, the slot's shape) and zoom the
    page to 110-125% so text stays readable after scaling to 900 px wide.
-3. Save each window capture as `captures/shot-N.png`:
+3. With the shot on screen in Chrome, run `./capture.sh N`. It saves the
+   frontmost Chrome window as `captures/shot-N.png` (needs Screen Recording
+   permission). The shots:
 
    | N | Surface | Capture |
    |---|---|---|
