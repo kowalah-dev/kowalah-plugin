@@ -5,7 +5,8 @@ a write-up of one process, a note to a team.
 
 **If your assistant offers a shared document template** (in Claude, a Docs artifact),
 start from it, so readers can comment and the author can update it in place.
-**Otherwise**, write it as a document the person can copy into their own tools.
+**If it can create Word files** (in Microsoft 365 Copilot Cowork), write it as a Word
+document. **Otherwise**, write it as a document the person can copy into their own tools.
 
 ## A steering update that works
 

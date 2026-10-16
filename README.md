@@ -92,6 +92,13 @@ and the same Kowalah connector.
 When Cursor asks you to authenticate the Kowalah connector, sign in with your work email
 address.
 
+### Microsoft 365 Copilot
+
+Kowalah ships a Microsoft 365 Copilot plugin from this repository (`.m365-plugin/`): a
+Copilot Chat agent, plus the same skills and connector for Copilot Cowork. It isn't in the
+Microsoft marketplace yet; to set it up in your own tenant, see
+[.m365-plugin/README.md](.m365-plugin/README.md).
+
 ### Then, whichever route
 
 Connect with your work email address, since the domain is what places you in your
@@ -169,6 +176,9 @@ conversation.
   plugin.json          Cursor plugin manifest
   marketplace.json     Cursor marketplace manifest
   mcp.json             The same Kowalah server, in the shape Cursor reads
+.m365-plugin/          Microsoft 365 Copilot plugin (app manifest, icons, Agents
+                       Toolkit project). Its skills are copied in from skills/ by
+                       scripts/sync-m365-skills.sh, never edited there
 assets/icon.png        Plugin icon for Cursor
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
 skills/                Twelve skills, one directory each — including `kowalah-setup`,
@@ -177,7 +187,8 @@ skills/                Twelve skills, one directory each — including `kowalah-
 
 The MCP server itself is not in this repo — it's a remote HTTP connector at
 `mcp.kowalah.com`, built and operated by Kowalah. This plugin registers it and adds the
-skills that use it. Claude and Cursor share the same skills and server.
+skills that use it. Claude, Cursor and Microsoft 365 Copilot share the same skills and
+server.
 
 ## Tools this plugin connects to
 

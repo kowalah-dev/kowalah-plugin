@@ -78,9 +78,12 @@ friction beats a broad wish every time.
 
 **`kowalah_find_accelerator`** as soon as you have something concrete.
 
-The library holds pre-built prompts, GPTs, training and tools — the organisation's own
-private accelerators plus Kowalah's global library, tagged `org_private` or `global`.
-Results often carry a try-it-now prompt they can act on immediately.
+The library holds proven skills, plugins, prompts, guides and templates: the organisation's
+own accelerators plus Kowalah's library, tagged `organization` or `kowalah`. Each result
+lists an edition per AI platform (how to get it and how to use it), a security summary
+(what it can read or do, and whether a person approves its actions) and a `url` to its page
+in the Kowalah app. When you're looking at a particular step of their work, pass its
+`process_step_id` to find what fits that step.
 
 **If there's a match, the best possible outcome of this conversation is them using it
 today.** That is a better result than a well-written opportunity, and it costs nothing.
