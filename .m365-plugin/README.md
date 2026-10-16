@@ -88,7 +88,9 @@ Then:
 | `dev` | Kowalahdev | Testing in our own tenant |
 | `prod` | Kowalah | The package we install in client tenants and submit to Partner Center |
 
-`APP_NAME_SUFFIX` is the only difference in the templates: `dev` for dev, empty for prod.
+`AGENT_NAME` is the only difference in the templates. It names the agent and the Teams app.
+An `env/.env.dev` made before it existed needs `AGENT_NAME=Kowalahdev` added; the old
+`APP_NAME_SUFFIX` line can go.
 Each environment gets its own Teams app ID and its own auth config, so dev and prod can sit
 side by side in our tenant.
 
@@ -111,10 +113,15 @@ side by side in our tenant.
 2. Build the package:
 
    ```bash
-   wiqd plugin package --env prod
+   set -a; source env/.env.prod; set +a
+   wiqd plugin package --env prod --output appPackage/build/kowalah-prod.zip
+   wiqd plugin validate --env prod --mode deep --package-file appPackage/build/kowalah-prod.zip
    ```
 
-   The zip lands in `appPackage/build/`.
+   `package` (wiqd 0.18) didn't read `env/.env.prod` on its own, hence the `source`. It
+   also treats an empty variable as missing, which is why the templates set `AGENT_NAME`
+   in full rather than an empty suffix. `--mode deep` runs Microsoft's own store checks
+   on the zip.
 
 3. Send the zip to the client's Microsoft 365 admin, who uploads it in the Microsoft 365
    admin centre (**Settings → Integrated apps → Upload custom apps**) and chooses who gets

@@ -8,7 +8,7 @@ environmentFolderPath: ./env
 provision:
   - uses: teamsApp/create
     with:
-      name: kowalah${{APP_NAME_SUFFIX}}
+      name: ${{AGENT_NAME}}
     writeToEnvironmentFile:
       teamsAppId: TEAMS_APP_ID
   - uses: dcr/register

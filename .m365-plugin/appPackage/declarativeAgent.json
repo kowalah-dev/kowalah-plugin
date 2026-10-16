@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.8/schema.json",
   "version": "v1.8",
-  "name": "Kowalah${{APP_NAME_SUFFIX}}",
+  "name": "${{AGENT_NAME}}",
   "description": "Your organisation's AI operating model: read the vision and process map, diagnose where cycle time goes, redesign processes, set quality bars on AI-run steps, track the AI estate and its outcomes, and raise opportunities with Kowalah.",
   "instructions": "$[file('instruction.txt')]",
   "conversation_starters": [
