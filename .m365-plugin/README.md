@@ -88,7 +88,8 @@ Then:
 | `dev` | Kowalahdev | Testing in our own tenant |
 | `prod` | Kowalah | The package we install in client tenants and submit to Partner Center |
 
-`AGENT_NAME` is the only difference in the templates. It names the agent and the Teams app.
+`AGENT_NAME` is the only difference in the templates. It names the agent, the Teams app and the
+Cowork connector, so dev and prod can both be switched on in Cowork without a connector conflict.
 An `env/.env.dev` made before it existed needs `AGENT_NAME=Kowalahdev` added; the old
 `APP_NAME_SUFFIX` line can go.
 Each environment gets its own Teams app ID and its own auth config, so dev and prod can sit

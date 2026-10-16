@@ -62,8 +62,8 @@
   ],
   "agentConnectors": [
     {
-      "id": "Kowalah",
-      "displayName": "Kowalah",
+      "id": "${{AGENT_NAME}}",
+      "displayName": "${{AGENT_NAME}}",
       "description": "Your organisation's AI operating model in Kowalah: vision, processes, systems, AI estate, outcomes and opportunities. Sign in with your work email.",
       "toolSource": {
         "remoteMcpServer": {
