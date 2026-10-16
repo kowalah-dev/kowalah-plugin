@@ -13,7 +13,8 @@ provision:
       teamsAppId: TEAMS_APP_ID
   - uses: dcr/register
     with:
-      name: mcpkowalah
+      # Shown on the Kowalah sign-in page as "<name> wants to access Kowalah".
+      name: Microsoft 365 Copilot
       appId: ${{TEAMS_APP_ID}}
       applicableToApps: AnyApp
       # AnyTenant lets people in any Microsoft 365 organisation sign in through this
