@@ -1,0 +1,95 @@
+<!doctype html>
+<!--
+  Partner Center listing screenshot frame: 1366 x 768, one shot per ?shot=N.
+  Captures go in captures/shot-N.png (a Chrome window, 16:10). Until one exists,
+  the slot shows what to capture. Render all five with ./build.sh.
+-->
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Kowalah listing screenshot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #fa26a0;
+    --brand-deep: #8e24aa;
+    --ink: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1366px; height: 768px; overflow: hidden; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--ink);
+    background:
+      radial-gradient(1200px 700px at 0% 0%, rgba(255,255,255,0.10), transparent 60%),
+      linear-gradient(135deg, var(--brand) 0%, #c81f9a 45%, var(--brand-deep) 100%);
+    display: grid;
+    grid-template-columns: 330px 900px;
+    column-gap: 40px;
+    align-items: center;
+    padding: 0 48px;
+  }
+  .copy { display: flex; flex-direction: column; gap: 22px; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 22px; letter-spacing: -0.01em; }
+  .brand img { width: 44px; height: 44px; border-radius: 50%; box-shadow: 0 0 0 2px rgba(255,255,255,0.6); }
+  .surface {
+    align-self: flex-start;
+    font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 6px 12px; border-radius: 999px;
+    background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35);
+  }
+  h1 { font-size: 40px; line-height: 1.12; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance; }
+  .slot {
+    width: 900px; height: 562px; border-radius: 14px; overflow: hidden;
+    background: #fff;
+    box-shadow: 0 30px 60px rgba(40, 0, 40, 0.35), 0 0 0 1px rgba(255,255,255,0.25);
+  }
+  .slot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; }
+  .placeholder {
+    width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 14px;
+    padding: 56px; color: #5b2a52; background: repeating-linear-gradient(45deg, #fff, #fff 14px, #fdf0f7 14px, #fdf0f7 28px);
+    border: 3px dashed #f4a6d3; border-radius: 14px;
+  }
+  .placeholder b { font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--brand); }
+  .placeholder p { font-size: 22px; line-height: 1.4; font-weight: 500; }
+</style>
+</head>
+<body>
+  <div class="copy">
+    <div class="brand"><img src="../../appPackage/color.png" alt="">Kowalah</div>
+    <div class="surface" id="surface"></div>
+    <h1 id="caption"></h1>
+  </div>
+  <div class="slot" id="slot"></div>
+<script>
+  // Captions follow Microsoft's listing rules: short, plain, no superlatives,
+  // and each shot shows Kowalah working inside Microsoft 365 Copilot.
+  const SHOTS = {
+    1: { surface: 'Copilot Chat',   caption: 'Ask about your AI operating model, right in Copilot Chat',
+         capture: 'The Kowalah agent open in Copilot Chat, showing its conversation starters.' },
+    2: { surface: 'Copilot Chat',   caption: 'See where your slowest process loses time',
+         capture: 'Answer to "Walk me through our slowest process. Where does the time actually go?"' },
+    3: { surface: 'Copilot Chat',   caption: 'Track your AI programme against your vision',
+         capture: 'Answer to "How is our AI programme going against our vision?"' },
+    4: { surface: 'Copilot Cowork', caption: 'Hand longer work to Cowork, like a full programme review',
+         capture: 'Copilot Cowork running a Kowalah skill: a programme review or a process redesign in progress.' },
+    5: { surface: 'Copilot Chat',   caption: 'Record the value AI delivers, confirmed before it is saved',
+         capture: 'Recording an outcome: the confirmation step before Kowalah saves it.' },
+  };
+  const n = Number(new URLSearchParams(location.search).get('shot') || 1);
+  const shot = SHOTS[n] || SHOTS[1];
+  document.getElementById('surface').textContent = shot.surface;
+  document.getElementById('caption').textContent = shot.caption;
+  const slot = document.getElementById('slot');
+  const img = new Image();
+  img.alt = shot.caption;
+  img.onload = () => slot.replaceChildren(img);
+  img.onerror = () => {
+    slot.innerHTML = `<div class="placeholder"><b>Capture ${n} goes here</b><p></p></div>`;
+    slot.querySelector('p').textContent = shot.capture;
+  };
+  img.src = `captures/shot-${n}.png`;
+</script>
+</body>
+</html>
