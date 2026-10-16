@@ -1,0 +1,22 @@
+# TeamsFx files
+env/.env.*.user
+env/.env.local
+.localConfigs
+appPackage/build
+
+# dependencies
+node_modules/
+
+# misc
+.env
+.deployment
+.DS_Store
+
+# generated files
+appPackage/.generated
+
+# Copied from ../skills by scripts/sync-m365-skills.sh
+appPackage/skills/
+
+# Provision writes tenant and app IDs here. Start from env.dev.template.
+env/.env.dev
