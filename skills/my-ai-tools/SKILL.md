@@ -80,9 +80,9 @@ where this session runs and only the items they approved. Use the surface you're
 
 | Assistant | `surface` |
 |---|---|
-| Claude on the web, desktop, Cowork, Claude Code | `claude_ai`, `claude_desktop`, `cowork`, `claude_code` |
+| Claude on the web, desktop, Claude Cowork, Claude Code | `claude_ai`, `claude_desktop`, `cowork`, `claude_code` |
 | ChatGPT on the web or desktop, Codex | `chatgpt`, `chatgpt_desktop`, `codex` |
-| Microsoft Copilot, Gemini | `copilot`, `gemini` |
+| Microsoft 365 Copilot (Chat or Cowork), Gemini | `copilot`, `gemini` |
 | Anything else, or you're not sure | `other` |
 
 Never pick a Claude surface for another assistant. `other` is the honest answer when it

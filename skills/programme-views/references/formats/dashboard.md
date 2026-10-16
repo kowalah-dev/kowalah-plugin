@@ -6,8 +6,10 @@ wants to look things up rather than be walked through them.
 **If your assistant offers a dashboard template** (in Claude, a Dashboard artifact, where
 the plan and admin settings allow), start from it. Where the reader's assistant can
 reach the same connectors, a dashboard can read the operating model live, so it stays
-current without being rebuilt. **Otherwise**, build a single self-contained web page with
-the figures as of today, and date it.
+current without being rebuilt. **If it can create Excel files** (in Microsoft 365 Copilot
+Cowork), build a workbook with a summary sheet and charts, the figures as of today, and
+date it. **Otherwise**, build a single self-contained web page with the figures as of
+today, and date it.
 
 ## A layout that works
 

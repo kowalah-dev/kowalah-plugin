@@ -4,7 +4,8 @@ For a meeting or a board pack. Travels as a file, so it has to make sense withou
 presenting it.
 
 **If your assistant offers a slides template** (in Claude, a Slides artifact), start
-from it so the deck can be downloaded. **Otherwise**, write the deck as a slide-by-slide
+from it so the deck can be downloaded. **If it can create PowerPoint files** (in Microsoft
+365 Copilot Cowork), build the deck as a PowerPoint file. **Otherwise**, write the deck as a slide-by-slide
 outline the person can paste into their own tool, with the figures and their sources on
 each slide.
 
