@@ -91,10 +91,11 @@ on overall quality. They are separate eval rows on the same step.
 - **`status`** — `defined` (default) | `active` | `retired`. An eval sitting at `defined`
   is a written intention, not a running check. Be precise about the difference when
   reporting: "we have defined four evals and none are active" is the honest version.
-- **`owner_user_id`** — the eval's owner on the client side. This matters: **once created,
-  the eval's owner may edit it thereafter even if the process itself sits above their
-  altitude.** So a function lead can own the quality bar on a process they do not otherwise
-  control. Set it deliberately.
+- **`owner_person_id`** — the eval's owner on the client side: a person in the
+  organisation, with or without a login. Find their id with `kowalah_find_person`. This
+  matters: **once created, the eval's owner may edit it thereafter even if the process
+  itself sits above their altitude** (when they sign in). So a function lead can own the
+  quality bar on a process they do not otherwise control. Set it deliberately.
 
 ## Jidoka: autonomous steps need a stop-condition
 
@@ -116,5 +117,5 @@ Creating an eval needs edit rights on the parent process. If `access.can_edit` i
 route through `kowalah_propose_process_change` — a proposal to add a quality gate is
 exactly what that tool is for.
 
-Once an eval exists, its `owner_user_id` may edit it regardless of process altitude. Admins
+Once an eval exists, its owner (`owner_person_id`) may edit it regardless of process altitude. Admins
 and core team may do either anywhere in the organisation.
