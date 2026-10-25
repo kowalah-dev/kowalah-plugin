@@ -177,7 +177,7 @@ conversation.
   plugin.json          Cursor plugin manifest
   marketplace.json     Cursor marketplace manifest
   mcp.json             The same Kowalah server, in the shape Cursor reads
-assets/icon.png        Plugin icon for Cursor
+assets/                Plugin icon for Cursor and Codex
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
 skills/                Twelve skills, one directory each — including `kowalah-setup`,
                        which covers connecting and troubleshooting
