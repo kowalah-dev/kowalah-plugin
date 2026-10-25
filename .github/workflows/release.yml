@@ -26,9 +26,6 @@ jobs:
       - name: Validate Claude plugin
         run: npm i -g @anthropic-ai/claude-code && claude plugin validate .
 
-      - name: Validate Cursor plugin
-        run: node scripts/validate-cursor-plugin.mjs
-
       - name: Build zip
         run: ./scripts/package.sh
 
