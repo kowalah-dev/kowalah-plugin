@@ -20,8 +20,8 @@ cd "$(dirname "$0")/.."
 # the mechanism for the next skill that genuinely can't travel.
 CLAUDE_ONLY_SKILLS=()
 
-# Options are flags, not environment variables: the Claude plugin directory
-# treats a script reading OPENAI_* from the environment as reading a credential.
+# Options are flags only. Keep it that way: Anthropic's plugin directory holds
+# a plugin whose repo takes values from the shell environment.
 REVIEW_JSON=""
 TEST_APP_ID=""
 while [ $# -gt 0 ]; do
