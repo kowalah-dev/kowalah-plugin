@@ -14,9 +14,11 @@ Copilot. Microsoft refuses versions that start with 0, so we stay on 1.x and up.
 
    ```bash
    claude plugin validate .
-   node scripts/validate-cursor-plugin.mjs
    ./scripts/package.sh
    ```
+
+   The Cursor manifests are checked by the companion repo's CI and `scripts/verify.sh`
+   (see section 3), not here.
 
 ## 2. Release from `main`
 
@@ -45,4 +47,6 @@ tag and checks every weekday that it is still on the latest one. After tagging:
 Anthropic's directory scans the whole repo as the plugin, not just what Claude loads.
 Anything used only to list, review or package the plugin for another store goes in the
 companion repo: test cases, screenshots and their tooling, store packages and their
-provisioning files.
+provisioning files, and validators for other platforms' manifests. The scan held every
+release from 0.7.0 to 1.0.1 because it read the Cursor validator script as reading a
+credential.
