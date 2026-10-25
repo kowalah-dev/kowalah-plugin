@@ -1,6 +1,6 @@
 ---
 name: raise-opportunity
-description: Take an idea or an ask to the Kowalah team properly — check what already exists, test it against the AI vision, score it, and submit it. Use for "I need help with", "raise this with Kowalah", "we should look into", "I've got an idea about", or when a review turns up a gap somebody wants to act on.
+description: Raise an idea or an ask properly — check what already exists, test it against the AI vision, score it, and submit it to the organisation's backlog for triage. Use for "I need help with", "raise this with Kowalah", "we should look into", "I've got an idea about", or when a review turns up a gap somebody wants to act on.
 ---
 
 # Raise an opportunity
@@ -8,8 +8,13 @@ description: Take an idea or an ask to the Kowalah team properly — check what 
 `kowalah_create_opportunity` is the single entry point for everything a client might want
 help with — a quick question, a piece of work for the Kowalah team, a new initiative, a
 project to scope. **The user does not need to decide in advance which it is.** They
-describe what they are trying to do; Kowalah triages from there. Anyone in the organisation
-can raise one, at any role.
+describe what they are trying to do. Anyone in the organisation can raise one, at any role.
+
+**The organisation triages its own opportunities.** Its admins and core team review what's
+raised, shortlist and score it, and decide where each one goes: their own team, a partner,
+or Kowalah. Kowalah is one destination, not the gate. If the person raising it is an admin
+or core team member and wants to take it forward themselves, hand off to
+`triage-discovery` once it's raised.
 
 This skill is the four things to do before submitting. Skipping them is how thin,
 unscoreable opportunities end up in the queue.
@@ -117,11 +122,11 @@ your estimate.
   meeting"*), `requested_project_id`.
 - **`requested_target_type`** — `deliverable` or `expert_request` — only if the user has a
   strong view on the form of help. **Omit it if they are unsure.** Guessing here pre-empts
-  a decision Kowalah makes together with the client, and a wrong guess is worse than no
-  guess.
+  a decision the organisation's triage makes, and a wrong guess is worse than no guess.
 
 ## After
 
-**Tell the user the opportunity number.** It is how they refer back to it — `kowalah_get_update`
+**Tell the user the opportunity number, and who looks at it next:** their organisation's
+admins and core team, who triage what's raised. The number is how they refer back to it — `kowalah_get_update`
 with that number brings up its status. The response also returns their recent opportunities,
 so they can see their queue; worth showing if they have several in flight.

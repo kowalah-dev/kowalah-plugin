@@ -128,14 +128,16 @@ ICE score and the vision reference right. Don't write the opportunity inline her
 
 ## Be straight with them
 
-- **Don't promise anything gets built.** An opportunity is an ask that gets triaged by the
-  Kowalah team, weighed against everything else. Say that.
+- **Don't promise anything gets built.** An opportunity is an ask that the organisation's
+  admins and core team triage, weighed against everything else. Say that.
 - **"No opportunity here" is a fine outcome.** A conversation that ends with someone
   understanding their own process better and nothing logged is a success. Manufacturing an
   opportunity to have something to show wastes the triage queue and their time.
 - **What they see is partial.** They can read the whole operating model and vision, but
-  `kowalah_get_update` shows them only their own opportunities plus items they're a
-  stakeholder on. If they ask what else is going on, that's the honest answer — there may
+  members see only their own opportunities plus items they're a stakeholder on. To check
+  whether they've raised something like it before, use `kowalah_list_opportunities`
+  (the home view stops at the most recent); admins and core team see the whole backlog
+  there. If they ask what else is going on, that's the honest answer — there may
   be work in flight on this already that they can't see. Worth mentioning before they raise
   something.
 - **Ask which organisation** if they belong to more than one. `kowalah_get_update` with no

@@ -114,6 +114,13 @@ Where the user wants to act on a gap, hand off to `raise-opportunity` rather tha
 the opportunity inline — it checks the accelerator library first and gets the ICE score and
 vision test right.
 
+**Ideas waiting for triage.** If the user is an admin or core team member and opportunities
+are sitting captured, or a discovery has closed (or passed its close date) without being
+triaged, say how many and offer `triage-discovery`. Untriaged ideas are work the
+organisation has asked for and nobody has answered; that belongs in the review. For the
+count, use `kowalah_list_opportunities` with `status: ["captured"]`, not the home view,
+which shows only the most recent.
+
 ## Scope and permissions
 
 `kowalah_get_update` returns different things by role. Admins and core team see everything

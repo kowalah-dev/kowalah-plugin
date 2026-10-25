@@ -135,7 +135,8 @@ can propose against any process they can see.
 | `/kowalah:quality-bar` | Acceptance criteria, gates and monitors, target scores — what "good" means for a step, set by the business owner rather than the builder. |
 | `/kowalah:kowalah-setup` | Connect the MCP server and work out what your account can actually see — including whether you landed in your company's organisation or a new empty one. |
 | `/kowalah:spot-opportunities` | For anyone: talk through your own work, find the real friction, check what already exists, and route it. Grounded in your organisation's vision, not generic AI advice. |
-| `/kowalah:raise-opportunity` | Check the accelerator library first, test against the vision, score it, submit it. |
+| `/kowalah:raise-opportunity` | Check the accelerator library first, test against the vision, score it, submit it to your organisation's backlog. |
+| `/kowalah:triage-discovery` | For admins and core team: start a discovery, play back what came in, agree merges and a shortlist, score it in an ICE workshop, and take the best ideas forward into your own project or to Kowalah. Every change is confirmed before it's written. |
 | `/kowalah:programme-views` | Design and build something to share about the programme — a dashboard, a deck, a doc, a one-page visual or a short animated walkthrough — for whoever needs to read it. Built from your operating model plus any other sources you choose, leading with where the business is constrained. |
 | `/kowalah:scheduled-tasks` | Set up a scheduled task in your assistant that brings you something useful from Kowalah each week or month — what's new in your library, the week in your area, progress against the vision, or a draft of your programme update. You choose what runs; nothing is shared on its own. |
 
@@ -179,7 +180,7 @@ conversation.
   mcp.json             The same Kowalah server, in the shape Cursor reads
 assets/                Plugin icon for Cursor and Codex
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
-skills/                Twelve skills, one directory each — including `kowalah-setup`,
+skills/                Thirteen skills, one directory each — including `kowalah-setup`,
                        which covers connecting and troubleshooting
 ```
 
