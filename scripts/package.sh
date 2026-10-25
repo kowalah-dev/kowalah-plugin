@@ -20,8 +20,8 @@ cd "$(dirname "$0")/.."
 # the mechanism for the next skill that genuinely can't travel.
 CLAUDE_ONLY_SKILLS=()
 
-# Options are flags, not environment variables: the Claude plugin directory
-# treats a script reading OPENAI_* from the environment as reading a credential.
+# Options are flags only. Keep it that way: Anthropic's plugin directory holds
+# a plugin whose repo takes values from the shell environment.
 REVIEW_JSON=""
 TEST_APP_ID=""
 while [ $# -gt 0 ]; do
@@ -67,7 +67,7 @@ zip -qr "$CLAUDE_OUT" \
 # file Claude uses. OpenAI's dashboard connects the server from it at submission,
 # and the published plugin carries that connection for every user. No .claude-plugin/: with both present OpenAI would have two
 # manifests to choose between. No README.md: it is written for Claude users.
-OPENAI_OUT="dist/kowalah-plugin-openai-${VERSION}.zip"
+CHATGPT_ZIP="dist/kowalah-plugin-openai-${VERSION}.zip"
 EXCLUDES=()
 for s in "${CLAUDE_ONLY_SKILLS[@]+"${CLAUDE_ONLY_SKILLS[@]}"}"; do EXCLUDES+=(-x "skills/$s/*"); done
 # OpenAI gets its own .mcp.json: the url plus extensions.com.openai.auth
@@ -76,8 +76,8 @@ for s in "${CLAUDE_ONLY_SKILLS[@]+"${CLAUDE_ONLY_SKILLS[@]}"}"; do EXCLUDES+=(-x
 # it. Same server URL, read from the Claude file. Changing this after a draft
 # exists counts as changing the MCP server: the portal then requires a new
 # plugin, so settle it before the first upload.
-OPENAI_STAGE=$(mktemp -d)
-python3 - "$OPENAI_STAGE/.mcp.json" <<'PY'
+CHATGPT_STAGE=$(mktemp -d)
+python3 - "$CHATGPT_STAGE/.mcp.json" <<'PY'
 import json, sys
 src = json.load(open(".mcp.json"))["mcpServers"]
 json.dump({"mcpServers": {name.lower(): {
@@ -85,7 +85,7 @@ json.dump({"mcpServers": {name.lower(): {
     "extensions": {"com.openai": {"auth": {"type": "oauth"}}},
 } for name, cfg in src.items()}}, open(sys.argv[1], "w"), indent=2)
 PY
-zip -qr "$OPENAI_OUT" \
+zip -qr "$CHATGPT_ZIP" \
   .codex-plugin/plugin.json \
   skills/ \
   assets/ \
@@ -97,20 +97,20 @@ zip -qr "$OPENAI_OUT" \
 #   ./scripts/package.sh --review ../kowalah-plugin-review/openai/review.json
 # Without it the zip has no review block, which suits anything but a submission.
 if [ -n "$REVIEW_JSON" ]; then
-  mkdir -p "$OPENAI_STAGE/.codex-plugin"
-  python3 - "$REVIEW_JSON" "$OPENAI_STAGE/.codex-plugin/plugin.json" <<'PY'
+  mkdir -p "$CHATGPT_STAGE/.codex-plugin"
+  python3 - "$REVIEW_JSON" "$CHATGPT_STAGE/.codex-plugin/plugin.json" <<'PY'
 import json, sys
 review, out = sys.argv[1], sys.argv[2]
 m = json.load(open(".codex-plugin/plugin.json"))
 m.setdefault("extensions", {}).setdefault("com.openai", {}).update(json.load(open(review)))
 json.dump(m, open(out, "w"), indent=2, ensure_ascii=False)
 PY
-  zip -qd "$OPENAI_OUT" .codex-plugin/plugin.json >/dev/null
-  (cd "$OPENAI_STAGE" && zip -q "$OLDPWD/$OPENAI_OUT" .codex-plugin/plugin.json)
+  zip -qd "$CHATGPT_ZIP" .codex-plugin/plugin.json >/dev/null
+  (cd "$CHATGPT_STAGE" && zip -q "$OLDPWD/$CHATGPT_ZIP" .codex-plugin/plugin.json)
 fi
-(cd "$OPENAI_STAGE" && zip -q "$OLDPWD/$OPENAI_OUT" .mcp.json)
+(cd "$CHATGPT_STAGE" && zip -q "$OLDPWD/$CHATGPT_ZIP" .mcp.json)
 
-OUTS=("$CLAUDE_OUT" "$OPENAI_OUT")
+OUTS=("$CLAUDE_OUT" "$CHATGPT_ZIP")
 
 # --- OpenAI, private test build ----------------------------------------------
 # An uploaded, unpublished plugin has no connection of its own, so ChatGPT shows
@@ -123,7 +123,7 @@ if [ -n "$TEST_APP_ID" ]; then
   TEST_OUT="dist/kowalah-plugin-openai-${VERSION}-test.zip"
   STAGE=$(mktemp -d)
   cp -R .codex-plugin skills assets LICENSE "$STAGE"/
-  cp "$OPENAI_STAGE/.mcp.json" "$STAGE"/
+  cp "$CHATGPT_STAGE/.mcp.json" "$STAGE"/
   python3 - "$STAGE" "$TEST_APP_ID" <<'PY'
 import json, sys, os
 stage, app_id = sys.argv[1], sys.argv[2]
@@ -140,7 +140,7 @@ PY
   OUTS+=("$TEST_OUT")
 fi
 
-rm -rf "$OPENAI_STAGE"
+rm -rf "$CHATGPT_STAGE"
 
 for out in "${OUTS[@]}"; do
   echo "built $out ($(du -h "$out" | cut -f1))"
