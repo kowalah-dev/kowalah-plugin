@@ -40,9 +40,16 @@ unit that matters, and tell the person the build will take longer.
 - **One process in full:** `kowalah_get_process`, for a view built around a single process.
   Its `diagnosis` says how well the process is captured, and where the time goes.
 - **Work in flight:** `kowalah_get_update` with no query lists projects, deliverables and
-  opportunities. Use it to show whether the work in flight is aimed at the constraints.
-  Members see a partial portfolio by design, so say so on the page if the person is a
-  member.
+  the most recent opportunities. Use it to show whether the work in flight is aimed at the
+  constraints. Members see a partial portfolio by design, so say so on the page if the
+  person is a member.
+- **Every opportunity:** `kowalah_list_opportunities`, not the home view, whenever the view
+  shows ideas: the home view stops at the most recent. Filter by discovery, status or
+  department; page until `next_cursor` is null. Each row carries the ICE breakdown and
+  rationale, a summary, and where it was merged into or promoted to. See
+  `views/opportunities.md`.
+- **A discovery:** `kowalah_get_update` with its number or `id` gives the brief and how many
+  of the audience have responded.
 - **Value delivered:** recorded outcomes. See the `outcomes` skill for how to read and
   report them honestly.
 

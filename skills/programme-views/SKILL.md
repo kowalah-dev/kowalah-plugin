@@ -36,6 +36,13 @@ matching guide in `references/roles/`:
 | Owns a business process or function | `references/roles/process-owner.md` |
 | Does the work in a process | `references/roles/team-member.md` |
 
+Some views are about one subject rather than the whole programme. Where one fits, read its
+guide too:
+
+| About | Guide |
+|---|---|
+| The ideas raised: a discovery played back, or the opportunities backlog | `references/views/opportunities.md` |
+
 ## 2. What else they've got
 
 The operating model holds processes, steps, coverage, the redesign backlog, open questions
@@ -110,4 +117,6 @@ each figure and what isn't available.
 - If they want to find the gaps before presenting them, `programme-review` does the
   analysis and this skill presents it.
 - If the view shows a gap worth acting on, hand off to `raise-opportunity`.
+- If the view is of ideas that need sorting, `triage-discovery` runs the triage and
+  records the decisions; this skill builds the view it works from.
 - To report value delivered in detail, use `outcomes` alongside this skill.
