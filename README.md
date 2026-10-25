@@ -94,10 +94,11 @@ address.
 
 ### Microsoft 365 Copilot
 
-Kowalah ships a Microsoft 365 Copilot plugin from this repository (`.m365-plugin/`): a
-Copilot Chat agent, plus the same skills and connector for Copilot Cowork. It isn't in the
-Microsoft marketplace yet; to set it up in your own tenant, see
-[.m365-plugin/README.md](.m365-plugin/README.md).
+Kowalah also has a Microsoft 365 Copilot plugin: a Copilot Chat agent, plus these same
+skills and the same connector for Copilot Cowork. It is built from this repository's skills
+but packaged separately. It isn't in the Microsoft marketplace yet; until it is, ask
+Kowalah for the package, and your Microsoft 365 admin uploads it under **Settings →
+Integrated apps → Upload custom apps**.
 
 ### Then, whichever route
 
@@ -176,9 +177,6 @@ conversation.
   plugin.json          Cursor plugin manifest
   marketplace.json     Cursor marketplace manifest
   mcp.json             The same Kowalah server, in the shape Cursor reads
-.m365-plugin/          Microsoft 365 Copilot plugin (app manifest, icons, Agents
-                       Toolkit project). Its skills are copied in from skills/ by
-                       scripts/sync-m365-skills.sh, never edited there
 assets/icon.png        Plugin icon for Cursor
 .mcp.json              Registers mcp.kowalah.com as an authenticated HTTP connector
 skills/                Twelve skills, one directory each — including `kowalah-setup`,
