@@ -6,10 +6,11 @@ Copilot. Microsoft refuses versions that start with 0, so we stay on 1.x and up.
 ## 1. Prepare on `staging`
 
 1. Branch from `staging`, make the change, open a PR to `staging`.
-2. Bump the version in all five manifests, in the same PR or a release PR:
+2. Bump the version in all four manifests, in the same PR or a release PR:
    `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`,
-   `.codex-plugin/plugin.json`, `.cursor-plugin/plugin.json`,
-   `.cursor-plugin/marketplace.json`.
+   `.codex-plugin/plugin.json` and `.cursor-plugin/plugin.json`.
+   (`.cursor-plugin/marketplace.json` carries the marketplace's own version, not the
+   plugin's.)
 3. Check locally:
 
    ```bash
