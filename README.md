@@ -94,11 +94,15 @@ address.
 
 ### Microsoft 365 Copilot
 
-Kowalah also has a Microsoft 365 Copilot plugin: a Copilot Chat agent, plus these same
+Kowalah is in the Microsoft 365 Copilot marketplace: a Copilot Chat agent, plus these same
 skills and the same connector for Copilot Cowork. It is built from this repository's skills
-but packaged separately. It isn't in the Microsoft marketplace yet; until it is, ask
-Kowalah for the package, and your Microsoft 365 admin uploads it under **Settings →
-Integrated apps → Upload custom apps**.
+but packaged separately.
+
+- **Copilot Cowork:** [open Kowalah in Cowork](https://m365.cloud.microsoft/cowork#/extensions/plugins/P_596775ef-11f6-ea88-839c-aadf2015efdb),
+  or find it under **Customize → Plugins**, and turn it on.
+- **Copilot Chat:** add the Kowalah agent from the agent store.
+- **If your organisation restricts apps,** your Microsoft 365 admin makes Kowalah
+  available under **Settings → Integrated apps** in the Microsoft 365 admin centre.
 
 ### Then, whichever route
 
