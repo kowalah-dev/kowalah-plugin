@@ -63,8 +63,10 @@ role-appropriate rollup.
 
 **Their role.** This gates `kowalah_get_update` only: `admin` and `core_team` see
 everything in the organisation, `member` sees their own opportunities plus items they are a
-stakeholder on. It does **not** gate the operating model, vision map, accelerator library
-or process detail — anyone in the organisation can read all of those. Writes are
+stakeholder on. It does **not** gate the operating model, accelerator library or process
+detail — anyone in the organisation can read all of those. The vision map is the one
+exception: a draft is visible to `admin` and `core_team` only, and everyone sees it once it
+is confirmed. Writes are
 permission-checked separately, and where a user cannot edit something the tools route them
 to a proposal rather than refusing. An admin is a cross-cutting editor in their own
 organisation, so a sole admin in a new organisation can author the whole model.

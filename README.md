@@ -156,7 +156,8 @@ something isn't recorded, they say so rather than filling the gap from conversat
 they check how old the vision and the quality readings are before leaning on them.
 
 **You can see more than you can change.** Reads are scoped to your organisation, not your
-role — anyone can look at the whole operating model and the vision map. Writes are
+role — anyone can look at the whole operating model and the confirmed vision map (a draft
+vision is for admins and core team until it is confirmed). Writes are
 permission-checked, and where you can't edit something the tools route you to a proposal
 instead of refusing. So the always-open path for everyone is: see anything, propose
 anything.
