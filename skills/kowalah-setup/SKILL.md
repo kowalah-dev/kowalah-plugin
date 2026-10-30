@@ -63,10 +63,12 @@ role-appropriate rollup.
 
 **Their role.** This gates `kowalah_get_update` only: `admin` and `core_team` see
 everything in the organisation, `member` sees their own opportunities plus items they are a
-stakeholder on. It does **not** gate the operating model, accelerator library or process
-detail — anyone in the organisation can read all of those. The vision map is the one
-exception: a draft is visible to `admin` and `core_team` only, and everyone sees it once it
-is confirmed. Writes are
+stakeholder on. It does **not** gate the active operating model, accelerator library or
+process detail — anyone in the organisation can read all of those. Drafts are the
+exception. A draft vision is visible to `admin` and `core_team` only, and everyone sees it
+once it is confirmed. A draft process is visible to `admin` and `core_team`, and to a
+member who owns it, created it, or holds edit rights at or above its unit; everyone sees it
+once it is set active. A process created through the tools starts as a draft. Writes are
 permission-checked separately, and where a user cannot edit something the tools route them
 to a proposal rather than refusing. An admin is a cross-cutting editor in their own
 organisation, so a sole admin in a new organisation can author the whole model.
